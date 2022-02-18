@@ -1,3 +1,4 @@
+from audioop import reverse
 import re
 from statistics import median
 
@@ -42,10 +43,21 @@ def createDictionary(N, str):
 def findTopK(dictionary, K):
     sorted_dictionary = dict()
     sorted_values = sorted(dictionary, key = dictionary.get)
+    counter = 0
     for s in sorted_values:
         sorted_dictionary[s] = dictionary[s]
-    for i in range(len(sorted_dictionary), len(sorted_dictionary) - K, -1):
-        print(f"{sorted_dictionary.values} - {sorted_dictionary.keys[i]}")
+        counter += 1
+    if(counter < K):
+        for key, value in sorted_dictionary.items():
+            print(f"{value} - {key}")
+        print("\n")
+    else:
+        reversed_dictionary = dict(reversed(list(sorted_dictionary.items())))
+        k = 0
+        for key, value in reversed_dictionary.items():
+            if(k >= K): break
+            print(f"{value} - {key}")
+            k += 1
 
 def main():
     print("Enter N: ")
