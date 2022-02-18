@@ -32,13 +32,19 @@ def findAverage(str):
         words.append(re.split('\, |\; |\! |\? |\... |\ ', s))
     print("/n" + words) #to control output
 
+
 def findRepeated(N, K, str):
     arr = re.split('\, |\. |\; |\! |\? |\... |\ ', str)
     checkEmpty(arr)
     for i in range(len(arr) - 1):
         arr[i] += arr[i+1]
         output = arr[i]
-    print(output)
+
+    dictionary = dict()
+    for i in range(output):
+        
+
+
 
 
 def main():
