@@ -1,8 +1,9 @@
 import re
+from statistics import median
 
 #count repeated words
 def countWords(str):
-    arr = re.split('\, |\. |\; |\! |\? |\... ', str)
+    arr = re.split('\, |\. |\; |\! |\? |\... |\ ', str)
     checkEmpty(arr)
     dictionary = dict()
     for i in range(0, len(arr)):
@@ -27,12 +28,14 @@ def findAverage(str):
     print(sentences)
     words = []
     for s in sentences :
-        words.append(re.split('\, |\; |\! |\? |\... ', s))
+        words.append(re.split('\, |\; |\! |\? |\... |\ ', s))
     print("/n" + words) #to control output
 
 def main():
-    #enter a string
     str = input()
-    countWords(str)
-    findAverage(str)
+    dictionary = countWords(str)
+    print(f"Median: {median(dictionary.values())}")
+    print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}")
+    #findAverage(str)
+    
 main()
