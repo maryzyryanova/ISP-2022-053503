@@ -44,8 +44,8 @@ def findTopK(dictionary, K):
     sorted_values = sorted(dictionary, key = dictionary.get)
     for s in sorted_values:
         sorted_dictionary[s] = dictionary[s]
-    for key, value in sorted_dictionary.items():
-        print(f"{value} - {key}")
+    for i in range(len(sorted_dictionary), len(sorted_dictionary) - K, -1):
+        print(f"{sorted_dictionary.values} - {sorted_dictionary.keys[i]}")
 
 def main():
     print("Enter N: ")
