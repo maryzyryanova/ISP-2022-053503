@@ -1,4 +1,5 @@
 import re
+import numpy
 from statistics import median
 
 #count repeated words
@@ -31,11 +32,21 @@ def findAverage(str):
         words.append(re.split('\, |\; |\! |\? |\... |\ ', s))
     print("/n" + words) #to control output
 
+def findRepeated(N, K, str):
+    arr = re.split('\, |\. |\; |\! |\? |\... |\ ', str)
+    checkEmpty(arr)
+    for i in range(len(arr) - 1):
+        arr[i] += arr[i+1]
+        output = arr[i]
+    print(output)
+
+
 def main():
     str = input()
     dictionary = countWords(str)
     print(f"Median: {median(dictionary.values())}")
     print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}")
+    findRepeated(4, 10, str)
     #findAverage(str)
-    
+
 main()
