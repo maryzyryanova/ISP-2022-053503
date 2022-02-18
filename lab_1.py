@@ -1,3 +1,5 @@
+import re
+
 def countWords(arr):
     dictionary = dict()
     for i in range(0, len(arr)):
@@ -13,7 +15,7 @@ def countWords(arr):
 def main():
     str = input()
     print(f"Your string: {str}")
-    arr = str.split()
+    arr = re.split('\, |\. |\; |\! |\? |\... |\ ', str)
     countWords(arr)
 
 main()
