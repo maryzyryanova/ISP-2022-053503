@@ -1,6 +1,9 @@
 import re
 
-def countWords(arr):
+#count repeated words
+def countWords(str):
+    arr = re.split('\, |\. |\; |\! |\? |\... ', str)
+    checkEmpty(arr)
     dictionary = dict()
     for i in range(0, len(arr)):
         if(arr[i] != 0):
@@ -8,20 +11,28 @@ def countWords(arr):
                 dictionary[arr[i]] = 1
             else:
                 dictionary[arr[i]] += 1
-
-
     for key, value in dictionary.items():
         print(f"{value} - {key}")
     return dictionary
 
+#deleting null element
+def checkEmpty(arr):
+    if(arr.__contains__('')):
+        arr.remove('')
+
+#average amount of words in sentences
+def findAverage(str):
+    sentences = re.split('\. |\! |\? |\... ', str)
+    checkEmpty(sentences)
+    print(sentences)
+    words = []
+    for s in sentences :
+        words.append(re.split('\, |\; |\! |\? |\... ', s))
+    print("/n" + words) #to control output
+
 def main():
+    #enter a string
     str = input()
-    print(f"Your string: {str}")
-    arr = re.split('\, |\. |\; |\! |\? |\... |\ ', str)
-    countWords(arr)
-
+    countWords(str)
+    findAverage(str)
 main()
-
-
-
-
