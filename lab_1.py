@@ -25,9 +25,7 @@ def checkEmpty(arr):
 def createDictionary(N, str):
     arr = re.split('\, |\. |\; |\! |\? |\... |\ ', str)
     checkEmpty(arr)
-    for i in range(len(arr) - 1):
-        arr[i] += arr[i+1]
-        output = arr[i]
+    output = "".join(arr)
     dictionary = dict()
     for i in range(0, len(output) - N + 1, 1):
         temp = ''
@@ -38,8 +36,6 @@ def createDictionary(N, str):
                 dictionary[temp] = 1
             else:
                 dictionary[temp] += 1
-    for key, value in dictionary.items():
-        print(f"{value} - {key}")
     return dictionary
 
 #choosw the biggest K elemenets
@@ -48,21 +44,19 @@ def findTopK(dictionary, K):
     sorted_values = sorted(dictionary, key = dictionary.get)
     for s in sorted_values:
         sorted_dictionary[s] = dictionary[s]
-    dictionary = reversed(sorted_dictionary)
+    for key, value in sorted_dictionary.items():
+        print(f"{value} - {key}")
 
 def main():
     print("Enter N: ")
     N = (int)(input())
-
     print("Enter K: ")
     K = (int)(input())
-
     print("Your text: ")
     str = input()
-
     dictionary = countWords(str)
-    print(f"Median: {median(dictionary.values())}")
-    print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}")
+    print(f"\nMedian: {median(dictionary.values())}")
+    print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}\n")
     dictionary = createDictionary(N, str)
     findTopK(dictionary, K)
 
