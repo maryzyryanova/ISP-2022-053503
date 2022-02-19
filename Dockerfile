@@ -2,8 +2,8 @@ FROM python
 
 WORKDIR /lab_1
 
-COPY . .
-
 RUN pip install numpy
+
+COPY . .
 
 CMD ["python", "lab_1.py"]
