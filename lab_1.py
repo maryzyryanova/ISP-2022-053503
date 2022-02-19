@@ -60,9 +60,9 @@ def findTopK(dictionary, K):
 
 def main():
     print("Enter N: ")
-    N = (int)(input())
+    N = int(input())
     print("Enter K: ")
-    K = (int)(input())
+    K = int(input())
     print("Your text: ")
     str = input()
     dictionary = countWords(str)
