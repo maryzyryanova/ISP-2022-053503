@@ -38,7 +38,7 @@ def createDictionary(N, str):
                 dictionary[temp] += 1
     return dictionary
 
-#choosw the biggest K elemenets
+#choose the biggest K elemenets
 def findTopK(dictionary, K):
     sorted_dictionary = dict()
     sorted_values = sorted(dictionary, key = dictionary.get)
@@ -63,12 +63,13 @@ def main():
     N = int(input())
     print("Enter K: ")
     K = int(input())
-    print("Your text: ")
-    str = input()
-    dictionary = countWords(str)
-    print(f"\nMedian: {median(dictionary.values())}")
-    print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}\n")
-    dictionary = createDictionary(N, str)
-    findTopK(dictionary, K)
+    with open('file.txt', 'r') as f:
+        str = f.read()
+        dictionary = countWords(str)
+        print(f"\nMedian: {median(dictionary.values())}")
+        print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}\n")
+        dictionary = createDictionary(N, str)
+        findTopK(dictionary, K)
+        f.close()
 
 main()
