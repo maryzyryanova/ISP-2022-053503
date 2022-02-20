@@ -1,4 +1,2 @@
 run:
-	docker run --rm -it -v data_volume:/lab_1/data lab_1:volume
-stop:
-	docker stop lab_1
+	docker run --rm -it --name lab_1 -v data_volume:/lab_1/data lab_1:volume
