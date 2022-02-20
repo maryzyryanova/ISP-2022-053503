@@ -1,6 +1,6 @@
 FROM python
 
-WORKDIR /lab_1
+WORKDIR /ИСП/ISP-2022-053503
 
 RUN pip install numpy
 
