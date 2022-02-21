@@ -63,7 +63,7 @@ def main():
     N = int(input())
     print("Enter K: ")
     K = int(input())
-    with open('/lab_1/data/file.txt','r') as f:
+    with open('/data/file.txt','r') as f:
         str = f.read()
         dictionary = countWords(str)
         print(f"\nMedian: {median(dictionary.values())}")
