@@ -1,6 +1,6 @@
 FROM python
 
-WORKDIR /lab_1
+WORKDIR /lab1/lab1
 
 RUN pip install numpy
 
