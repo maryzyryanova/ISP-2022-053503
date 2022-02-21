@@ -3,5 +3,4 @@ run:
 build:
 	docker build -t lab_1 .
 stop: 
-
 	docker stop lab_1
