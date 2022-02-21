@@ -3,7 +3,7 @@ from statistics import median
 
 #count repeated words
 def countWords(str):
-    arr = re.split('\, |\. |\; |\! |\? |\... |\ ', str)
+    arr = re.split('\, |\. |\; |\! |\? |\... |\ |\!|\.|\?|\...|\,|\;', str)
     checkEmpty(arr)
     dictionary = dict()
     for i in range(0, len(arr)):
@@ -23,7 +23,7 @@ def checkEmpty(arr):
 
 #create a dictionary of n-grams
 def createDictionary(N, str):
-    arr = re.split('\, |\. |\; |\! |\? |\... |\ ', str)
+    arr = re.split('\, |\. |\; |\! |\? |\... |\ |\!|\.|\?|\...|\,|\;', str)
     checkEmpty(arr)
     output = "".join(arr)
     dictionary = dict()
@@ -49,7 +49,6 @@ def findTopK(dictionary, K):
     if(counter < K):
         for key, value in sorted_dictionary.items():
             print(f"{value} - {key}")
-        print("\n")
     else:
         reversed_dictionary = dict(reversed(list(sorted_dictionary.items())))
         k = 0
@@ -63,7 +62,7 @@ def main():
     N = int(input())
     print("Enter K: ")
     K = int(input())
-    f = open('file.txt', 'r')
+    f = open('/lab_1/data/file.txt', 'r')
     str = f.read()
     dictionary = countWords(str)
     print(f"\nMedian: {median(dictionary.values())}")
