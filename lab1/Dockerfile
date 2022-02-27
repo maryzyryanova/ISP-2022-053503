@@ -2,7 +2,7 @@ FROM python
 
 WORKDIR /lab1
 
-RUN pip install numpy
+RUN pip install pep257
 
 COPY lab_1.py .
 
