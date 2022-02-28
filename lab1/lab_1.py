@@ -13,9 +13,12 @@ def count_words(input_string):
                 dictionary[arr_element] = 1
             else:
                 dictionary[arr_element] += 1
+    return dictionary
+
+def print_dictionary(dictionary):
+    '''Function to print dictionary'''
     for key, value in dictionary.items():
         print(f"{value} - {key}")
-    return dictionary
 
 def check_empty(arr):
     '''Check string on empty elements'''
