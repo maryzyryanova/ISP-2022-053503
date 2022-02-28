@@ -7,7 +7,7 @@ def count_words(input_string):
     arr = re.split(r'\, |\. |\; |\! |\? |\... |\ |\!|\.|\?|\...|\,|\;', input_string)
     check_empty(arr)
     dictionary = {}
-    for arr_element in enumerate(arr):
+    for arr_element in arr:
         if arr_element != 0 :
             if not dictionary.get(arr_element) :
                 dictionary[arr_element] = 1
