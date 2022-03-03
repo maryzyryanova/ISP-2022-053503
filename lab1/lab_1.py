@@ -1,5 +1,6 @@
 '''Lab_1'''
 import re
+import os
 from statistics import median
 
 def count_words(input_string):
@@ -51,30 +52,40 @@ def find_top(dictionary, top_k):
         sorted_dictionary[s_v] = dictionary[s_v]
         counter += 1
     if counter < top_k :
-        for key, value in sorted_dictionary.items():
-            print(f"{value} - {key}")
+        print_dictionary(sorted_dictionary)
     else:
-        reversed_dictionary = dict(reversed(list(sorted_dictionary.items())))
-        k = 0
-        for key, value in reversed_dictionary.items():
-            if k >= top_k :
-                break
-            print(f"{value} - {key}")
-            k += 1
+        dictionary = dict(reversed(list(sorted_dictionary.items())))
+        print_top(dictionary, top_k)
+
+def print_top(dictionary, top_k):
+    '''Function to print top K elements'''
+    k = 0
+    for key, value in dictionary.items():
+        if k >= top_k :
+            break
+        print(f"{value} - {key}")
+        k += 1
 
 def main():
     '''Main function'''
-    print("Enter N: ")
-    number_of_ngrams = int(input())
-    print("Enter K: ")
-    top_k = int(input())
-    with open('/lab_1/data/file.txt', 'r', encoding = "utf8") as file_to_open:
-        input_string = file_to_open.read()
-        dictionary = count_words(input_string)
-        print(f"\nMedian: {median(dictionary.values())}")
-        print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}\n")
-        dictionary = create_dictionary(number_of_ngrams, input_string)
-        find_top(dictionary, top_k)
-        file_to_open.close()
+    try:
+        number_of_ngrams = int(input("Enter N: "))
+        top_k = int(input("Enter K: "))
+        with open(r'/lab_1/data/file.txt', encoding = "utf8") as file_to_open:
+            if os.path.getsize('/lab_1/data/file.txt') == 0:
+                raise EOFError("File is empty")
+            input_string = file_to_open.read()
+            dictionary = count_words(input_string)
+            print(f"\nMedian: {median(dictionary.values())}")
+            print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}\n")
+            dictionary = create_dictionary(number_of_ngrams, input_string)
+            find_top(dictionary, top_k)
+            file_to_open.close()
+
+    except ValueError as value_error:
+        print(value_error)
+
+    except EOFError as exception:
+        print(exception)
 
 main()
