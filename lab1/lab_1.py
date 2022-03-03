@@ -1,6 +1,6 @@
 '''Lab_1'''
 import os
-import splitter
+from splitter import Words, Letters
 
 try:
     number_of_ngrams: int = int(input("Enter N: "))
@@ -9,11 +9,13 @@ try:
         if os.path.getsize('/lab_1/data/file.txt') == 0:
             raise EOFError("File is empty")
         input_string: str = file_to_open.read
-        splitter.Words.count_words
-        print(f"\nMedian: {splitter.Words.find_median}")
-        print(f"Average: {splitter.Words.find_average}\n")
-        splitter.Letters.create_dictionary
-        splitter.Letters.find_top
+        words: Words = Words(input_string, top_k, number_of_ngrams)
+        letters: Letters = Letters(input_string, top_k, number_of_ngrams)
+        words.count_words
+        print(f"\nMedian: {words.find_median}")
+        print(f"Average: {words.find_average}\n")
+        letters.create_dictionary
+        letters.find_top
         file_to_open.close()
 
 except ValueError as value_error:
