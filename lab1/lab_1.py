@@ -4,7 +4,6 @@ import re
 import os
 from statistics import median
 
-from isort import file
 
 def count_words(input_string) -> dict:
     '''Count amount of words in the text'''
@@ -81,7 +80,7 @@ def main() -> None:
             dictionary: dict = count_words(input_string)
             print(f"\nMedian: {median(dictionary.values())}")
             print(f"Average: {sum(dictionary.values()) / len(dictionary.values())}\n")
-            dictionary: dict = create_dictionary(number_of_ngrams, input_string)
+            dictionary = create_dictionary(number_of_ngrams, input_string)
             find_top(dictionary, top_k)
             file_to_open.close()
 
