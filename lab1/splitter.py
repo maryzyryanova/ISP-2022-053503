@@ -13,7 +13,7 @@ class Words():
         self.splitted_string: str = ''
         self.dictionary: dict = {}
 
-    def count_words(self) -> dict:
+    def count_words(self) -> None:
         '''Count amount of words in the text'''
         self.splitted_string = re.split(self.splitters, self.input_string)
         self.check_empty()
@@ -23,7 +23,6 @@ class Words():
                     self.dictionary[arr_element] = 1
                 else:
                     self.dictionary[arr_element] += 1
-        return self.dictionary
 
     def print_dictionary(self) -> None:
         '''Print dictionary'''
@@ -54,10 +53,10 @@ class Letters(Words):
             print(f"{value} - {key}")
             k += 1
 
-    def create_dictionary(self) -> dict:
+    def create_dictionary(self) -> None:
         '''Creating and using dictionary'''
         self.splitted_string = re.split(self.splitters, self.input_string)
-        super().check_empty()
+        self.check_empty()
         output: str = "".join(self.splitted_string)
         for i in range(0, len(output) - self.n_grams + 1, 1):
             temp: str = ''
@@ -68,7 +67,6 @@ class Letters(Words):
                     self.dictionary[temp] = 1
                 else:
                     self.dictionary[temp] += 1
-        return self.dictionary
 
     def find_top(self) -> None:
         '''Finding top K amount of n-grams'''
@@ -79,7 +77,7 @@ class Letters(Words):
             sorted_dictionary[s_v] = self.dictionary[s_v]
             counter += 1
         if counter < self.top_k :
-            super().print_dictionary()
+            self.print_dictionary()
         else:
             self.dictionary = reversed(list(sorted_dictionary.items()))
             self.print_top()
