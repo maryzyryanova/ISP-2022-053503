@@ -11,11 +11,11 @@ try:
         input_string: str = file_to_open.read
         words: Words = Words(input_string, top_k, number_of_ngrams)
         letters: Letters = Letters(input_string, top_k, number_of_ngrams)
-        words.count_words
-        print(f"\nMedian: {words.find_median}")
-        print(f"Average: {words.find_average}\n")
-        letters.create_dictionary
-        letters.find_top
+        words.count_words()
+        print(f"\nMedian: {words.find_median()}")
+        print(f"Average: {words.find_average()}\n")
+        letters.create_dictionary()
+        letters.find_top()
         file_to_open.close()
 
 except ValueError as value_error:
