@@ -4,7 +4,7 @@ from statistics import median
 
 class Words():
     '''Class, where you can split sentences on single  words'''
-    splitters: str = r'\, |\. |\; |\! |\? |\... |\ |\!|\.|\?|\...|\,|\;'
+    splitters: str = r"\, |\. |\; |\! |\? |\... |\ |\!|\.|\?|\...|\,|\;"
     def __init__(self, input_string: str, top_k: int, n_grams: int) -> None:
         '''Constructor'''
         self.input_string: str = input_string
@@ -79,5 +79,5 @@ class Letters(Words):
         if counter < self.top_k :
             self.print_dictionary()
         else:
-            self.dictionary = reversed(list(sorted_dictionary.items()))
+            self.dictionary = dict(reversed(list(sorted_dictionary.items())))
             self.print_top()
