@@ -1,5 +1,5 @@
 build:
-	docker build -t lab_1 .
+	docker build --no-cache=True -t lab_1  .
 linter:
 	python3 -m pylint lab_1.py 
 run:
