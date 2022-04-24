@@ -2,9 +2,9 @@
 Functions for packing and coverting different types of objects
 '''
 
-import inspect
 
-from numpy import argmax
+import inspect
+from types import FunctionType
 
 
 def check_function(obj) -> bool:
@@ -28,7 +28,7 @@ def convert_object(obj) -> object:
     elif check_iterable(obj):
         return packing_iterable(obj)
     elif inspect.iscode(obj):
-        return packing_code(obj)
+        return packing_function(FunctionType(obj, {}))
     elif inspect.isclass(obj):
         return packing_class(obj)
     else:
@@ -60,13 +60,36 @@ def packing_function(obj) -> dict:
     return result
 
 def packing_iterable(obj) -> object:
-    return
+    packed_values = []
+    packed_dict = {}
+    if isinstance(obj, list) or isinstance(obj, set) or isinstance(obj, tuple):
+        for value in obj:
+            packed_values.append(convert_object(value))
+        if isinstance(obj, tuple):
+            return tuple(packed_values)
+        if isinstance(obj, set):
+            return set(packed_values)
+        if isinstance(obj, list):
+            return list(packed_values)
+        return packed_values
+    elif isinstance(obj, dict):
+        for key, value in obj.items():
+            packed_dict[key] = convert_object(value)
+        return packed_dict
 
-def packing_code(obj) -> object:
-    return
 
-def packing_class(obj) -> object:
-    return
+def packing_class(obj) -> dict:
+    result = {"type" : "class", "name" : obj.__name__}
+    for d in dir(obj):
+        if d == "__init__":
+            result[d] = packing_function(getattr(obj, d))
+        if not d.startswith("__"):
+            result[d] = convert_object(getattr(obj, d))
+    return result
 
-def packing_object(obj) -> object:
-    return
+def packing_object(obj) -> dict:
+    result = {"type" : "object", "class" : obj.__class__.__name__}
+    for d in dir(obj):
+        if not d.startswith("__"):
+            result[d] = convert_object(getattr(obj, d))
+    return result
