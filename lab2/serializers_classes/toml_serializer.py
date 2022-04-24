@@ -3,4 +3,14 @@ Custom TOML serializer class
 '''
 
 class TOML:
-    pass
+    def load():
+        return
+    
+    def loads():
+        return 
+
+    def dump():
+        return
+
+    def dumps():
+        return

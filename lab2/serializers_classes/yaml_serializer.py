@@ -3,4 +3,14 @@ Custom YAML serializer class
 '''
 
 class YAML:
-    pass
+    def load():
+        return
+    
+    def loads():
+        return 
+
+    def dump():
+        return
+
+    def dumps():
+        return
