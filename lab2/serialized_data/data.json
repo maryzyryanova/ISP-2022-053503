@@ -1,0 +1,74 @@
+{
+    "type": "function",
+    "name": "_t",
+    "globals": {},
+    "arguments": {
+        "co_argcount": 1,
+        "co_cellvars": [
+            "__tuple__",
+            "arg",
+            "c"
+        ],
+        "co_code": [
+            "__list__",
+            100,
+            1,
+            137,
+            1,
+            135,
+            0,
+            135,
+            1,
+            102,
+            2,
+            100,
+            2,
+            100,
+            3,
+            132,
+            8,
+            125,
+            1,
+            124,
+            1,
+            131,
+            0,
+            83,
+            0
+        ],
+        "co_consts": [
+            "__tuple__",
+            null,
+            2, None,
+            "_t.<locals>._f"
+        ],
+        "co_filename": "/Users/mariazyryanova/Desktop/BSUIR/2 course/4 sem/ИСП/ISP-2022-053503/lab2/main.py",
+        "co_firstlineno": 9,
+        "co_flags": 3,
+        "co_freevars": [
+            "__tuple__"
+        ],
+        "co_kwonlyargcount": 0,
+        "co_lnotab": [
+            "__list__",
+            0,
+            1,
+            4,
+            2,
+            14,
+            4
+        ],
+        "co_name": "_t",
+        "co_names": [
+            "__tuple__"
+        ],
+        "co_nlocals": 2,
+        "co_posonlyargcount": 0,
+        "co_stacksize": 3,
+        "co_varnames": [
+            "__tuple__",
+            "arg",
+            "_f"
+        ]
+    }
+}

@@ -1,3 +1,7 @@
+'''
+Simple class for testing
+'''
+
 class Person:
     def __init__(self, name, age) -> None:
         self.name = name

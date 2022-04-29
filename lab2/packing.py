@@ -11,7 +11,8 @@ def check_function(obj) -> bool:
     return inspect.isfunction(obj) or inspect.ismethod(obj) 
 
 def check_iterable(obj) -> object:
-    return getattr(obj, "iterable") is not None
+    # print("check iterable: {} ")
+    return getattr(obj, "__iter__", None) is not None
 
 def get_global(function) -> dict:
     _globals = {}
@@ -21,9 +22,11 @@ def get_global(function) -> dict:
     return _globals
 
 def convert_object(obj) -> object:
+    print(obj)
     if isinstance(obj, (int, float, bool, str, type(None))):
         return obj
     elif check_function(obj):
+        print(obj)
         return packing_function(obj)
     elif check_iterable(obj):
         return packing_iterable(obj)
@@ -36,6 +39,7 @@ def convert_object(obj) -> object:
 
 def packing_function(obj) -> dict:
     result = {"type" : "function"}
+    print('pack func')
     _globals = get_global(obj)
     args = {}
     if inspect.ismethod(obj):
@@ -44,19 +48,21 @@ def packing_function(obj) -> dict:
     result["globals"] = packing_iterable(_globals)
     for key, value in inspect.getmembers(obj.__code__):
         if key.startswith("co_"):
-            value = list(value)
-        if check_iterable(obj):
-            if not isinstance(value, str):
-                packed_values = []
-                for v in value:
-                    if v != None:
-                        packed_values.append(convert_object(v))
-                    else:
-                        packed_values.append(convert_object(None))
-                args[key] = packed_values
-                continue
+            if isinstance(value, bytes):
+                value = list(value)
+            if check_iterable(obj):
+                if not isinstance(value, str):
+                    packed_values = []
+                    for v in value:
+                        if v != None:
+                            packed_values.append(convert_object(v))
+                        else:
+                            packed_values.append(convert_object(None))
+                    args[key] = packed_values
+                    continue
             args[key] = value
     result["arguments"] = args
+    print(result)
     return result
 
 def packing_iterable(obj) -> object:
