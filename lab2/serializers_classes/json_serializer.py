@@ -2,7 +2,6 @@
 Custom JSON serializer class
 '''
 
-
 import packing
 
 
@@ -81,14 +80,88 @@ class JSON:
     def deconvert_str(self, value) -> object:
         if self.position >= len(value):
             raise ValueError("Incorrect position")
-        elif isinstance(value[self.position], (int, float)):
+        if value[self.position: self.position + 4] == 'null':
+            return self.deconvert_to_none(value)
+        elif value[self.position: self.position + 4] == 'true':
+            return self.deconvert_to_true(value)
+        elif value[self.position: self.position + 5] == 'false':
+            return self.deconvert_to_false(value)
+        elif value[self.position] == '"':
+            return self.deconvert_to_string(value)
+        elif value[self.position] == '[':
+            return self.deconvert_to_collection(value)
+        elif value[self.position] == '{':
+            return self.deconvert_to_dictionary(value)
+        else:
             return self.deconvert_to_number(value)
-        elif isinstance(value[self.position: self.position + 4], ("True", "False")):
-            return self.deconvert_to_bool(value)
     
     def deconvert_to_number(self, value) -> int or float:
-        return "sdfghjk"
+        result = ""
+        self.position += 1
+        while self.position < len(value):
+            if value[self.position] == " " or value[self.position] == ",":
+                result += value[self.position]
+                self.position += 1
+        if result.find('.'):
+            return float(result)
+        return int(result)    
 
-    def deconvert_to_bool(self, value) -> bool:
-        return ""
+    def deconvert_to_true(self) -> bool:
+        self.position += 4
+        return True
+
+    def deconvert_to_false(self) -> bool:
+        self.position += 5
+        return False
+
+    def deconvert_to_collection(self, value) -> set or list or tuple:
+        result = ""
+        self.position += 1
+        collection_type = self.deconvert_str(value)
+        while self.position < len(value):
+            if value[self.position] == "}" or value[self.position] == "]" or value[self.position] == ")" or value[self.position] == "," or value[self.position] == " ":
+                self.position += 1
+                continue
+            result += self.deconvert_str
+            self.position += 1
+        self.position += 1
+        if collection_type == "__tuple___":
+            return tuple(result)
+        elif collection_type == "__list__":
+            return list(result)
+        elif collection_type == "__set__":
+            return set(result)
+
+    
+    def deconvert_to_string(self, value) -> str:
+        result = []
+        self.position += 1
+        if value[self.position] == '"':
+            self.position += 1
+        while self.position < len(value):
+            if value[self.position] == "'" or value[self.position] == '"':
+                continue
+            result.append(value[self.position])
+            self.position += 1
+        self.position += 1
+        return result
+        
+    
+    def deconvert_to_dictionary(self, value) -> dict:
+        result = {}
+        self.position += 1
+        while self.position < len(value):
+            if value[self.position] == "}" or value[self.position] == "{"  or value[self.position] == " " or value[self.position] == ",":
+                self.position += 1
+                continue
+            key = self.deconvert_to_number(value)
+            self.position = value.find(':', self.position) + 2
+            value = self.deconvert_str(value)
+            result[key] = value
+        self.position += 1
+        return result
+
+    def deconvert_to_none(self, value) -> None:
+        self.position += 4
+        return None
     
