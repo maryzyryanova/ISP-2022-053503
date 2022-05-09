@@ -2,18 +2,25 @@
 Custom JSON serializer class
 '''
 
+from gc import collect
 import packing
+from unpacking import deconvert_object
 
 
 class JSON:
     def __init__(self) -> None:
-        self.position = 0
+        self.position = 0 
 
-    def load():
-        return
-    
-    def loads():
-        return 
+    def loads(self, obj):
+        self.position = 0
+        print(self.deconvert_str(obj))
+        print(self.position)
+        # return deconvert_object(self.deconvert_str(obj))
+        # return self.deconvert_str(deconvert_object(obj))
+
+    def load(self, filename):
+        with open(filename, 'r') as f:
+            return self.loads(f.read())
 
     def dump(self, obj, filename):
         with open(filename, 'w+') as file:
@@ -78,31 +85,37 @@ class JSON:
         return result
 
     def deconvert_str(self, value) -> object:
+        print(f'HUUUUUUUUU: |{value[self.position]}|')
         if self.position >= len(value):
             raise ValueError("Incorrect position")
         if value[self.position: self.position + 4] == 'null':
-            return self.deconvert_to_none(value)
+            return self.deconvert_to_none()
+        elif value[self.position].isnumeric():
+            return self.deconvert_to_number(value)
         elif value[self.position: self.position + 4] == 'true':
-            return self.deconvert_to_true(value)
+            return self.deconvert_to_true()
         elif value[self.position: self.position + 5] == 'false':
-            return self.deconvert_to_false(value)
+            return self.deconvert_to_false()
         elif value[self.position] == '"':
             return self.deconvert_to_string(value)
         elif value[self.position] == '[':
             return self.deconvert_to_collection(value)
         elif value[self.position] == '{':
+            print('hell')
             return self.deconvert_to_dictionary(value)
-        else:
-            return self.deconvert_to_number(value)
+        print("blyaaaaaaaaaaa")
     
-    def deconvert_to_number(self, value) -> int or float:
+    def deconvert_to_number(self, value:str) -> int or float:
         result = ""
-        self.position += 1
         while self.position < len(value):
-            if value[self.position] == " " or value[self.position] == ",":
+            if value[self.position].isnumeric() or value[self.position] == '.':
                 result += value[self.position]
                 self.position += 1
-        if result.find('.'):
+            else:
+                break
+            print(self.position)
+        print(result)
+        if '.' in result:
             return float(result)
         return int(result)    
 
@@ -115,17 +128,18 @@ class JSON:
         return False
 
     def deconvert_to_collection(self, value) -> set or list or tuple:
-        result = ""
+        result = []
         self.position += 1
-        collection_type = self.deconvert_str(value)
-        while self.position < len(value):
-            if value[self.position] == "}" or value[self.position] == "]" or value[self.position] == ")" or value[self.position] == "," or value[self.position] == " ":
+        collection_type = self.deconvert_to_string(value)
+        print(f'COLTPYE: {collection_type}')
+        while self.position < len(value) and value[self.position] != "]":
+            if value[self.position] == "," or value[self.position] == " ":
                 self.position += 1
                 continue
-            result += self.deconvert_str
-            self.position += 1
+            result.append(deconvert_object(self.deconvert_str(value)))
         self.position += 1
-        if collection_type == "__tuple___":
+        print(f'converting to collections {result}')
+        if collection_type == "__tuple__":
             return tuple(result)
         elif collection_type == "__list__":
             return list(result)
@@ -134,34 +148,39 @@ class JSON:
 
     
     def deconvert_to_string(self, value) -> str:
-        result = []
+        result = ''
         self.position += 1
         if value[self.position] == '"':
             self.position += 1
         while self.position < len(value):
-            if value[self.position] == "'" or value[self.position] == '"':
-                continue
-            result.append(value[self.position])
+            if value[self.position-1] != '\\' and \
+                value[self.position]=='"':
+                self.position+=1
+                return result
+            result += value[self.position]
             self.position += 1
-        self.position += 1
-        return result
+        # self.position += 1
+        # return result
         
     
     def deconvert_to_dictionary(self, value) -> dict:
         result = {}
         self.position += 1
-        while self.position < len(value):
-            if value[self.position] == "}" or value[self.position] == "{"  or value[self.position] == " " or value[self.position] == ",":
+        while self.position < len(value) and value[self.position]!='}':
+            print(f'k:v -- {self.position}:{value[self.position]}')
+            if value[self.position] == " " or value[self.position] == ",":
                 self.position += 1
                 continue
-            key = self.deconvert_to_number(value)
+            key = deconvert_object(self.deconvert_str(value))
+            print(f'SUIIIII : {key}')
             self.position = value.find(':', self.position) + 2
-            value = self.deconvert_str(value)
-            result[key] = value
+            v = deconvert_object(self.deconvert_str(value))
+            # print(f'k:v -- {self.position}:{value[self.position]}')
+            result[key] = v
         self.position += 1
         return result
 
-    def deconvert_to_none(self, value) -> None:
+    def deconvert_to_none(self) -> None:
         self.position += 4
         return None
     

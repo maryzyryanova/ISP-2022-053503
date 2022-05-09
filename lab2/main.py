@@ -1,6 +1,9 @@
 import argparse
 import configparser
 from pathlib import Path
+import re
+
+from yaml import serialize
 
 from fabric import Fabric
 from serializers_classes.json_serializer import JSON
@@ -79,3 +82,28 @@ def simple_func(a):
     
 
 # main()
+
+def main():
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument ("source", type=str, help="Path to source file")
+    argparser.add_argument("format", type=str, help="Serialize format (json, toml or yaml) for result")
+    argparser.add_argument("-r", "--result-file", type=str,
+    help="Path to result file. If not exist, it will be created")
+    namespace = argparser.parse_args()
+    result_format = namespace.format
+    source_path = namespace.source
+    source_format = re.search(r"\w+$", source_path).group()
+    print(result_format)
+    print(source_path)
+    print(source_format)
+    serializer = Fabric.create_serializer(result_format)
+    if source_format == result_format:
+        print("Same type")
+        exit(0)
+    deserializer = Fabric.create_serializer(source_format)
+    print("vova gg")
+    #deserializer.dump(SimpleClass, "serialized_data/data.json")
+    # deserializer.load(source_path)
+    serializer.dump(deserializer.load(source_path), f'res.{result_format}')
+
+main()

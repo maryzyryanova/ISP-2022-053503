@@ -2,7 +2,6 @@
 Functions for packing and coverting different types of objects
 '''
 
-
 import inspect
 from types import FunctionType
 
@@ -26,7 +25,6 @@ def convert_object(obj) -> object:
     if isinstance(obj, (int, float, bool, str, type(None))):
         return obj
     elif check_function(obj):
-        print(obj)
         return packing_function(obj)
     elif check_iterable(obj):
         return packing_iterable(obj)
@@ -62,7 +60,6 @@ def packing_function(obj) -> dict:
                     continue
             args[key] = value
     result["arguments"] = args
-    print(result)
     return result
 
 def packing_iterable(obj) -> object:
