@@ -80,11 +80,11 @@ def unpacking_class(obj) -> object:
     result = {}
     for key, value in obj.items():
         result[key] = deconvert_object(value)
-    return type(obj["__name__"], (), result)
+    return type(obj["name"], (), result)
 
 def unpacking_object(obj) -> object:
-    result = type(obj.get("__class__"), (), {})()
+    result = type(obj.get("class"), (), {})()
     for key, value in obj.items():
-        if key != "__class__":
+        if key != "class":
             setattr(result, key, deconvert_object(value))
     return result
