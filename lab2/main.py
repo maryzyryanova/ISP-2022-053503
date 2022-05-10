@@ -1,13 +1,8 @@
 import argparse
-import configparser
-from pathlib import Path
 import re
 
-from yaml import serialize
 
 from fabric import Fabric
-from serializers_classes.json_serializer import JSON
-from tests.person import Person
 
 
 simple_lambda = lambda q: q*q
@@ -64,7 +59,7 @@ def main():
         exit(0)
     deserializer = Fabric.create_serializer(source_format)
     print("vova gg")
-    #deserializer.dump(SimpleClass, "serialized_data/data.json")
+    # serializer.dump(SimpleClass, "serialized_data/data.json")
     deserializer.load(source_path)
     serializer.dump(deserializer.load(source_path), f'res.{result_format}')
 

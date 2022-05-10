@@ -2,6 +2,7 @@
 Custom JSON serializer class
 '''
 
+
 import packing
 import unpacking
 
@@ -14,8 +15,8 @@ class JSON:
         self.position = 0
         print(self.deconvert_str(obj))
         print(self.position)
-        # return deconvert_object(self.deconvert_str(obj))
-        return self.deconvert_str(unpacking.deconvert_object(obj))
+        return unpacking.deconvert_object(self.deconvert_str(obj))
+        # return self.deconvert_str(unpacking.deconvert_object(obj))
 
     def load(self, filename):
         with open(filename, 'r') as f:
@@ -129,7 +130,6 @@ class JSON:
         result = []
         self.position += 1
         collection_type = self.deconvert_to_string(value)
-        print(f'COLTPYE: {collection_type}')
         while self.position < len(value) and value[self.position] != "]":
             if value[self.position] == "," or value[self.position] == " ":
                 self.position += 1
