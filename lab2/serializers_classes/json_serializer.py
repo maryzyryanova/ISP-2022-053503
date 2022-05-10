@@ -2,9 +2,8 @@
 Custom JSON serializer class
 '''
 
-from gc import collect
 import packing
-from unpacking import deconvert_object
+import unpacking
 
 
 class JSON:
@@ -16,7 +15,7 @@ class JSON:
         print(self.deconvert_str(obj))
         print(self.position)
         # return deconvert_object(self.deconvert_str(obj))
-        # return self.deconvert_str(deconvert_object(obj))
+        return self.deconvert_str(unpacking.deconvert_object(obj))
 
     def load(self, filename):
         with open(filename, 'r') as f:
@@ -101,7 +100,6 @@ class JSON:
         elif value[self.position] == '[':
             return self.deconvert_to_collection(value)
         elif value[self.position] == '{':
-            print('hell')
             return self.deconvert_to_dictionary(value)
         print("blyaaaaaaaaaaa")
     
@@ -136,7 +134,7 @@ class JSON:
             if value[self.position] == "," or value[self.position] == " ":
                 self.position += 1
                 continue
-            result.append(deconvert_object(self.deconvert_str(value)))
+            result.append(unpacking.deconvert_object(self.deconvert_str(value)))
         self.position += 1
         print(f'converting to collections {result}')
         if collection_type == "__tuple__":
@@ -159,8 +157,8 @@ class JSON:
                 return result
             result += value[self.position]
             self.position += 1
-        # self.position += 1
-        # return result
+        self.position += 1
+        return result
         
     
     def deconvert_to_dictionary(self, value) -> dict:
@@ -171,10 +169,10 @@ class JSON:
             if value[self.position] == " " or value[self.position] == ",":
                 self.position += 1
                 continue
-            key = deconvert_object(self.deconvert_str(value))
+            key = unpacking.deconvert_object(self.deconvert_str(value))
             print(f'SUIIIII : {key}')
             self.position = value.find(':', self.position) + 2
-            v = deconvert_object(self.deconvert_str(value))
+            v = unpacking.deconvert_object(self.deconvert_str(value))
             # print(f'k:v -- {self.position}:{value[self.position]}')
             result[key] = v
         self.position += 1

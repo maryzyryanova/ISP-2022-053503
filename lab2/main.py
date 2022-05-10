@@ -45,44 +45,6 @@ def simple_func(a):
     return a+10
 
 
-
-# def serialize(path_file, format_file):
-#     serializer = Fabric.create_serializer(format_file)
-#     path = Path(path_file)
-#     try:
-#         source_file = Path(path_file).suffix
-#         if format_file == source_file:
-#             return
-#         deserializer = Fabric.create_serializer(source_file)
-#         file_path = Path(path_file)
-#         serializer.dump(deserializer.load(path_file), Path(file_path.parent, f"{path_file.stem}{format_file}"))
-#     except:
-#         raise FileNotFoundError("File not found!")
-
-
-# def main():
-#     parser = argparse.ArgumentParser()
-#     parser.add_argument("-c", "--config", dest = "configuration_file")
-#     parser.add_argument("-p", "--path", dest = "path_file")
-#     parser.add_argument("-f", "--format", dest = "format_file")
-#     args = parser.parse_args()
-
-#     if args.configuration_file:
-#         config = configparser.ConfigParser()
-#         try:
-#             config.read(args.configuration_file)
-#             serialize(config["settings"]["format_file"], config["settings"]["path_file"])
-#         except:
-#             raise FileNotFoundError("File not found!")
-#     else:
-#         try:
-#             serialize(args.format_file, args.path_file)
-#         except:
-#             raise TypeError("Invalid parameters")
-    
-
-# main()
-
 def main():
     argparser = argparse.ArgumentParser()
     argparser.add_argument ("source", type=str, help="Path to source file")
@@ -103,7 +65,7 @@ def main():
     deserializer = Fabric.create_serializer(source_format)
     print("vova gg")
     #deserializer.dump(SimpleClass, "serialized_data/data.json")
-    # deserializer.load(source_path)
+    deserializer.load(source_path)
     serializer.dump(deserializer.load(source_path), f'res.{result_format}')
 
 main()
