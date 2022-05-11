@@ -1,4 +1,5 @@
 from asyncio import constants
+import builtins
 from types import CodeType, FunctionType
 from packing import check_iterable, check_function
 
@@ -21,6 +22,7 @@ def unpacking_function(obj) -> object:
     print(f'unpack function : \n{obj}')
     arguments = obj["arguments"]
     _globals = obj["globals"]
+    _globals["__builtins__"] = builtins
     _constants = []
     for key in _globals:
         if key in arguments["co_names"]:

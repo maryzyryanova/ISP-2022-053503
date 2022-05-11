@@ -1,3 +1,6 @@
+import math
+
+c = 42
 simple_lambda = lambda q: q*q
 int_glob = 73
 str_glob = 'global'
@@ -31,4 +34,8 @@ def cmplx_func(a):
 
 def simple_func(a):
     return a+10
+
+def butoma_func(x):
+    a = 123
+    return math.sin(x * a * c)
 

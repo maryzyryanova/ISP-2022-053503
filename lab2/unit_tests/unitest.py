@@ -59,6 +59,11 @@ class Test(unittest.TestCase):
         output = self.json_fabric.loads(self.json_fabric.dumps(input))
         self.assertEqual(output(5), input(5))
 
+    def test_butoma_func_json(self):
+        input = test_data.butoma_func
+        output = self.json_fabric.loads(self.json_fabric.dumps(input))
+        self.assertEqual(output(5), input(5))
+
     def test_simple_function_json(self):
         input = test_data.simple_func
         output = self.json_fabric.loads(self.json_fabric.dumps(input))
