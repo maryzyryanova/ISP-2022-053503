@@ -1,5 +1,9 @@
 import argparse
 import re
+import unittest
+from unit_tests import unitest
+from unit_tests.test_data import SimpleClass
+from unit_tests.unitest import Test
 
 
 from fabric import Fabric
