@@ -13,4 +13,4 @@ class Fabric:
             return json.JSON()
         elif serializer == "yaml":
             return yaml.YAML()
-        return toml.TOML
+        return toml.TOML()

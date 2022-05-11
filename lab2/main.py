@@ -59,8 +59,8 @@ def main():
         exit(0)
     deserializer = Fabric.create_serializer(source_format)
     print("vova gg")
-    #deserializer.dump(SimpleClass, "serialized_data/data.json")
-    deserializer.load(source_path)
-    #serializer.dump(deserializer.load(source_path), f'res.{result_format}')
+    deserializer.dump(SimpleClass(), "serialized_data/data.json")
+    #deserializer.load(source_path)
+    serializer.dump(deserializer.load(source_path), f'serialized_data/data.{result_format}')
 
 main()

@@ -1,0 +1,6 @@
+!!python/object:unpacking.SimpleClass
+can_say: true
+count: 5
+say_kuku: null
+type: object
+word: ku

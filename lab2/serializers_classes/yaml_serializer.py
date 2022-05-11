@@ -2,15 +2,25 @@
 Custom YAML serializer class
 '''
 
+from fileinput import filename
+import yaml
+
+
 class YAML:
-    def load():
-        return
+    @staticmethod 
+    def load(obj, filename):
+        with open(filename, 'r') as f:
+            return yaml.load(obj, f)
     
-    def loads():
-        return 
+    @staticmethod 
+    def loads(obj):
+        return yaml.load(obj)
 
-    def dump():
-        return
+    @staticmethod 
+    def dump(obj, filename):
+        with open(filename, 'w+') as f:
+            return yaml.dump(obj, f)
 
-    def dumps():
-        return
+    @staticmethod 
+    def dumps(obj):
+        return yaml.dump(obj)

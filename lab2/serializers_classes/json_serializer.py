@@ -13,10 +13,8 @@ class JSON:
 
     def loads(self, obj):
         self.position = 0
-        # print(self.deconvert_str(obj))
         print(self.position)
         return unpacking.deconvert_object(self.deconvert_str(obj))
-        # return self.deconvert_str(unpacking.deconvert_object(obj))
 
     def load(self, filename):
         with open(filename, 'r') as f:
