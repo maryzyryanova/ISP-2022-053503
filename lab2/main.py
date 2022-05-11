@@ -1,9 +1,7 @@
 import argparse
 import re
-import unittest
-from unit_tests import unitest
 from unit_tests.test_data import SimpleClass
-from unit_tests.unitest import Test
+
 
 
 from fabric import Fabric
@@ -26,7 +24,6 @@ def main():
         print("Same type")
         exit(0)
     deserializer = Fabric.create_serializer(source_format)
-    print("vova gg")
     deserializer.dump(SimpleClass(), "serialized_data/data.json")
     #deserializer.load(source_path)
     serializer.dump(deserializer.load(source_path), f'serialized_data/data.{result_format}')
