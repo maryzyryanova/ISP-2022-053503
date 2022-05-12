@@ -3,9 +3,6 @@ from pyexpat import model
 from tabnanny import verbose
 from django.db import models
 
-# Create your models here.
-
-
 
 class Bell(models.Model):
     pair = models.PositiveSmallIntegerField("№: ", default=0)
@@ -47,15 +44,19 @@ class Teacher(models.Model):
 
 class Group(models.Model):
     number = models.PositiveSmallIntegerField("Номер: ", default=0)
-
+    faculty = models.CharField("Факультет: ", max_length=200)
+    specialisation = models.CharField("Специальность: ", max_length=200)
+    course = models.PositiveSmallIntegerField("Курс: ", default=0)
+    
     class Meta:
         verbose_name_plural = "Группы"
         verbose_name = "Группа"
 
 class Schedule(models.Model):
-    group = models.ForeignKey(Group, verbose_name="Расписание: ", null=True, blank=True)
-    teacher = models.ForeignKey(Teacher, verbose_name_plural="Преподаватель: ", null=True, blank=True)
-    dicipline = models.ForeignKey(Dicipline, verbose_name_plural="Дисциплина: ", null=True, blank=True)
+    group = models.ForeignKey(Group, verbose_name="Расписание: ", null=True, on_delete=models.SET_NULL)
+    teacher = models.ForeignKey(Teacher, verbose_name="Преподаватель: ", null=True, on_delete=models.SET_NULL)
+    dicipline = models.ForeignKey(Dicipline, verbose_name="Дисциплина: ", null=True, on_delete=models.SET_NULL)
+    bell = models.ForeignKey(Bell, verbose_name="Звонок", null=True, on_delete=models.SET_NULL)
     classroom = models.PositiveSmallIntegerField("Аудитория: ", default=0)
     week = models.PositiveSmallIntegerField("Неделя: ", default=0)
     number = models.PositiveSmallIntegerField("№: ", default=0)
@@ -67,9 +68,6 @@ class Student(models.Model):
     name = models.CharField("Имя: ", max_length=50)
     second_name = models.CharField("Отчество: ", max_length=50)
     surname = models.CharField("Фамилия: ", max_length=50)
-    faculty = models.CharField("Факультет: ", max_length=200)
-    specialisation = models.CharField("Специальность: ", max_length=200)
-    course = models.PositiveSmallIntegerField("Курс: ", default=0)
     photo = models.ImageField("Фото: ",upload_to = "students/")
     rating = models.FloatField("Рейтинг: ")
     number = models.PositiveBigIntegerField("Студенческий билет: ", default=0)
