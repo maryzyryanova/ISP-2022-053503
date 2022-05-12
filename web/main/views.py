@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from django.views import View
+from .models import Student
 
-# Create your views here.
+class StudentsView(View):
+    pass
