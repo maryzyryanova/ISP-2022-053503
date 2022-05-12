@@ -1,6 +1,3 @@
-from distutils.command.upload import upload
-from pyexpat import model
-from tabnanny import verbose
 from django.db import models
 
 
@@ -47,7 +44,7 @@ class Group(models.Model):
     faculty = models.CharField("Факультет: ", max_length=200)
     specialisation = models.CharField("Специальность: ", max_length=200)
     course = models.PositiveSmallIntegerField("Курс: ", default=0)
-    
+
     class Meta:
         verbose_name_plural = "Группы"
         verbose_name = "Группа"
