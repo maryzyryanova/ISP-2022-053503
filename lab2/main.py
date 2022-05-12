@@ -1,8 +1,7 @@
 import argparse
 import re
-from unit_tests.test_data import SimpleClass, butoma_func
 
-
+from unit_tests.test_data import butoma_func
 
 from fabric import Fabric
 
@@ -16,17 +15,17 @@ def main():
     result_format = namespace.format
     source_path = namespace.source
     source_format = re.search(r"\w+$", source_path).group()
-    print(result_format)
-    print(source_path)
-    print(source_format)
     serializer = Fabric.create_serializer(result_format)
     if source_format == result_format:
         print("Same type")
         exit(0)
     deserializer = Fabric.create_serializer(source_format)
-    deserializer.dump(butoma_func, "serialized_data/data.json")
+    deserializer.dump(butoma_func, f"serialized_data/data.{source_format}")
     # deserializer.dump(SimpleClass(), "serialized_data/data.json")
     #deserializer.load(source_path)
-    #serializer.dump(deserializer.load(source_path), f'serialized_data/data.{result_format}')
+    if source_format == "yaml":
+        serializer.dump(deserializer.load(deserializer.dump(butoma_func, f"serialized_data/data.{source_format}"), source_path), f'serialized_data/data.{result_format}')
+    else:
+        serializer.dump(deserializer.load(source_path), f'serialized_data/data.{result_format}')
 
 main()

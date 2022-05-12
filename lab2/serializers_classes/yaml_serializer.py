@@ -2,7 +2,6 @@
 Custom YAML serializer class
 '''
 
-from fileinput import filename
 import yaml
 
 
