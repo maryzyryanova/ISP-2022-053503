@@ -1,7 +1,26 @@
 {% extends 'wrapper.html' %}
 
 {% block title %}
+Schedule
 {% endblock %}
 
 {% block content %}
+   <input type="text" id="group-number">
+   <a id="check-btn"> Check schedule </a>
+   <script>
+      let text = document.getElementById("group-number");
+      let btn = document.getElementById("check-btn");
+
+      
+      text.addEventListener("keyup", ()=>{
+          let number = text.value;
+          btn.setAttribute("href", `/schedule/${number}`);
+      });
+   </script>
+
+   {% for pair in schedule_list%}
+        {{ pair.dicipline }}
+        {{ pair.teacher }}
+        {{ pair.bell.start }}
+   {% endfor %}
 {% endblock %}

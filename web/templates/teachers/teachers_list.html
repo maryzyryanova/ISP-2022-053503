@@ -1,0 +1,24 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}
+Teachers
+{% endblock %}
+
+{% block content %}
+    <table align="center" width="600">
+        <tbody>
+            {% for teacher in teachers_list%}
+                <tr>
+                    <td>
+                        <a href = "/teachers/{{ teacher.id }}" >{{teacher.surname}} {{ teacher.name }} {{ teacher.second_name }}</a>
+                        <p> {{ teacher.rang }} </p>
+                    </td>
+
+                    <td> 
+                        <img  src = "{{ teacher.photo.url }}" width="250" height="250"/>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}
+Teacher
+{% endblock %}
+
+{% block content %}
+    {{ object.surname }}
+    {{ object.name }}
+    {{ object.second_name }}
+    {% for dicipline in object.diciplines.all %}
+        <ul>
+            <li>{{ dicipline }}</li>
+        </ul>
+    {% endfor %}
+{% endblock %}

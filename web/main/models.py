@@ -61,6 +61,7 @@ class Schedule(models.Model):
     dicipline = models.ForeignKey(Dicipline, verbose_name="Дисциплина", null=True, on_delete=models.SET_NULL)
     bell = models.ForeignKey(Bell, verbose_name="Звонок", null=True, on_delete=models.SET_NULL)
     classroom = models.PositiveSmallIntegerField("Аудитория", default=0)
+    day = models.PositiveSmallIntegerField("День недели", default=0)
     week = models.PositiveSmallIntegerField("Неделя", default=0)
 
     def __str__(self) -> str:

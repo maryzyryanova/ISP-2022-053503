@@ -5,7 +5,23 @@ Students
 {% endblock %}
 
 {% block content %}
-    {% for student in student_list%}
-        {{ student.name }}
-    {% endfor %}
+    <table align="center" width="600">
+        <tbody>
+            {% for student in student_list%}
+                <tr>
+                    <td>
+                        <a href = "/students/{{ student.id }}" >{{student.surname}} {{ student.name }} {{ student.second_name }}</a>
+                        <p> {{ student.group.course}} курс</p>
+                        <p> {{ student.group.specialisation}}</p>
+                        <p> {{ student.group.faculty}}</p>
+                        <p> Рейтинг: {{ student.rating }}</p>
+                    </td>
+
+                    <td> 
+                        <img  src = "{{ student.photo.url }}" width="250" height="250"/>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
