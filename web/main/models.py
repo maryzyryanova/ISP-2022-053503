@@ -1,5 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 class Bell(models.Model):
     pair = models.PositiveSmallIntegerField("Номер пары", default=0)
@@ -26,6 +28,7 @@ class Dicipline(models.Model):
 
 
 class Teacher(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, blank=True)
     name = models.CharField("Имя", max_length=50)
     second_name = models.CharField("Отчество", max_length=50)
     surname = models.CharField("Фамилия", max_length=50)
@@ -72,6 +75,7 @@ class Schedule(models.Model):
         verbose_name_plural = "Расписание"
 
 class Student(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, blank=True)
     name = models.CharField("Имя", max_length=50)
     second_name = models.CharField("Отчество", max_length=50)
     surname = models.CharField("Фамилия", max_length=50)

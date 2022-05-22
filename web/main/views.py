@@ -20,11 +20,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect(f'/student_id/')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
+                    # return redirect тут я хз 
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
@@ -65,5 +61,8 @@ class TeacherView(DetailView):
     def get_object(self):
         _id = self.kwargs.get("teacher_id")
         return get_object_or_404(Teacher, id = _id) 
+
+class UserView(View):
+    pass
 
 

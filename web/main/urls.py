@@ -5,6 +5,7 @@ from .views import (
     StudentsListView,
     TeachersView, 
     TeacherView,
+    UserView,
     main,  
     user_login)
 
@@ -16,5 +17,6 @@ urlpatterns = [
     path('schedule/<str:schedule_id>', ScheduleView.as_view()),
     path('students/<int:student_id>', StudentView.as_view()),
     path('teachers/<int:teacher_id>', TeacherView.as_view()),
-    path('login/', user_login, name = 'login')
+    path('login/', user_login, name = 'login'),
+    path('user/<int:user_id>', UserView.as_view())
 ]
