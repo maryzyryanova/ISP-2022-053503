@@ -1,14 +1,33 @@
-import numbers
-from tokenize import group
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
 from django.views.generic.list import ListView
-from urllib import request
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from django.views.generic import DetailView
+
+from main.forms import LoginForm
 from .models import Schedule, Student, Teacher
 
 def main(request):
     return render(request, 'main_window.html')
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect(f'/student_id/')
+                else:
+                    return HttpResponse('Disabled account')
+            else:
+                return HttpResponse('Invalid login')
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
 
 class StudentsListView(ListView):
     def get(self, request):
