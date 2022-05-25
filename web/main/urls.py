@@ -1,10 +1,12 @@
-from django.urls import path, include
+from django.urls import path
 from .views import (
     EditView,
     ExamsView,
     GroupScheduleView,
     MarksView,
     NotificationsView,
+    PasswordChangeDoneView,
+    PasswordChangeView,
     ScheduleView,
     StudentView, 
     StudentsListView,
@@ -27,9 +29,11 @@ urlpatterns = [
     path('login', UserLoginView.as_view(), name = 'login'),
     path('account', AccountView.as_view(), name='account'),
     path('logout', UserLogoutView.as_view(), name='logout'),
-    path('account/edit', EditView.as_view(), name='edit'),
+    path('account/edit/', EditView.as_view(), name='edit'),
     path('account/group-schedule', GroupScheduleView.as_view(), name="group_schedule"),
     path('account/marks', MarksView.as_view(), name="marks"),
     path('account/exams', ExamsView.as_view(), name='exams'),
-    path('account/notifications', NotificationsView.as_view(), name='notification')
+    path('account/notifications', NotificationsView.as_view(), name='notification'),
+    path('password-change/', PasswordChangeView.as_view(), name='password_change'),
+    path('password-change/done/', PasswordChangeDoneView.as_view(), name='password_change_done'),
 ]

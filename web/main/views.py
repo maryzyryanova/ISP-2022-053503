@@ -9,6 +9,7 @@ from django.views.generic.edit import UpdateView
 
 
 from main.forms import LoginForm
+from main.forms import EditTeacherForm, EditStudentForm
 from .models import Schedule, Student, Teacher
 
 def main(request):
@@ -47,11 +48,6 @@ class StudentView(DetailView):
         _id = self.kwargs.get("student_id")
         return get_object_or_404(Student, id = _id)
 
-    # def get(self, request):
-    #     print(self.kwargs.get("student_id"))
-    #     student = Student.objects.all() #как передавать конкретного пользователя?
-    #     return render(request, "students/student_page.html", {"student_page": student})
-
 class TeacherView(DetailView):
     model = Teacher
     template_name = "teachers/teacher_page.html"
@@ -73,8 +69,17 @@ class UserLogoutView(LogoutView):
 
 class EditView(UpdateView):
     template_name = "edit.html"
-    if request.user.student:
-        field = ['']
+
+    def get_object(self, queryset=None):
+        if self.request.user.student:
+            self.form_class = EditStudentForm
+            self.model = Student
+            return self.request.user.student
+        elif self.request.user.teacher:
+            self.form_class = EditTeacherForm
+            self.model = Teacher
+            return self.request.user.teacher
+        
 
 class MarksView(View):
     pass
@@ -86,4 +91,10 @@ class ExamsView(View):
     pass
 
 class NotificationsView(View):
+    pass
+
+class PasswordChangeView(View):
+    pass
+
+class PasswordChangeDoneView(View):
     pass
