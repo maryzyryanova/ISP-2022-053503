@@ -1,9 +1,12 @@
-from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from urllib import request
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy
 from django.views.generic.list import ListView
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.views.generic import DetailView
+from django.views.generic.edit import UpdateView
+
 
 from main.forms import LoginForm
 from .models import Schedule, Student, Teacher
@@ -11,19 +14,13 @@ from .models import Schedule, Student, Teacher
 def main(request):
     return render(request, 'main_window.html')
 
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    # return redirect тут я хз 
-    else:
-        form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+class UserLoginView(LoginView):
+    template_name = 'login.html'
+    form_class = LoginForm
+    success_url = reverse_lazy('account')
+
+    def get_success_url(self):
+        return self.success_url
 
 class StudentsListView(ListView):
     def get(self, request):
@@ -48,7 +45,7 @@ class StudentView(DetailView):
     template_name = "students/student_page.html"
     def get_object(self):
         _id = self.kwargs.get("student_id")
-        return get_object_or_404(Student, id = _id) 
+        return get_object_or_404(Student, id = _id)
 
     # def get(self, request):
     #     print(self.kwargs.get("student_id"))
@@ -62,7 +59,31 @@ class TeacherView(DetailView):
         _id = self.kwargs.get("teacher_id")
         return get_object_or_404(Teacher, id = _id) 
 
-class UserView(View):
+class AccountView(View):
+    template_name = "account.html"
+
+    def get(self, request):
+        return render(
+            request,
+            self.template_name
+        )
+
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy('main')
+
+class EditView(UpdateView):
+    template_name = "edit.html"
+    if request.user.student:
+        field = ['']
+
+class MarksView(View):
     pass
 
+class GroupScheduleView(View):
+    pass
 
+class ExamsView(View):
+    pass
+
+class NotificationsView(View):
+    pass
