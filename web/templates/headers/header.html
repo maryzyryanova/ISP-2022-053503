@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-md">
+        <a class="navbar-brand" href="#">ИИС БГУИР 2.0</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">На главную</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/schedule/">Расписания</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/students/">Студенты</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                {% if request.user.student %}
+                <li class="nav-item">
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ request.user.username }}
+                    </a>
+                    <ul style="float: right" class="dropdown-menu dropdown-menu-dark"
+                        aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/account/">Профиль</a></li>
+                        <li><a class="dropdown-item" href="/account/edit">Редактировать</a></li>
+                        <li><a class="dropdown-item" href="/account/marks">Отметки</a></li>
+                        <li><a class="dropdown-item" href="/account/group-schedule">Расписание</a></li>
+                        <li><a class="dropdown-item" href="/account/exams">Зачётка</a></li>
+                        <li><a class="dropdown-item" href="/account/notifications">Уведомления</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout">Выйти</a></li>
+                    </ul>
+                </li>
+                {% elif request.user.teacher %}
+                <li class="nav-item">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ request.user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/settings">Редактировать</a></li>
+                        <li><a class="dropdown-item" href="/account">Account</a></li>
+                        <li><a class="dropdown-item" href="/me">Profile</a></li>
+                        <li><a class="dropdown-item" href="/admin/">Admin</a></li>
+
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout">Log out</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

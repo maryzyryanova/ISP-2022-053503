@@ -1,0 +1,12 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}
+Account
+{% endblock %}
+
+{% block content %}
+   {% if request.user.student != None %}
+        {{ request.user.student }}
+   {% elif request.user.teacher %}
+   {% endif %}
+{% endblock %}
