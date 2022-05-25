@@ -7,10 +7,6 @@ from main.models import Student, Teacher
 User = get_user_model()
 
 class LoginForm(AuthenticationForm, forms.ModelForm):
-    '''
-        Authorization User Form
-    '''
-
     class Meta:
         model = User
         fields = ('username', 'password')

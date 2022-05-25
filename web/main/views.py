@@ -1,5 +1,5 @@
 from urllib import request
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.shortcuts import get_object_or_404, render
@@ -69,7 +69,6 @@ class UserLogoutView(LogoutView):
 
 class EditView(UpdateView):
     template_name = "edit.html"
-
     def get_object(self, queryset=None):
         if self.request.user.student:
             self.form_class = EditStudentForm
@@ -80,7 +79,6 @@ class EditView(UpdateView):
             self.model = Teacher
             return self.request.user.teacher
         
-
 class MarksView(View):
     pass
 
@@ -93,8 +91,9 @@ class ExamsView(View):
 class NotificationsView(View):
     pass
 
-class PasswordChangeView(View):
-    pass
+class ChangePasswordView(PasswordChangeView):
+    success_url = reverse_lazy('password_change_done')
+    template_name = 'password_change.html'
 
-class PasswordChangeDoneView(View):
-    pass
+class ChangePasswordDone(PasswordChangeDoneView):
+    template_name = 'password_change_done.html'
