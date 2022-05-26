@@ -82,19 +82,16 @@ class EditView(UpdateView):
 class MarksView(View):
     template_name = "marks.html"
     def get(self, request, *args, **kwargs):
-        _id = self.kwargs.get(self.request.user.student.group)
-        schedule = Schedule.objects.filter(group__number = _id)
+        group = request.user.student.group
+        schedule = Schedule.objects.filter(group = group)
         return render(request, self.template_name, {"schedule": schedule})
 
-    def get(self, request, *args, **kwargs):
-        _id = self.kwargs.get("schedule_id")
-        if _id:
-            schedule = Schedule.objects.filter(group__number = _id)
-            return render(request, "schedule_list.html", {"schedule_list": schedule})
-        return render(request, "schedule_list.html")
-
 class GroupScheduleView(View):
-    pass
+    template_name = "group_schedule.html"
+    def get(self, request):
+        schedule = Schedule.objects.filter(group = request.user.student.group)
+        return render(request, self.template_name, {"schedule": schedule})
+
 
 class ExamsView(View):
     pass

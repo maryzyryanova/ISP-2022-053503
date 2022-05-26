@@ -19,7 +19,8 @@ class Bell(models.Model):
 
 class Mark(models.Model):
     mark = models.PositiveSmallIntegerField("Отметка", default=0)
-
+    schedule = models.ForeignKey('Schedule', related_name='marks', verbose_name="Отметки", null=True, on_delete=models.SET_NULL)
+    student = models.ForeignKey('Student', related_name='marks', verbose_name='Студент', null=True, on_delete=models.SET_NULL)
     class Meta:
         verbose_name = "Отметка"
         verbose_name_plural = "Отметки"
@@ -70,7 +71,6 @@ class Schedule(models.Model):
     group = models.ForeignKey(Group, verbose_name="Группа", null=True, on_delete=models.SET_NULL)
     teacher = models.ForeignKey(Teacher, verbose_name="Преподаватель", null=True, on_delete=models.SET_NULL)
     dicipline = models.ForeignKey(Dicipline, verbose_name="Дисциплина", null=True, on_delete=models.SET_NULL)
-    marks = models.ForeignKey(Mark, verbose_name="Отметки", null=True, on_delete=models.SET_NULL)
     bell = models.ForeignKey(Bell, verbose_name="Звонок", null=True, on_delete=models.SET_NULL)
     classroom = models.PositiveSmallIntegerField("Аудитория", default=0)
     day = models.PositiveSmallIntegerField("День недели", default=0)

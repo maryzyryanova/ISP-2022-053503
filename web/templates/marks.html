@@ -5,11 +5,18 @@
 {% endblock %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
-        <table>
-            <tr>
-                {% for dicipline in schedule.dicipl%}
-            </tr>
-        </table>
-    {% endif %}
+    <table class="table table-dark table-striped" >
+        {% for pair in schedule %}
+        <tr>
+            <td>
+                {{ pair.dicipline }}
+            </td>
+            {% for mark in pair.marks.all %}
+            <td>
+                {{ mark.mark }}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
