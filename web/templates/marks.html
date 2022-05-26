@@ -1,0 +1,15 @@
+{% extends 'wrapper.html'%}
+
+{% block title %}
+    Marks
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <table>
+            <tr>
+                {% for dicipline in schedule.dicipl%}
+            </tr>
+        </table>
+    {% endif %}
+{% endblock %}
