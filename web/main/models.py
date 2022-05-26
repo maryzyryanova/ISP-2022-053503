@@ -1,3 +1,5 @@
+from sys import maxsize
+from tabnanny import verbose
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -15,6 +17,12 @@ class Bell(models.Model):
         verbose_name_plural = "Звонки"
         verbose_name = "Звонок"
 
+class Mark(models.Model):
+    mark = models.PositiveSmallIntegerField("Отметка", default=0)
+
+    class Meta:
+        verbose_name = "Отметка"
+        verbose_name_plural = "Отметки"
 
 class Dicipline(models.Model):
     title = models.CharField("Название", max_length=200)
@@ -59,9 +67,10 @@ class Group(models.Model):
         verbose_name = "Группа"
 
 class Schedule(models.Model):
-    group = models.ForeignKey(Group, verbose_name="Расписание", null=True, on_delete=models.SET_NULL)
+    group = models.ForeignKey(Group, verbose_name="Группа", null=True, on_delete=models.SET_NULL)
     teacher = models.ForeignKey(Teacher, verbose_name="Преподаватель", null=True, on_delete=models.SET_NULL)
     dicipline = models.ForeignKey(Dicipline, verbose_name="Дисциплина", null=True, on_delete=models.SET_NULL)
+    marks = models.ForeignKey(Mark, verbose_name="Отметки", null=True, on_delete=models.SET_NULL)
     bell = models.ForeignKey(Bell, verbose_name="Звонок", null=True, on_delete=models.SET_NULL)
     classroom = models.PositiveSmallIntegerField("Аудитория", default=0)
     day = models.PositiveSmallIntegerField("День недели", default=0)
@@ -90,4 +99,5 @@ class Student(models.Model):
     class Meta:
         verbose_name_plural = "Студенты"
         verbose_name = "Студент"
+
 
