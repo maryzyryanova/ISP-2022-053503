@@ -1,3 +1,4 @@
+from re import template
 from urllib import request
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import reverse_lazy
@@ -10,7 +11,7 @@ from django.views.generic.edit import UpdateView
 
 from main.forms import LoginForm
 from main.forms import EditTeacherForm, EditStudentForm
-from .models import Schedule, Student, Teacher
+from .models import Exam, ExamMark, Schedule, Student, Teacher
 
 def main(request):
     return render(request, 'main_window.html')
@@ -89,12 +90,14 @@ class GroupScheduleView(View):
         schedule = Schedule.objects.filter(group = request.user.student.group)
         return render(request, self.template_name, {"schedule": schedule})
 
-
 class ExamsView(View):
-    pass
+    template_name = "exams.html"
+    def get(self, request):
+        exams = ExamMark.objects.filter(student = request.user.student)
+        return render(request, self.template_name, {"exams": exams})
 
 class NotificationsView(View):
-    pass
+    
 
 class ChangePasswordView(PasswordChangeView):
     success_url = reverse_lazy('password_change_done')
