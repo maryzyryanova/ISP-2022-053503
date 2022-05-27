@@ -1,0 +1,17 @@
+{% extends 'wrapper.html'%}
+
+{% block title %}
+    Schedule
+{% endblock %}
+
+{% block content %}
+
+    {% for pair in schedule%}
+        {{pair.day}}
+        {% for pair in schedule%}
+            {{ pair.dicipline }}
+            {{ pair.teacher }}
+            {{ pair.bell.start }}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

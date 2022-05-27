@@ -59,10 +59,7 @@ class AccountView(View):
     template_name = "account.html"
 
     def get(self, request):
-        return render(
-            request,
-            self.template_name
-        )
+        return render(request, self.template_name)
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('main')

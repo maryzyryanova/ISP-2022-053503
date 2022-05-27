@@ -1,5 +1,3 @@
-from sys import maxsize
-from tabnanny import verbose
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -100,4 +98,12 @@ class Student(models.Model):
         verbose_name_plural = "Студенты"
         verbose_name = "Студент"
 
+class Singletone():
+    class Meta:
+        verbose_name_plural = "Экзамены"
+        verbose_name = "Экзамен"
+
+class Exams(models.Model, Singletone):
+    # group = models.ForeignKey(Group, verbose_name="Номер группы", null=True, on_delete=models.SET_NULL, blank=True)
+    pass
 
