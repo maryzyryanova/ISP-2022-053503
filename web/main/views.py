@@ -1,17 +1,16 @@
-from re import template
-from urllib import request
+from tkinter.messagebox import NO
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
-from django.shortcuts import get_object_or_404, render
-from django.views import View
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views import View, CreateView
 from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-from main.forms import LoginForm
-from main.forms import EditTeacherForm, EditStudentForm
-from .models import Exam, ExamMark, Schedule, Student, Teacher
+from main.forms import LoginForm, EditTeacherForm, EditStudentForm, MessageForm
+from .models import ExamMark, Notification, Schedule, Student, Teacher
 
 def main(request):
     return render(request, 'main_window.html')
@@ -96,8 +95,42 @@ class ExamsView(View):
         exams = ExamMark.objects.filter(student = request.user.student)
         return render(request, self.template_name, {"exams": exams})
 
-class NotificationsView(View):
-    
+class NotificationsView(LoginRequiredMixin, CreateView):
+    template_name = 'notify.html'
+    model = Notification
+    form_class = MessageForm
+    login_url = '/login'
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            ticket = Notification()
+            ticket.user = request.user.profile
+            ticket.email = form.cleaned_data['email']
+            ticket.issue = form.cleaned_data['issue']
+            ticket.message = form.cleaned_data['message']
+            ticket.save()
+            return redirect('/')
+
+        return render(
+            request,
+            self.template_name,
+            {
+                'form': form,
+            }
+        )
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+
+        return render(
+            request,
+            self.template_name,
+            {
+                'form': form,
+            }
+        )
 
 class ChangePasswordView(PasswordChangeView):
     success_url = reverse_lazy('password_change_done')
