@@ -19,6 +19,7 @@ class Mark(models.Model):
     mark = models.PositiveSmallIntegerField("Отметка", default=0)
     schedule = models.ForeignKey('Schedule', related_name='marks', verbose_name="Отметки", null=True, on_delete=models.SET_NULL)
     student = models.ForeignKey('Student', related_name='marks', verbose_name='Студент', null=True, on_delete=models.SET_NULL)
+
     class Meta:
         verbose_name = "Отметка"
         verbose_name_plural = "Отметки"
@@ -66,13 +67,24 @@ class Group(models.Model):
         verbose_name = "Группа"
 
 class Schedule(models.Model):
+    DAY_CHOICE = (
+        (0,'Понедельник'),
+        (1,'Вторник'),
+        (2,'Среда'),
+        (3,'Четверг'),
+        (4,'Пятница'),
+        (5,'Суббота'),
+        (6,'Воскресенье'),
+    )
+
     group = models.ForeignKey(Group, verbose_name="Группа", null=True, on_delete=models.SET_NULL)
     teacher = models.ForeignKey(Teacher, verbose_name="Преподаватель", null=True, on_delete=models.SET_NULL)
     dicipline = models.ForeignKey(Dicipline, verbose_name="Дисциплина", null=True, on_delete=models.SET_NULL)
     bell = models.ForeignKey(Bell, verbose_name="Звонок", null=True, on_delete=models.SET_NULL)
     classroom = models.PositiveSmallIntegerField("Аудитория", default=0)
-    day = models.PositiveSmallIntegerField("День недели", default=0)
+    day = models.PositiveSmallIntegerField("День недели", default=0, choices=DAY_CHOICE)
     week = models.PositiveSmallIntegerField("Неделя", default=0)
+
 
     def __str__(self) -> str:
         return f"Пара {self.dicipline}"
@@ -98,12 +110,31 @@ class Student(models.Model):
         verbose_name_plural = "Студенты"
         verbose_name = "Студент"
 
-class Singletone():
+class Exam(models.Model):
+    group = models.ForeignKey(Group, verbose_name="Номер группы", null=True, on_delete=models.CASCADE, blank=True) 
+    dicipline = models.OneToOneField(Dicipline, verbose_name="Дисциплина", null=True, on_delete=models.CASCADE, blank=True)
+    exam_type = models.CharField("Тип", max_length=50)
+    classroom = models.PositiveSmallIntegerField("Аудитория", default=0)
+    day = models.PositiveSmallIntegerField("День недели", default=0)
+    bell = models.ForeignKey(Bell, verbose_name="Звонок", null=True, on_delete=models.SET_NULL)
+
+    def __str__(self) -> str:
+        return f"Экзамен по {self.dicipline}"
+
     class Meta:
         verbose_name_plural = "Экзамены"
         verbose_name = "Экзамен"
 
-class Exams(models.Model, Singletone):
-    # group = models.ForeignKey(Group, verbose_name="Номер группы", null=True, on_delete=models.SET_NULL, blank=True)
-    pass
+class ExamMark(models.Model):
+    mark = models.PositiveSmallIntegerField("Отметка", default=0)
+    exam = models.OneToOneField('Exam', related_name='marks', verbose_name="Отметки", null=True, on_delete=models.CASCADE)    
+    student = models.ForeignKey('Student', related_name='exam_marks', verbose_name='Студент', null=True, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = "Экзаменационная отметка"
+        verbose_name_plural = "Экзаменационные   отметки"
+
+class Notification(models.Model):
+    teacher = models.ForeignKey(Teacher, related_name="notifications", verbose_name="Преподаватель", null=True, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, related_name="notifications", verbose_name="Преподаватель", null=True, on_delete=models.CASCADE)
+    message = models.TextField("Сообщение")

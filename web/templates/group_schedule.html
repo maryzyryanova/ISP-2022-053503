@@ -5,13 +5,32 @@
 {% endblock %}
 
 {% block content %}
-
-    {% for pair in schedule%}
-        {{pair.day}}
+<table class="table">
+    <thead>
+        <th>День недели</th>
+        <th>Дисциплина</th>
+        <th>Преподаватель</th>
+        <th>Начало пары</th>
+    </thead>
+    <tbody>
         {% for pair in schedule%}
-            {{ pair.dicipline }}
-            {{ pair.teacher }}
-            {{ pair.bell.start }}
+            <tr>
+                <td>
+                    {{pair.get_day_display}}
+                </td>
+                    <td>
+                        {{ pair.dicipline }}
+                    </td>
+                    <td>
+                        {{ pair.teacher }}
+                    </td>
+                    <td>
+                        {{ pair.bell.start }}
+                    </td>                    
+            </tr>
         {% endfor %}
-    {% endfor %}
+    </tbody>
+
+</table>
+    
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'wrapper.html'%}
+
+{% block title %}
+    Schedule
+{% endblock %}
+
+{% block content %}
+<table class="table table-dark table-striped" >
+    {% for exam in exams %}
+    <tr>
+        <td>
+            {{ exam.exam.dicipline}}
+        </td>
+        <td>
+            {{ exam.exam.exam_type}}
+        </td>
+        <td>
+            {{ exam.mark }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
