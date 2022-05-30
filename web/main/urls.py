@@ -7,7 +7,6 @@ from .views import (
     GroupScheduleView,
     MarksView,
     NotificationsView,
-    PasswordChangeDoneView,
     ScheduleView,
     StudentView, 
     StudentsListView,

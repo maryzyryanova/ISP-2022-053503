@@ -18,7 +18,7 @@ class Bell(models.Model):
 
 class Mark(models.Model):
     mark = models.PositiveSmallIntegerField("Отметка", default=0)
-    schedule = models.ForeignKey('Schedule', related_name='marks', verbose_name="Отметки", null=True, on_delete=models.SET_NULL)
+    dicipline = models.ForeignKey('Dicipline', related_name='marks', verbose_name="Дисциплины", null=True, on_delete=models.SET_NULL)
     student = models.ForeignKey('Student', related_name='marks', verbose_name='Студент', null=True, on_delete=models.SET_NULL)
     date = models.DateField("Date", default=datetime.date.today)
 
@@ -79,6 +79,12 @@ class Schedule(models.Model):
         (6,'Воскресенье'),
     )
 
+    TYPE_CHOICE = (
+        ('лк', "Лекция"),
+        ('пз', "Практическое занятие"),
+        ('лр', "Лабораторная работа"),
+    )
+
     group = models.ForeignKey(Group, verbose_name="Группа", null=True, on_delete=models.SET_NULL)
     teacher = models.ForeignKey(Teacher, verbose_name="Преподаватель", null=True, on_delete=models.SET_NULL)
     dicipline = models.ForeignKey(Dicipline, verbose_name="Дисциплина", null=True, on_delete=models.SET_NULL)
@@ -86,10 +92,10 @@ class Schedule(models.Model):
     classroom = models.PositiveSmallIntegerField("Аудитория", default=0)
     day = models.PositiveSmallIntegerField("День недели", default=0, choices=DAY_CHOICE)
     week = models.PositiveSmallIntegerField("Неделя", default=0)
-    pair_type = models.CharField("Тип", max_length=50, default='')
+    pair_type = models.CharField("Тип", max_length=50, default='', choices=TYPE_CHOICE)
 
     def __str__(self) -> str:
-        return f"Пара {self.dicipline}"
+        return f"Пара #{self.bell.pair} {self.dicipline} [{self.get_day_display()} {self.week}]"
 
     class Meta:
         verbose_name = "Расписание"
@@ -135,13 +141,11 @@ class ExamMark(models.Model):
 
     class Meta:
         verbose_name = "Экзаменационная отметка"
-        verbose_name_plural = "Экзаменационные   отметки"
+        verbose_name_plural = "Экзаменационные отметки"
 
 class Notification(models.Model):
     teacher = models.ForeignKey(Teacher, related_name="notifications", verbose_name="Преподаватель", null=True, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, related_name="notifications", verbose_name="Преподаватель", null=True, on_delete=models.CASCADE)
     message = models.TextField("Сообщение")
 
-
 # class Missings(models.Model):
-

@@ -1,3 +1,4 @@
+from urllib import request
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
@@ -14,6 +15,7 @@ from main.forms import (
     EditTeacherForm, 
     EditStudentForm, 
     MessageForm,
+    MarksForm
 )
 from .models import (
     ExamMark, 
@@ -74,8 +76,6 @@ class AccountView(View):
     template_name = "account.html"
 
     def get(self, request):
-        # print(request.user.teacher)
-        # print(request.user.student==None)
         return render(request, self.template_name)
 
 class UserLogoutView(LogoutView):
@@ -83,12 +83,15 @@ class UserLogoutView(LogoutView):
 
 class EditView(UpdateView):
     template_name = "edit.html"
+    success_url = "/account/"
+
     def get_object(self, queryset=None):
-        if self.request.user.student:
+        print(dir(self.request.user))
+        if hasattr(self.request.user, 'student'):
             self.form_class = EditStudentForm
             self.model = Student
             return self.request.user.student
-        elif self.request.user.teacher:
+        elif hasattr(self.request.user, 'teacher'):
             self.form_class = EditTeacherForm
             self.model = Teacher
             return self.request.user.teacher
@@ -189,11 +192,12 @@ class TeacherStudentView(View):
 
     def get(self, request, *args, **kwargs):
         student = self.get_object()
-
+        form = MarksForm(student, request.user.teacher.diciplines.all()[0])
         return render(
             request,
             self.template_name,
             {
                 'student': student,
+                'form': form,
             }
         )
