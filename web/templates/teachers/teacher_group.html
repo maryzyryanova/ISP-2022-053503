@@ -4,13 +4,11 @@
 {% endblock %}
 
 {% block content %}
-<h1>Студенты группы {{object.number}}</h1>
+<h1>Занятия</h1>
 <ol>
-    {% for student in object.students.all %}
+    {% for pair in object.pairs.all %}
     <li>
-        <a href="/teachers/student/{{student.id}}">
-            {{student}}
-        </a>
+        {{pair}}
     </li>
     {% endfor %}
 </ol>

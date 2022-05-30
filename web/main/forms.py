@@ -59,9 +59,6 @@ class MarksForm(forms.ModelForm):
             choices=res
         )
         self.fields['student'].initial = student
-        # self.fields['schedule'] = forms.ModelChoiceField(
-        #     queryset=Schedule.objects.filter(group=student.group, dicipline = dicipline)
-        # )
         
     class Meta:
         model = Mark

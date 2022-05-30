@@ -1,3 +1,4 @@
+from tokenize import group
 from urllib import request
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import reverse_lazy
@@ -160,16 +161,15 @@ class ChangePasswordDone(PasswordChangeDoneView):
     template_name = 'password_change_done.html'
 
 class TeacherGroupsView(View):
-    temlate_name = 'teachers/teacher_groups.html'
+    template_name = 'teachers/teacher_groups.html'
 
     def get(self, request, *args, **kwargs):
         teacher = request.user.teacher
         groups = Schedule.objects.filter(teacher = teacher).values('group__number').annotate(dcount=Count('group'))
-        print(groups)
 
         return render(
             request, 
-            self.temlate_name,
+            self.template_name,
             {
                 'groups': groups,
             }
@@ -177,11 +177,21 @@ class TeacherGroupsView(View):
 
 class TeacherGroupDetailView(DetailView):
     template_name = 'teachers/teacher_group.html'
-
     def get_object(self):
         _id = self.kwargs.get("group_id")
-        return get_object_or_404(Group, number = _id) 
+        return get_object_or_404(Group, number = _id)
 
+    def get(self, request, *args, **kwargs):
+        group = self.get_object()
+        diciplines = self.request.user.teacher.diciplines.all()
+        pairs = Schedule.objects.filter(dicipline=diciplines, group=group)
+        return render(
+            request, 
+            self.template_name,
+            {
+                'pairs': pairs,
+            }
+        )
 
 class TeacherStudentView(View):
     template_name = 'teachers/teacher_student.html'
