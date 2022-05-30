@@ -19,6 +19,7 @@ from main.forms import (
     MarksForm
 )
 from .models import (
+    Dicipline,
     ExamMark, 
     Notification, 
     Schedule, 
@@ -177,19 +178,17 @@ class TeacherGroupsView(View):
 
 class TeacherGroupDetailView(DetailView):
     template_name = 'teachers/teacher_group.html'
-    def get_object(self):
-        _id = self.kwargs.get("group_id")
-        return get_object_or_404(Group, number = _id)
+    # def get_object(self):
+    #     _id = self.kwargs.get("group_id")
+    #     return get_object_or_404(Group, number = _id)
 
     def get(self, request, *args, **kwargs):
-        group = self.get_object()
-        diciplines = self.request.user.teacher.diciplines.all()
-        pairs = Schedule.objects.filter(dicipline=diciplines, group=group)
+        diciplines = Dicipline.objects.all()
         return render(
             request, 
             self.template_name,
             {
-                'pairs': pairs,
+                'diciplines': diciplines,
             }
         )
 

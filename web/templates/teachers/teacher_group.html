@@ -6,9 +6,9 @@
 {% block content %}
 <h1>Занятия</h1>
 <ol>
-    {% for pair in object.pairs.all %}
+    {% for dicipline in diciplines %}
     <li>
-        {{pair}}
+        {{dicipline}}
     </li>
     {% endfor %}
 </ol>
