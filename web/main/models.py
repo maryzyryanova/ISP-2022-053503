@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -19,6 +20,7 @@ class Mark(models.Model):
     mark = models.PositiveSmallIntegerField("Отметка", default=0)
     schedule = models.ForeignKey('Schedule', related_name='marks', verbose_name="Отметки", null=True, on_delete=models.SET_NULL)
     student = models.ForeignKey('Student', related_name='marks', verbose_name='Студент', null=True, on_delete=models.SET_NULL)
+    date = models.DateField("Date", default=datetime.date.today)
 
     class Meta:
         verbose_name = "Отметка"
@@ -40,13 +42,13 @@ class Teacher(models.Model):
     name = models.CharField("Имя", max_length=50)
     second_name = models.CharField("Отчество", max_length=50)
     surname = models.CharField("Фамилия", max_length=50)
-    photo = models.ImageField("Фото",upload_to = "media/teachers/", blank=True)
+    photo = models.ImageField("Фото",upload_to = "media/teachers/", blank=True, null=True)
     rang = models.CharField("Должность", max_length=200)
     email = models.EmailField("Электронная почта", max_length=200)
     diciplines = models.ManyToManyField(Dicipline, verbose_name="Дисциплины")
 
     def __str__(self) -> str:
-        return self.name 
+        return f'{self.surname} {self.name} {self.second_name}'
 
     class Meta:
         verbose_name_plural = "Преподаватели"
@@ -84,7 +86,7 @@ class Schedule(models.Model):
     classroom = models.PositiveSmallIntegerField("Аудитория", default=0)
     day = models.PositiveSmallIntegerField("День недели", default=0, choices=DAY_CHOICE)
     week = models.PositiveSmallIntegerField("Неделя", default=0)
-
+    pair_type = models.CharField("Тип", max_length=50, default='')
 
     def __str__(self) -> str:
         return f"Пара {self.dicipline}"
@@ -98,15 +100,16 @@ class Student(models.Model):
     name = models.CharField("Имя", max_length=50)
     second_name = models.CharField("Отчество", max_length=50)
     surname = models.CharField("Фамилия", max_length=50)
-    photo = models.ImageField("Фото",upload_to = "media/students/")
+    photo = models.ImageField("Фото",upload_to = "media/students/", null=True, blank=True)
     rating = models.FloatField("Рейтинг")
     number = models.CharField("Студенческий билет", max_length=15)
-    group = models.ForeignKey(Group, verbose_name="Номер группы", null=True, on_delete=models.SET_NULL, blank=True)
+    group = models.ForeignKey(Group, related_name='students', verbose_name="Номер группы", null=True, on_delete=models.SET_NULL, blank=True)
 
     def __str__(self) -> str:
-        return self.name 
+        return f'{self.surname} {self.name} {self.second_name}'
 
     class Meta:
+        ordering = ('surname','name','second_name')
         verbose_name_plural = "Студенты"
         verbose_name = "Студент"
 
@@ -138,3 +141,7 @@ class Notification(models.Model):
     teacher = models.ForeignKey(Teacher, related_name="notifications", verbose_name="Преподаватель", null=True, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, related_name="notifications", verbose_name="Преподаватель", null=True, on_delete=models.CASCADE)
     message = models.TextField("Сообщение")
+
+
+# class Missings(models.Model):
+

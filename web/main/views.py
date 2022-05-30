@@ -1,16 +1,28 @@
-from tkinter.messagebox import NO
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views import View, CreateView
-from django.views.generic import DetailView
+from django.views import View
+from django.views.generic import DetailView, CreateView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
 
 
-from main.forms import LoginForm, EditTeacherForm, EditStudentForm, MessageForm
-from .models import ExamMark, Notification, Schedule, Student, Teacher
+from main.forms import (
+    LoginForm, 
+    EditTeacherForm, 
+    EditStudentForm, 
+    MessageForm,
+)
+from .models import (
+    ExamMark, 
+    Notification, 
+    Schedule, 
+    Student, 
+    Teacher, 
+    Group
+)
 
 def main(request):
     return render(request, 'main_window.html')
@@ -38,7 +50,10 @@ class ScheduleView(View):
         _id = self.kwargs.get("schedule_id")
         if _id:
             schedule = Schedule.objects.filter(group__number = _id)
-            return render(request, "schedule_list.html", {"schedule_list": schedule})
+            l = []
+            for i in range(1,5):
+                l.append(schedule.filter(week=i))
+            return render(request, "schedule_list.html", {"schedule": l})
         return render(request, "schedule_list.html")
 
 class StudentView(DetailView):
@@ -59,6 +74,8 @@ class AccountView(View):
     template_name = "account.html"
 
     def get(self, request):
+        # print(request.user.teacher)
+        # print(request.user.student==None)
         return render(request, self.template_name)
 
 class UserLogoutView(LogoutView):
@@ -138,3 +155,45 @@ class ChangePasswordView(PasswordChangeView):
 
 class ChangePasswordDone(PasswordChangeDoneView):
     template_name = 'password_change_done.html'
+
+class TeacherGroupsView(View):
+    temlate_name = 'teachers/teacher_groups.html'
+
+    def get(self, request, *args, **kwargs):
+        teacher = request.user.teacher
+        groups = Schedule.objects.filter(teacher = teacher).values('group__number').annotate(dcount=Count('group'))
+        print(groups)
+
+        return render(
+            request, 
+            self.temlate_name,
+            {
+                'groups': groups,
+            }
+        )
+
+class TeacherGroupDetailView(DetailView):
+    template_name = 'teachers/teacher_group.html'
+
+    def get_object(self):
+        _id = self.kwargs.get("group_id")
+        return get_object_or_404(Group, number = _id) 
+
+
+class TeacherStudentView(View):
+    template_name = 'teachers/teacher_student.html'
+
+    def get_object(self):
+        _id = self.kwargs.get("student_id")
+        return get_object_or_404(Student, id = _id) 
+
+    def get(self, request, *args, **kwargs):
+        student = self.get_object()
+
+        return render(
+            request,
+            self.template_name,
+            {
+                'student': student,
+            }
+        )

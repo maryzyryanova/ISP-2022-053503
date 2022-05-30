@@ -5,8 +5,9 @@ Account
 {% endblock %}
 
 {% block content %}
-   {% if request.user.student != None %}
-        {{ request.user.student }}
+   {% if request.user.student %}
+      {{ request.user.student }}
    {% elif request.user.teacher %}
+      {{ request.user.teacher }}
    {% endif %}
 {% endblock %}

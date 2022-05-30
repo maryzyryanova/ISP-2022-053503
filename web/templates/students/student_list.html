@@ -11,14 +11,16 @@ Students
                 <tr>
                     <td>
                         <a href = "/students/{{ student.id }}" >{{student.surname}} {{ student.name }} {{ student.second_name }}</a>
-                        <p> {{ student.group.course}} курс</p>
-                        <p> {{ student.group.specialisation}}</p>
-                        <p> {{ student.group.faculty}}</p>
-                        <p> Рейтинг: {{ student.rating }}</p>
+                        <p>{{ student.group.course}} курс</p>
+                        <p>{{ student.group.specialisation}}</p>
+                        <p>{{ student.group.faculty}}</p>
+                        <p>Рейтинг: {{ student.rating }}</p>
                     </td>
 
                     <td> 
+                        {% if student.photo %}
                         <img  src = "{{ student.photo.url }}" width="250" height="250"/>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
