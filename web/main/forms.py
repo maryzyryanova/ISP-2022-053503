@@ -1,3 +1,4 @@
+from urllib import request
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
@@ -58,9 +59,9 @@ class MarksForm(forms.ModelForm):
             choices=res
         )
         self.fields['student'].initial = student
-        self.fields['schedule'] = forms.ModelChoiceField(
-            queryset=Schedule.objects.filter(group=student.group, dicipline = dicipline)
-        )
+        # self.fields['schedule'] = forms.ModelChoiceField(
+        #     queryset=Schedule.objects.filter(group=student.group, dicipline = dicipline)
+        # )
         
     class Meta:
         model = Mark
