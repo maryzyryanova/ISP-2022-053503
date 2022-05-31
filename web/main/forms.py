@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-from main.models import Student, Teacher, Notification, Mark
+from main.models import Student, Teacher, Notification, Mark, Missings
 
 from main.utils import get_pairs
 
@@ -30,7 +30,7 @@ class MessageForm(forms.ModelForm):
         model = Notification
         fields = ['group', 'message']
 
-class MarksForm(forms.ModelForm):
+class MarksForm(forms.Form):
     def __init__(self, group, dicipline, *args, **kwargs):
         super(MarksForm, self).__init__(*args, **kwargs)
 
@@ -45,8 +45,13 @@ class MarksForm(forms.ModelForm):
         self.fields['date'] = forms.ChoiceField(
             choices=res
         )
+
+        self.fields['mark'] = forms.IntegerField()
+
+        self.fields['missings'] = forms.IntegerField()
         
     class Meta:
         model = Mark
         fields = '__all__'
         exclude = ['dicipline', ]
+        include = ['missings', ]

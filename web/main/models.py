@@ -151,6 +151,9 @@ class Notification(models.Model):
 
 class Missings(models.Model):
     hours = models.PositiveSmallIntegerField("Количество")
+    dicipline = models.ForeignKey(Dicipline, related_name="missings", verbose_name="Пропуски", null=True, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, related_name="missings", verbose_name="Пропуски", null=True, on_delete=models.CASCADE)
+    date = models.DateField("Date", default=datetime.date.today)
 
     class Meta:
         verbose_name = "Часы пропусков"

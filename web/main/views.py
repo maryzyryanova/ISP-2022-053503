@@ -289,7 +289,12 @@ class TeacherStudentView(View):
             marks = {}
             for date in dates_str:
                 mark = student.marks.filter(dicipline=dicipline, date=date)
-                if mark.count():
+                missings = student.missings.filter(dicipline=dicipline, date=date)
+                if missings.count() and mark.count():
+                    marks[date] = f'{mark[0].mark}/{missings[0].hours} ч.'
+                elif missings.count():
+                    marks[date] = f'{missings[0].hours} ч.'
+                elif mark.count():
                     marks[date] = mark[0].mark
                 else:
                     marks[date] = ""
@@ -309,16 +314,11 @@ class TeacherStudentView(View):
             mark,_ = Mark.objects.get_or_create(
                 student=form.cleaned_data["student"],
                 date=form.cleaned_data["date"],
-                dicipline=dicipline
+                missings = form.cleaned_data["missings"],
+                dicipline=dicipline,
             )
             if mark.mark < 11:
                 mark.mark = form.cleaned_data["mark"]
-                    # mark = Mark(
-                    #     student=form.cleaned_data["student"],
-                    #     mark=form.cleaned_data["mark"],
-                    #     date=form.cleaned_data["date"],
-                    #     dicipline=dicipline,
-                    # )
                 mark.save()
                 return redirect(f'/teachers/groups/{group.number}/subject/{dicipline_id}')
         marks = self.get_all_marks()
