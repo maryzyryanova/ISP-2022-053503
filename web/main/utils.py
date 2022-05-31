@@ -2,8 +2,8 @@ from main.models import Schedule
 from django.conf import settings
 from datetime import timedelta
 
-def get_pairs(dicipline, student):
-    pairs = Schedule.objects.filter(dicipline=dicipline, group=student.group).order_by('week','day','bell')
+def get_pairs(dicipline, group):
+    pairs = Schedule.objects.filter(dicipline=dicipline, group=group).order_by('week','day','bell')
     time = settings.SEMESTER_BEGIN
     dates = []
     count = 0

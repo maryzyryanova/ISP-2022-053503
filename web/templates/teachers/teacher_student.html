@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-    <form>
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">
@@ -20,25 +20,18 @@
             {% endfor %}
         </thead>
         <tbody>
-            {% for student in student.group.students.all %}
+            {% for student, marks_list in marks.items %}
                 <tr>
                     <td>
                         {{ student.surname}}
                     </td>
-                    {% for date in dates %}
-                        {% for mark in student.marks.all %}
-                            {% if mark.date == date.1 %}
-                            <td>
-                                {{ mark.mark }}
-                            </td>
-                            {% else %}
-                            <td></td>
-                            {% endif %}
-                        {% endfor %}
+                    {% for date, mark in marks_list.items%}
+                        <td>
+                            {{ mark }}
+                        </td>
                     {% endfor %}
                 </tr>
             {% endfor %}
         </tbody>
-    
     </table>
 {% endblock %}

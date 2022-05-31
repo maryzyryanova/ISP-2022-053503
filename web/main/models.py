@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 import datetime
 from django.contrib.auth import get_user_model
@@ -148,4 +149,8 @@ class Notification(models.Model):
     group = models.ForeignKey(Group, related_name="notifications", verbose_name="Преподаватель", null=True, on_delete=models.CASCADE)
     message = models.TextField("Сообщение")
 
-# class Missings(models.Model):
+class Missings(models.Model):
+    hours = models.PositiveSmallIntegerField("Количество")
+
+    class Meta:
+        verbose_name = "Часы пропусков"

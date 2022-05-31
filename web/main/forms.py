@@ -31,16 +31,16 @@ class MessageForm(forms.ModelForm):
         fields = ['group', 'message']
 
 class MarksForm(forms.ModelForm):
-    def __init__(self, student, dicipline, *args, **kwargs):
+    def __init__(self, group, dicipline, *args, **kwargs):
         super(MarksForm, self).__init__(*args, **kwargs)
 
-        dates = get_pairs(dicipline, student)
+        dates = get_pairs(dicipline, group)
         
-        res = ((i, i.strftime("%d.%m")) for i in dates)
+        res = ((i.date(), i.strftime("%d.%m")) for i in dates)
 
-        # self.fields['student'] = forms.ChoiceField(
-        #     choices=student.group.students
-        # )
+        self.fields['student'] = forms.ModelChoiceField(
+            queryset=group.students.all()
+        )
 
         self.fields['date'] = forms.ChoiceField(
             choices=res
@@ -49,4 +49,4 @@ class MarksForm(forms.ModelForm):
     class Meta:
         model = Mark
         fields = '__all__'
-        exclude = ['dicipline', 'student']
+        exclude = ['dicipline', ]
