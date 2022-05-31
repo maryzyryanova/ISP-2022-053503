@@ -1,3 +1,4 @@
+from datetime import datetime
 from tokenize import group
 from urllib import request
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
@@ -9,6 +10,7 @@ from django.views.generic import DetailView, CreateView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
+from main.utils import get_pairs
 
 
 from main.forms import (
@@ -18,9 +20,11 @@ from main.forms import (
     MessageForm,
     MarksForm
 )
+
 from .models import (
     Dicipline,
-    ExamMark, 
+    ExamMark,
+    Mark, 
     Notification, 
     Schedule, 
     Student, 
@@ -176,19 +180,42 @@ class TeacherGroupsView(View):
             }
         )
 
-class TeacherGroupDetailView(DetailView):
+class TeacherGroupDiciplinesDetailView(DetailView):
     template_name = 'teachers/teacher_group.html'
-    # def get_object(self):
-    #     _id = self.kwargs.get("group_id")
-    #     return get_object_or_404(Group, number = _id)
+
+    def get_object(self):
+        _id = self.kwargs.get("group_id")
+        return get_object_or_404(Group, number = _id)
 
     def get(self, request, *args, **kwargs):
         diciplines = Dicipline.objects.all()
+        group = self.get_object()
+        diciplines_new = Schedule.objects.filter(group = group, teacher = request.user.teacher).values('dicipline__title','dicipline__id').annotate(count=Count('dicipline'))
         return render(
             request, 
             self.template_name,
             {
-                'diciplines': diciplines,
+                'diciplines': diciplines_new,
+                'group': group,
+            }
+        )
+
+
+class TeacherGroupDiciplinesListView(View):
+    template_name = 'teachers/teacher_group_list.html'
+
+    def get(self, request, *args, **kwargs):
+        dicipline_id = self.kwargs.get('subject_id')
+        group_id = self.kwargs.get('group_id')
+        
+        group = Group.objects.get(number = group_id)
+        dicipline = Dicipline.objects.get(id = dicipline_id)
+        return render(
+            request,
+            self.template_name,
+            {
+                'group': group,
+                'dicipline': dicipline
             }
         )
 
@@ -201,12 +228,31 @@ class TeacherStudentView(View):
 
     def get(self, request, *args, **kwargs):
         student = self.get_object()
-        form = MarksForm(student, request.user.teacher.diciplines.all()[0])
+        dicipline_id = self.kwargs.get('subject_id')
+        dicipline = Dicipline.objects.get(id = dicipline_id)
+        dates = get_pairs(dicipline, student)
+        form = MarksForm(student, dicipline)
+        dates_str = [(date.strftime("%d.%m"), date.date) for date in dates]
         return render(
             request,
             self.template_name,
             {
                 'student': student,
+                'dates': dates_str,
                 'form': form,
             }
         )
+
+    def post(self, request, *args, **kwargs):
+        form = MarksForm(request.POST)
+        dicipline_id = self.kwargs.get('subject_id')
+        if form.is_valid():
+            mark = Mark(
+                student = request.user.student,
+                mark = form.cleaned_data['mark'],
+                date = form.cleaned_data['date'],
+                dicipline = Dicipline.objects.get(id = dicipline_id)
+            )
+            mark.save()
+            return render(request, self.template_name, {'mark': mark, 'form': form})
+        return redirect('/')

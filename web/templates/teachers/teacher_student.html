@@ -7,5 +7,38 @@
     <form>
         {% csrf_token %}
         {{ form.as_p }}
+        <button type="submit">
+            Добавить   
+        </button>
     </form>
+
+    <table class="table">
+        <thead>
+            <th>ФИО</th>
+            {% for date in dates %}
+                <th>{{ date.0 }}</th>
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for student in student.group.students.all %}
+                <tr>
+                    <td>
+                        {{ student.surname}}
+                    </td>
+                    {% for date in dates %}
+                        {% for mark in student.marks.all %}
+                            {% if mark.date == date.1 %}
+                            <td>
+                                {{ mark.mark }}
+                            </td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    
+    </table>
 {% endblock %}

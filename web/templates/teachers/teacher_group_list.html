@@ -1,0 +1,12 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    {% for student in group.students.all %}
+        <a href = "/teachers/groups/{{group.number}}/subject/{{dicipline.id}}/{{student.id}}">
+            {{student}}<br>
+        </a>
+    {% endfor %}
+{% endblock %}

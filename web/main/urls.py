@@ -17,8 +17,9 @@ from .views import (
     UserLogoutView,
     main,
     TeacherGroupsView,
-    TeacherGroupDetailView,
+    TeacherGroupDiciplinesDetailView,
     TeacherStudentView,
+    TeacherGroupDiciplinesListView,
 )
 
 urlpatterns = [
@@ -30,8 +31,9 @@ urlpatterns = [
     path('students/<int:student_id>', StudentView.as_view()),
     path('teachers/<int:teacher_id>', TeacherView.as_view()),
     path('teachers/groups', TeacherGroupsView.as_view()),
-    path('teachers/groups/<str:group_id>', TeacherGroupDetailView.as_view()),
-    path('teachers/student/<int:student_id>', TeacherStudentView.as_view()),
+    path('teachers/groups/<str:group_id>', TeacherGroupDiciplinesDetailView.as_view()),
+    path('teachers/groups/<str:group_id>/subject/<int:subject_id>/', TeacherGroupDiciplinesListView.as_view()),
+    path('teachers/groups/<str:group_id>/subject/<int:subject_id>/<int:student_id>', TeacherStudentView.as_view()),
     path('login', UserLoginView.as_view(), name = 'login'),
     path('account/', AccountView.as_view(), name='account'),
     path('logout', UserLogoutView.as_view(), name='logout'),

@@ -8,7 +8,9 @@
 <ol>
     {% for dicipline in diciplines %}
     <li>
-        {{dicipline}}
+        <a href="/teachers/groups/{{group.number}}/subject/{{dicipline.dicipline__id}}/">
+            {{dicipline.dicipline__title}}
+        </a>
     </li>
     {% endfor %}
 </ol>
