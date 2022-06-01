@@ -1,3 +1,4 @@
+from datetime import datetime
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
@@ -31,12 +32,18 @@ class MessageForm(forms.ModelForm):
         fields = ['group', 'message']
 
 class MarksForm(forms.Form):
+    student = forms.ModelChoiceField(queryset=Student.objects.all())
+    date = forms.ChoiceField(choices=((datetime.now().date(), 'df'),))
+    mark = forms.IntegerField(required=False)
+    missings = forms.IntegerField(required=False)
+
     def __init__(self, group, dicipline, *args, **kwargs):
         super(MarksForm, self).__init__(*args, **kwargs)
 
         dates = get_pairs(dicipline, group)
         
         res = ((i.date(), i.strftime("%d.%m")) for i in dates)
+
 
         self.fields['student'] = forms.ModelChoiceField(
             queryset=group.students.all()
@@ -46,12 +53,7 @@ class MarksForm(forms.Form):
             choices=res
         )
 
-        self.fields['mark'] = forms.IntegerField()
+        # self.fields['mark'] = forms.IntegerField()
 
-        self.fields['missings'] = forms.IntegerField()
+        # self.fields['missings'] = forms.IntegerField()
         
-    class Meta:
-        model = Mark
-        fields = '__all__'
-        exclude = ['dicipline', ]
-        include = ['missings', ]

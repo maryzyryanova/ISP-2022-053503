@@ -29,6 +29,7 @@ from .models import (
     Dicipline,
     ExamMark,
     Mark,
+    Missings,
     Notification,
     Schedule,
     Student,
@@ -36,10 +37,8 @@ from .models import (
     Group,
 )
 
-
 def main(request):
     return render(request, "main_window.html")
-
 
 class UserLoginView(LoginView):
     template_name = "login.html"
@@ -49,12 +48,10 @@ class UserLoginView(LoginView):
     def get_success_url(self):
         return self.success_url
 
-
 class StudentsListView(ListView):
     def get(self, request):
         students = Student.objects.all()
         return render(request, "students/student_list.html", {"student_list": students})
-
 
 class TeachersView(View):
     def get(self, request):
@@ -62,7 +59,6 @@ class TeachersView(View):
         return render(
             request, "teachers/teachers_list.html", {"teachers_list": teachers}
         )
-
 
 class ScheduleView(View):
     def get(self, request, *args, **kwargs):
@@ -75,7 +71,6 @@ class ScheduleView(View):
             return render(request, "schedule_list.html", {"schedule": l})
         return render(request, "schedule_list.html")
 
-
 class StudentView(DetailView):
     model = Student
     template_name = "students/student_page.html"
@@ -83,7 +78,6 @@ class StudentView(DetailView):
     def get_object(self):
         _id = self.kwargs.get("student_id")
         return get_object_or_404(Student, id=_id)
-
 
 class TeacherView(DetailView):
     model = Teacher
@@ -93,17 +87,14 @@ class TeacherView(DetailView):
         _id = self.kwargs.get("teacher_id")
         return get_object_or_404(Teacher, id=_id)
 
-
 class AccountView(View):
     template_name = "account.html"
 
     def get(self, request):
         return render(request, self.template_name)
 
-
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy("main")
-
 
 class EditView(UpdateView):
     template_name = "edit.html"
@@ -120,7 +111,6 @@ class EditView(UpdateView):
             self.model = Teacher
             return self.request.user.teacher
 
-
 class MarksView(View):
     template_name = "marks.html"
 
@@ -129,7 +119,6 @@ class MarksView(View):
         schedule = Schedule.objects.filter(group=group)
         return render(request, self.template_name, {"schedule": schedule})
 
-
 class GroupScheduleView(View):
     template_name = "group_schedule.html"
 
@@ -137,14 +126,12 @@ class GroupScheduleView(View):
         schedule = Schedule.objects.filter(group=request.user.student.group)
         return render(request, self.template_name, {"schedule": schedule})
 
-
 class ExamsView(View):
     template_name = "exams.html"
 
     def get(self, request):
         exams = ExamMark.objects.filter(student=request.user.student)
         return render(request, self.template_name, {"exams": exams})
-
 
 class NotificationsView(LoginRequiredMixin, CreateView):
     template_name = "notify.html"
@@ -183,15 +170,12 @@ class NotificationsView(LoginRequiredMixin, CreateView):
             },
         )
 
-
 class ChangePasswordView(PasswordChangeView):
     success_url = reverse_lazy("password_change_done")
     template_name = "password_change.html"
 
-
 class ChangePasswordDone(PasswordChangeDoneView):
     template_name = "password_change_done.html"
-
 
 class TeacherGroupsView(View):
     template_name = "teachers/teacher_groups.html"
@@ -211,7 +195,6 @@ class TeacherGroupsView(View):
                 "groups": groups,
             },
         )
-
 
 class TeacherGroupDiciplinesDetailView(DetailView):
     template_name = "teachers/teacher_group.html"
@@ -237,7 +220,6 @@ class TeacherGroupDiciplinesDetailView(DetailView):
             },
         )
 
-
 class TeacherGroupDiciplinesListView(View):
     template_name = "teachers/teacher_group_list.html"
 
@@ -250,7 +232,6 @@ class TeacherGroupDiciplinesListView(View):
         return render(
             request, self.template_name, {"group": group, "dicipline": dicipline}
         )
-
 
 class TeacherStudentView(View):
     template_name = "teachers/teacher_student.html"
@@ -301,7 +282,6 @@ class TeacherStudentView(View):
             res[student] = marks
         return res
 
-
     def post(self, request, *args, **kwargs):
         dicipline_id = self.kwargs.get("subject_id")
         dicipline = Dicipline.objects.get(id=dicipline_id)
@@ -309,17 +289,27 @@ class TeacherStudentView(View):
         form = MarksForm(group, dicipline, request.POST)
         dates = get_pairs(dicipline, group)
         dates_str = [(date.strftime("%d.%m"), date.date()) for date in dates] 
-        print(form.errors)
         if form.is_valid():
-            mark,_ = Mark.objects.get_or_create(
-                student=form.cleaned_data["student"],
-                date=form.cleaned_data["date"],
-                missings = form.cleaned_data["missings"],
-                dicipline=dicipline,
-            )
-            if mark.mark < 11:
-                mark.mark = form.cleaned_data["mark"]
-                mark.save()
+            print(form.cleaned_data['mark'], form.cleaned_data['missings'])
+            if form.cleaned_data['mark']:
+                mark,_ = Mark.objects.get_or_create(
+                    student=form.cleaned_data["student"],
+                    date=form.cleaned_data["date"],
+                    dicipline=dicipline,
+                )
+                if mark.mark < 11:
+                    mark.mark = form.cleaned_data["mark"]
+                    mark.save()
+                    return redirect(f'/teachers/groups/{group.number}/subject/{dicipline_id}')
+
+            if form.cleaned_data['missings']:
+                missings,_ = Missings.objects.get_or_create(
+                    student=form.cleaned_data["student"],
+                    date=form.cleaned_data["date"],
+                    dicipline=dicipline,
+                )
+                missings.hours = form.cleaned_data['missings']
+                missings.save()
                 return redirect(f'/teachers/groups/{group.number}/subject/{dicipline_id}')
         marks = self.get_all_marks()
         return render(
@@ -332,3 +322,13 @@ class TeacherStudentView(View):
                     "dates": dates_str,
                 },
             )
+
+class TeacherPersonalScheduleView(View):
+    template_name = "teachers/teacher_schedule_groups.html"
+    
+    def get(self, request, *args, **kwargs):
+        schedule = Schedule.objects.filter(teacher=request.user.teacher)
+        l = []
+        for i in range(1, 5):
+            l.append(schedule.filter(week=i))
+        return render(request, self.template_name, {"schedule": l})

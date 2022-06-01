@@ -150,7 +150,7 @@ class Notification(models.Model):
     message = models.TextField("Сообщение")
 
 class Missings(models.Model):
-    hours = models.PositiveSmallIntegerField("Количество")
+    hours = models.PositiveSmallIntegerField("Количество", default=0)
     dicipline = models.ForeignKey(Dicipline, related_name="missings", verbose_name="Пропуски", null=True, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, related_name="missings", verbose_name="Пропуски", null=True, on_delete=models.CASCADE)
     date = models.DateField("Date", default=datetime.date.today)
