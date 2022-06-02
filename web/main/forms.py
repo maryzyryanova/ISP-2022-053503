@@ -1,4 +1,5 @@
 from datetime import datetime
+from tokenize import group
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
@@ -26,7 +27,10 @@ class EditTeacherForm(forms.ModelForm):
         model = Teacher
         fields = ('email', 'photo',)
 
-class MessageForm(forms.ModelForm):
+class MessageForm(forms.Form):
+    message = forms.Textarea()
+    group = forms.ChoiceField(choices=Group.objects.all())
+
     def __init__(self, groups, *args, **kwargs):
         super(MessageForm, self).__init__(*args, **kwargs)
         tup = ((Group.objects.get(number=i['group__number']), i['group__number']) for i in groups.all())
@@ -35,9 +39,7 @@ class MessageForm(forms.ModelForm):
             choices=tup
         )
 
-    class Meta:
-            model = Notification
-            fields = ('group', 'message')
+
 
 class MarksForm(forms.Form):
     student = forms.ModelChoiceField(queryset=Student.objects.all())
