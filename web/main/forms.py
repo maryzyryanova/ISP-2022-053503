@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-from main.models import Student, Teacher, Notification, Mark, Missings
+from main.models import Student, Teacher, Notification, Mark, Missings, Group
 
 from main.utils import get_pairs
 
@@ -27,9 +27,17 @@ class EditTeacherForm(forms.ModelForm):
         fields = ('email', 'photo',)
 
 class MessageForm(forms.ModelForm):
+    def __init__(self, groups, *args, **kwargs):
+        super(MessageForm, self).__init__(*args, **kwargs)
+        tup = ((Group.objects.get(number=i['group__number']), i['group__number']) for i in groups.all())
+
+        self.fields['group'] = forms.ChoiceField(
+            choices=tup
+        )
+
     class Meta:
-        model = Notification
-        fields = ['group', 'message']
+            model = Notification
+            fields = ('group', 'message')
 
 class MarksForm(forms.Form):
     student = forms.ModelChoiceField(queryset=Student.objects.all())
@@ -44,7 +52,6 @@ class MarksForm(forms.Form):
         
         res = ((i.date(), i.strftime("%d.%m")) for i in dates)
 
-
         self.fields['student'] = forms.ModelChoiceField(
             queryset=group.students.all()
         )
@@ -52,8 +59,4 @@ class MarksForm(forms.Form):
         self.fields['date'] = forms.ChoiceField(
             choices=res
         )
-
-        # self.fields['mark'] = forms.IntegerField()
-
-        # self.fields['missings'] = forms.IntegerField()
         

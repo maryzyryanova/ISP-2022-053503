@@ -8,6 +8,7 @@ from .views import (
     MarksView,
     NotificationsView,
     ScheduleView,
+    SendNotificationView,
     StudentView, 
     StudentsListView,
     AccountView,
@@ -44,4 +45,5 @@ urlpatterns = [
     path('password-change/', ChangePasswordView.as_view(), name='password_change'),
     path('password-change/done/', ChangePasswordDone.as_view(), name='password_change_done'),
     path('teachers/schedule/', TeacherPersonalScheduleView.as_view(), name='teacher_personal_schedule'),
+    path('teachers/notifications/', SendNotificationView.as_view(), name='teacher_notifications')
 ]

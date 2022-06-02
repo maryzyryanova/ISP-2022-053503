@@ -135,40 +135,40 @@ class ExamsView(View):
 
 class NotificationsView(LoginRequiredMixin, CreateView):
     template_name = "notify.html"
-    model = Notification
-    form_class = MessageForm
-    login_url = "/login"
+    # model = Notification
+    # form_class = MessageForm
+    # login_url = "/login"
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(request.POST)
 
-        if form.is_valid():
-            ticket = Notification()
-            ticket.user = request.user.profile
-            ticket.email = form.cleaned_data["email"]
-            ticket.issue = form.cleaned_data["issue"]
-            ticket.message = form.cleaned_data["message"]
-            ticket.save()
-            return redirect("/")
+    #     if form.is_valid():
+    #         ticket = Notification()
+    #         ticket.user = request.user.profile
+    #         ticket.email = form.cleaned_data["email"]
+    #         ticket.issue = form.cleaned_data["issue"]
+    #         ticket.message = form.cleaned_data["message"]
+    #         ticket.save()
+    #         return redirect("/")
 
-        return render(
-            request,
-            self.template_name,
-            {
-                "form": form,
-            },
-        )
+    #     return render(
+    #         request,
+    #         self.template_name,
+    #         {
+    #             "form": form,
+    #         },
+    #     )
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class()
+    # def get(self, request, *args, **kwargs):
+    #     form = self.form_class()
 
-        return render(
-            request,
-            self.template_name,
-            {
-                "form": form,
-            },
-        )
+    #     return render(
+    #         request,
+    #         self.template_name,
+    #         {
+    #             "form": form,
+    #         },
+    #     )
 
 class ChangePasswordView(PasswordChangeView):
     success_url = reverse_lazy("password_change_done")
@@ -204,7 +204,6 @@ class TeacherGroupDiciplinesDetailView(DetailView):
         return get_object_or_404(Group, number=_id)
 
     def get(self, request, *args, **kwargs):
-        # diciplines = Dicipline.objects.all()
         group = self.get_object()
         diciplines_new = (
             Schedule.objects.filter(group=group, teacher=request.user.teacher)
@@ -332,3 +331,24 @@ class TeacherPersonalScheduleView(View):
         for i in range(1, 5):
             l.append(schedule.filter(week=i))
         return render(request, self.template_name, {"schedule": l})
+
+class SendNotificationView(View):
+    template_name = "teachers/teacher_send_notification.html"
+
+    def get(self, request, *args, **kwargs):
+        groups = (
+            Schedule.objects.filter(teacher=request.user.teacher)
+            .values("group__number")
+            .annotate(dcount=Count("group"))
+        )
+        
+        form = MessageForm(groups)
+
+        return render(
+                request,
+                self.template_name,
+                {
+                    "groups": groups,
+                    "form": form,
+                },
+            )
