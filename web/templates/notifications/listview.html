@@ -1,0 +1,18 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+Notifications list
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for notification in object_list%}
+    <li>
+        <a href="">
+            {{notification}}
+        </a>
+    </li>
+    {% endfor %}    
+</ul>
+
+{% endblock %}
