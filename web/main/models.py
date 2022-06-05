@@ -149,6 +149,9 @@ class Notification(models.Model):
     group = models.ForeignKey(Group, related_name="notifications", verbose_name="Преподаватель", null=True, on_delete=models.CASCADE)
     message = models.TextField("Сообщение")
 
+    def __str__(self)->str:
+        return f'Message from {self.teacher} to group {self.group}'
+
 class Missings(models.Model):
     hours = models.PositiveSmallIntegerField("Количество", default=0)
     dicipline = models.ForeignKey(Dicipline, related_name="missings", verbose_name="Пропуски", null=True, on_delete=models.CASCADE)

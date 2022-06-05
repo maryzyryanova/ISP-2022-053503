@@ -13,3 +13,8 @@ db:
 
 user:
 	python3 manage.py createsuperuser
+
+coverage:
+	rm -rf htmlcov/
+	coverage run --source="." manage.py test
+	coverage html

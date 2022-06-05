@@ -46,6 +46,16 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
+                        Сообщения
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/teachers/notifications/create">Написать</a></li>
+                        <li><a class="dropdown-item" href="/teachers/notifications/">Сообщения</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         {{ request.user.username }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -53,7 +63,6 @@
                         <li><a class="dropdown-item" href="/account/edit">Редактировать</a></li>
                         <li><a class="dropdown-item" href="/teachers/groups">Группы</a></li>
                         <li><a class="dropdown-item" href="/teachers/schedule">Расписание</a></li>
-                        <li><a class="dropdown-item" href="/teachers/notifications">Написать</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

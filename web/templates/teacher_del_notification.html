@@ -1,0 +1,14 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+Notifications list
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {%csrf_token%}
+        <button type="submit">
+            Удалить
+        </button>
+    </form>
+{% endblock %}

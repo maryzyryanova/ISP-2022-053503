@@ -28,7 +28,7 @@ class EditTeacherForm(forms.ModelForm):
         fields = ('email', 'photo',)
 
 class MessageForm(forms.Form):
-    message = forms.Textarea()
+    message = forms.CharField()
     group = forms.ChoiceField(choices=Group.objects.all())
 
     def __init__(self, groups, *args, **kwargs):
@@ -38,8 +38,6 @@ class MessageForm(forms.Form):
         self.fields['group'] = forms.ChoiceField(
             choices=tup
         )
-
-
 
 class MarksForm(forms.Form):
     student = forms.ModelChoiceField(queryset=Student.objects.all())
@@ -52,8 +50,7 @@ class MarksForm(forms.Form):
 
         dates = get_pairs(dicipline, group)
         
-        res = ((i.date(), i.strftime("%d.%m")) for i in dates)
-
+        res = [(i.date(), i.strftime("%d.%m")) for i in dates]
         self.fields['student'] = forms.ModelChoiceField(
             queryset=group.students.all()
         )

@@ -4,12 +4,12 @@ from django.contrib.auth.mixins import AccessMixin
 
 class StudentAccessMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
-        if request.user.student:
+        if hasattr(self.request.user, "student"):
             return super().dispatch(request, *args, **kwargs)
         raise PermissionDenied
 
 class TeacherAccessMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
-        if request.user.teacher:
+        if hasattr(self.request.user, "teacher"):
             return super().dispatch(request, *args, **kwargs)
         raise PermissionDenied

@@ -6,6 +6,9 @@ from .views import (
     ExamsView,
     GroupScheduleView,
     MarksView,
+    NotificationDeleteView,
+    NotificationUpdateView,
+    NotificationView,
     NotificationsView,
     ScheduleView,
     SendNotificationView,
@@ -21,6 +24,7 @@ from .views import (
     TeacherGroupsView,
     TeacherGroupDiciplinesDetailView,
     TeacherStudentView,
+    NotificationListView,
 )
 
 urlpatterns = [
@@ -45,5 +49,10 @@ urlpatterns = [
     path('password-change/', ChangePasswordView.as_view(), name='password_change'),
     path('password-change/done/', ChangePasswordDone.as_view(), name='password_change_done'),
     path('teachers/schedule/', TeacherPersonalScheduleView.as_view(), name='teacher_personal_schedule'),
-    path('teachers/notifications/', SendNotificationView.as_view(), name='teacher_notifications')
+    path('teachers/notifications/create', SendNotificationView.as_view(), name='teacher_notifications'),
+    path('teachers/notifications/', NotificationListView.as_view(), name='teacher_notifications_list'),
+    path('teachers/notifications/<int:notification_id>/', NotificationView.as_view(), name='teacher_notification'),
+    path('teachers/notifications/<int:notification_id>/update', NotificationUpdateView.as_view(), name='teacher_update_notification'),
+    path('teachers/notifications/<int:pk>/delete', NotificationDeleteView.as_view(), name='teacher_delete_notification'),
+    
 ]

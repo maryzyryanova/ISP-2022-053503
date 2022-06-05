@@ -8,8 +8,8 @@ Notifications list
 <ul>
     {% for notification in object_list%}
     <li>
-        <a href="">
-            {{notification}}
+        <a href="/teachers/notifications/{{ notification.id }}/">
+            {{ notification }}
         </a>
     </li>
     {% endfor %}    

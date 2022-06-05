@@ -1,5 +1,4 @@
-import numbers
-from tokenize import group
+import logging
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
@@ -10,7 +9,7 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, DeleteView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
@@ -24,6 +23,7 @@ from main.forms import (
     MessageForm,
     MarksForm,
 )
+from main.mixins import StudentAccessMixin, TeacherAccessMixin
 
 from .models import (
     Dicipline,
@@ -37,25 +37,32 @@ from .models import (
     Group,
 )
 
+logger = logging.getLogger('__name__')
+
 def main(request):
+    logger.info("main success!")
     return render(request, "main_window.html")
 
 class UserLoginView(LoginView):
     template_name = "login.html"
     form_class = LoginForm
     success_url = reverse_lazy("account")
+    logger.info("UserLoginView success!")
 
     def get_success_url(self):
+        logger.info("get_success_url success!")
         return self.success_url
 
 class StudentsListView(ListView):
     def get(self, request):
         students = Student.objects.all()
+        logger.info("StudentListView success!")
         return render(request, "students/student_list.html", {"student_list": students})
 
 class TeachersView(View):
     def get(self, request):
         teachers = Teacher.objects.all()
+        logger.info("TeachersView success!")
         return render(
             request, "teachers/teachers_list.html", {"teachers_list": teachers}
         )
@@ -68,7 +75,9 @@ class ScheduleView(View):
             l = []
             for i in range(1, 5):
                 l.append(schedule.filter(week=i))
+            logger.info("ScheduleView success!")
             return render(request, "schedule_list.html", {"schedule": l})
+        logger.error("SchudleView: no id!")
         return render(request, "schedule_list.html")
 
 class StudentView(DetailView):
@@ -77,6 +86,7 @@ class StudentView(DetailView):
 
     def get_object(self):
         _id = self.kwargs.get("student_id")
+        logger.info("StudentView success!")
         return get_object_or_404(Student, id=_id)
 
 class TeacherView(DetailView):
@@ -85,99 +95,75 @@ class TeacherView(DetailView):
 
     def get_object(self):
         _id = self.kwargs.get("teacher_id")
+        logger.info("TeacherView success!")
         return get_object_or_404(Teacher, id=_id)
 
 class AccountView(View):
     template_name = "account.html"
 
     def get(self, request):
+        logger.info("AccountView success!")
         return render(request, self.template_name)
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy("main")
+    logger.info("UserLogoutView success!")
 
 class EditView(UpdateView):
     template_name = "edit.html"
     success_url = "/account/"
 
     def get_object(self, queryset=None):
-        print(dir(self.request.user))
         if hasattr(self.request.user, "student"):
             self.form_class = EditStudentForm
             self.model = Student
+            logger.info("EditVew for student success!")
             return self.request.user.student
         elif hasattr(self.request.user, "teacher"):
             self.form_class = EditTeacherForm
             self.model = Teacher
+            logger.info("EditView for teacher success!")
             return self.request.user.teacher
 
-class MarksView(View):
+class MarksView(StudentAccessMixin, View):
     template_name = "marks.html"
 
     def get(self, request, *args, **kwargs):
         group = request.user.student.group
         schedule = Schedule.objects.filter(group=group)
+        logger.info("MarksView success!")
         return render(request, self.template_name, {"schedule": schedule})
 
-class GroupScheduleView(View):
+class GroupScheduleView(StudentAccessMixin, View):
     template_name = "group_schedule.html"
 
     def get(self, request):
         schedule = Schedule.objects.filter(group=request.user.student.group)
+        logger.info("GroupScheduleView success!")
         return render(request, self.template_name, {"schedule": schedule})
 
-class ExamsView(View):
+class ExamsView(StudentAccessMixin, View):
     template_name = "exams.html"
 
     def get(self, request):
         exams = ExamMark.objects.filter(student=request.user.student)
+        logger.info("ExamsView success!")
         return render(request, self.template_name, {"exams": exams})
 
-class NotificationsView(LoginRequiredMixin, CreateView):
+class NotificationsView(StudentAccessMixin, LoginRequiredMixin, CreateView):
     template_name = "notify.html"
-    # model = Notification
-    # form_class = MessageForm
-    # login_url = "/login"
-
-    # def post(self, request, *args, **kwargs):
-    #     form = self.form_class(request.POST)
-
-    #     if form.is_valid():
-    #         ticket = Notification()
-    #         ticket.user = request.user.profile
-    #         ticket.email = form.cleaned_data["email"]
-    #         ticket.issue = form.cleaned_data["issue"]
-    #         ticket.message = form.cleaned_data["message"]
-    #         ticket.save()
-    #         return redirect("/")
-
-    #     return render(
-    #         request,
-    #         self.template_name,
-    #         {
-    #             "form": form,
-    #         },
-    #     )
-
-    # def get(self, request, *args, **kwargs):
-    #     form = self.form_class()
-
-    #     return render(
-    #         request,
-    #         self.template_name,
-    #         {
-    #             "form": form,
-    #         },
-    #     )
+    
 
 class ChangePasswordView(PasswordChangeView):
     success_url = reverse_lazy("password_change_done")
     template_name = "password_change.html"
+    logger.info("ChangePasswordView success!")
 
 class ChangePasswordDone(PasswordChangeDoneView):
     template_name = "password_change_done.html"
+    logger.info("ChangePasswordDone success!")
 
-class TeacherGroupsView(View):
+class TeacherGroupsView(TeacherAccessMixin, View):
     template_name = "teachers/teacher_groups.html"
 
     def get(self, request, *args, **kwargs):
@@ -187,7 +173,7 @@ class TeacherGroupsView(View):
             .values("group__number")
             .annotate(dcount=Count("group"))
         )
-
+        logger.info("TeacherGroupsView success!")
         return render(
             request,
             self.template_name,
@@ -196,11 +182,12 @@ class TeacherGroupsView(View):
             },
         )
 
-class TeacherGroupDiciplinesDetailView(DetailView):
+class TeacherGroupDiciplinesDetailView(TeacherAccessMixin, DetailView):
     template_name = "teachers/teacher_group.html"
 
     def get_object(self):
         _id = self.kwargs.get("group_id")
+        logger.info("TeacherGroupDiciplinesDetailView get_object success!")
         return get_object_or_404(Group, number=_id)
 
     def get(self, request, *args, **kwargs):
@@ -210,6 +197,8 @@ class TeacherGroupDiciplinesDetailView(DetailView):
             .values("dicipline__title", "dicipline__id")
             .annotate(count=Count("dicipline"))
         )
+        logger.info("TeacherGroupDiciplinesDetailView get success!")
+
         return render(
             request,
             self.template_name,
@@ -219,20 +208,21 @@ class TeacherGroupDiciplinesDetailView(DetailView):
             },
         )
 
-class TeacherGroupDiciplinesListView(View):
+class TeacherGroupDiciplinesListView(TeacherAccessMixin, View):
     template_name = "teachers/teacher_group_list.html"
 
     def get(self, request, *args, **kwargs):
         dicipline_id = self.kwargs.get("subject_id")
         group_id = self.kwargs.get("group_id")
-
+        
         group = Group.objects.get(number=group_id)
         dicipline = Dicipline.objects.get(id=dicipline_id)
+        logger.info("TeacherGroupDiciplinesListView get success!")
         return render(
             request, self.template_name, {"group": group, "dicipline": dicipline}
         )
 
-class TeacherStudentView(View):
+class TeacherStudentView(TeacherAccessMixin, View):
     template_name = "teachers/teacher_student.html"
 
     def get_object(self):
@@ -286,10 +276,10 @@ class TeacherStudentView(View):
         dicipline = Dicipline.objects.get(id=dicipline_id)
         group = self.get_object()
         form = MarksForm(group, dicipline, request.POST)
+        print(request.POST)
         dates = get_pairs(dicipline, group)
         dates_str = [(date.strftime("%d.%m"), date.date()) for date in dates] 
-        if form.is_valid():
-            print(form.cleaned_data['mark'], form.cleaned_data['missings'])
+        if form.is_valid(): 
             if form.cleaned_data['mark']:
                 mark,_ = Mark.objects.get_or_create(
                     student=form.cleaned_data["student"],
@@ -299,7 +289,6 @@ class TeacherStudentView(View):
                 if mark.mark < 11:
                     mark.mark = form.cleaned_data["mark"]
                     mark.save()
-                    return redirect(f'/teachers/groups/{group.number}/subject/{dicipline_id}')
 
             if form.cleaned_data['missings']:
                 missings,_ = Missings.objects.get_or_create(
@@ -309,7 +298,8 @@ class TeacherStudentView(View):
                 )
                 missings.hours = form.cleaned_data['missings']
                 missings.save()
-                return redirect(f'/teachers/groups/{group.number}/subject/{dicipline_id}')
+            return redirect(f'/teachers/groups/{group.number}/subject/{dicipline_id}')
+        print(form.errors)
         marks = self.get_all_marks()
         return render(
                 request,
@@ -322,7 +312,7 @@ class TeacherStudentView(View):
                 },
             )
 
-class TeacherPersonalScheduleView(View):
+class TeacherPersonalScheduleView(TeacherAccessMixin, View):
     template_name = "teachers/teacher_schedule_groups.html"
     
     def get(self, request, *args, **kwargs):
@@ -332,7 +322,7 @@ class TeacherPersonalScheduleView(View):
             l.append(schedule.filter(week=i))
         return render(request, self.template_name, {"schedule": l})
 
-class SendNotificationView(View):
+class SendNotificationView(TeacherAccessMixin, View):
     template_name = "teachers/teacher_send_notification.html"
 
     def get(self, request, *args, **kwargs):
@@ -341,9 +331,7 @@ class SendNotificationView(View):
             .values("group__number")
             .annotate(dcount=Count("group"))
         )
-        
         form = MessageForm(groups)
-
         return render(
                 request,
                 self.template_name,
@@ -352,3 +340,110 @@ class SendNotificationView(View):
                     "form": form,
                 },
             )
+    
+    def get_object(self, number):
+        return get_object_or_404(Group, number=number)
+
+    def post(self, request, *args, **kwargs):
+        groups = (
+            Schedule.objects.filter(teacher=request.user.teacher)
+            .values("group__number")
+            .annotate(dcount=Count("group"))
+        )
+        form = MessageForm(groups, request.POST)
+        if form.is_valid():
+            if form.cleaned_data['message']:
+                notification,_ = Notification.objects.get_or_create(
+                    teacher = request.user.teacher,
+                    message = form.cleaned_data['message'],
+                    group = Group.objects.get(number=form.cleaned_data['group']),
+                )
+                notification.save()
+                return redirect('http://localhost:8000/teachers/notifications/')
+        return render(
+                request,
+                self.template_name,
+                {
+                    "groups": groups,
+                    "form": form,
+                },
+            )
+
+
+class NotificationListView(TeacherAccessMixin, ListView):
+    template_name = 'notifications/listview.html'
+    model = Notification
+
+    def get_queryset(self):
+        return self.model.objects.filter(teacher=self.request.user.teacher)
+
+class NotificationView(TeacherAccessMixin, View):
+    template_name = 'teacher_notification.html'
+    model = Notification
+
+    def get(self, request, *args, **kwargs):
+        notification_id = self.kwargs.get("notification_id")
+        notification = Notification.objects.get(id=notification_id)
+
+        return render(
+            request,
+            self.template_name,
+            {'notification': notification}
+        )
+
+class NotificationUpdateView(TeacherAccessMixin, View):
+    template_name = "teachers/teacher_send_notification.html"
+    model = Notification
+
+    def get(self, request, *args, **kwargs):
+        notification_id = self.kwargs.get("notification_id")
+        notification = Notification.objects.get(id=notification_id)
+        groups = (
+            Schedule.objects.filter(teacher=request.user.teacher)
+            .values("group__number")
+            .annotate(dcount=Count("group"))
+        )
+        data = {
+            'message': notification.message,
+            'group': notification.group
+        }
+        form = MessageForm(groups, initial = data)
+        return render(
+                request,
+                self.template_name,
+                {
+                    "notification": notification,
+                    "form": form,
+                },
+            )
+
+    def get_object(self, id):
+        return get_object_or_404(Notification, id=id)
+
+    def post(self, request, *args, **kwargs):
+        notification_id = self.kwargs.get("notification_id")
+        notification = self.get_object(notification_id)
+        groups = (
+            Schedule.objects.filter(teacher=request.user.teacher)
+            .values("group__number")
+            .annotate(dcount=Count("group"))
+        )
+        form = MessageForm(groups, request.POST)
+        if form.is_valid():
+            notification.message = form.cleaned_data['message']
+            notification.group = Group.objects.get(number=form.cleaned_data['group'])
+            notification.save()
+            return redirect('http://localhost:8000/teachers/notifications/')
+        return render(
+                request,
+                self.template_name,
+                {
+                    "notification": notification,
+                    "form": form,
+                },
+            )
+
+class NotificationDeleteView(TeacherAccessMixin, DeleteView):
+    model = Notification
+    template_name = 'teacher_del_notification.html'
+    success_url = reverse_lazy('teacher_notifications_list')

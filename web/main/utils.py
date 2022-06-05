@@ -13,10 +13,12 @@ def get_pairs(dicipline, group):
             i = 0
             count+=1
         pair = pairs[i]
-        new_date = timedelta(days=7*pair.week+7*4*count+pair.day-settings.SEMESTER_BEGIN.weekday()) + settings.SEMESTER_BEGIN
+        diff = 7*(pair.week-1)+7*4*count+pair.day
+        new_date = timedelta(days=diff) + settings.SEMESTER_BEGIN - timedelta(days=settings.SEMESTER_BEGIN.isoweekday()-1)
         time=new_date
-        if time<settings.SEMESTER_END:
-            dates.append(new_date)
+        if time<=settings.SEMESTER_END:
+            if time>=settings.SEMESTER_BEGIN:
+                dates.append(new_date)
             i+=1
         else:
             break

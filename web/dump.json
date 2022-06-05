@@ -1,0 +1,3029 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2022-05-12T22:29:36.273Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "Group object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2022-05-12T22:29:46.148Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Мария",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2022-05-12T22:30:00.153Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "МЧА",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2022-05-12T22:31:02.945Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Bell object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2022-05-12T22:31:20.929Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Bell object (1)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Duration\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2022-05-12T22:31:26.383Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Bell object (1)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2022-05-12T22:33:45.229Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "Анисимов",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2022-05-12T22:34:33.852Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Schedule object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2022-05-12T22:34:55.856Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "Group object (1)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2022-05-12T22:35:04.512Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "Group object (1)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2022-05-12T22:43:19.698Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "053503",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u043e\\u043c\\u0435\\u0440\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2022-05-12T22:43:25.567Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "МЧА",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2022-05-12T22:45:06.769Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Bell object (1)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2022-05-12T22:54:54.745Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Мария",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0443\\u0434\\u0435\\u043d\\u0447\\u0435\\u0441\\u043a\\u0438\\u0439 \\u0431\\u0438\\u043b\\u0435\\u0442\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2022-05-12T22:54:59.488Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Мария",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2022-05-21T23:54:11.981Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Мария",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2022-05-24T12:15:18.495Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Мария",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2022-05-24T12:15:42.804Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Мария",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2022-05-24T12:16:22.987Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Мария",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2022-05-24T12:21:32.017Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Мария",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2022-05-26T19:50:29.538Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "Mark object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2022-05-27T17:40:41.825Z",
+    "user": 1,
+    "content_type": 15,
+    "object_id": "1",
+    "object_repr": "Экзамен по МЧА",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2022-05-27T18:40:46.215Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "1",
+    "object_repr": "ExamMark object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2022-05-29T18:47:16.298Z",
+    "user": 3,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Владимир",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2022-05-29T18:47:40.078Z",
+    "user": 3,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "150501",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2022-05-29T18:47:48.029Z",
+    "user": 3,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Владимир",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u043e\\u043c\\u0435\\u0440 \\u0433\\u0440\\u0443\\u043f\\u043f\\u044b\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2022-05-29T18:49:23.404Z",
+    "user": 3,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "АиЛОЦУ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2022-05-29T18:49:28.371Z",
+    "user": 3,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "ОАиП",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2022-05-29T18:49:36.765Z",
+    "user": 3,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "Юрий",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2022-05-29T18:50:07.191Z",
+    "user": 3,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Пара АиЛОЦУ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2022-05-29T18:50:22.785Z",
+    "user": 3,
+    "content_type": 10,
+    "object_id": "3",
+    "object_repr": "Пара ОАиП",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2022-05-29T18:52:25.992Z",
+    "user": 3,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "Юрий",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2022-05-29T19:07:19.132Z",
+    "user": 4,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Звонок на 1 в 09:00:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2022-05-29T19:08:07.473Z",
+    "user": 4,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Звонок на 3 в 12:25:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2022-05-29T19:08:18.871Z",
+    "user": 4,
+    "content_type": 8,
+    "object_id": "4",
+    "object_repr": "Звонок на 4 в 14:00:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2022-05-29T19:09:05.203Z",
+    "user": 4,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "Звонок на 5 в 15:50:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2022-05-29T19:09:23.583Z",
+    "user": 4,
+    "content_type": 8,
+    "object_id": "6",
+    "object_repr": "Звонок на 6 в 17:25:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2022-05-29T19:10:01.229Z",
+    "user": 4,
+    "content_type": 11,
+    "object_id": "4",
+    "object_repr": "МА",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2022-05-29T19:10:04.134Z",
+    "user": 4,
+    "content_type": 11,
+    "object_id": "5",
+    "object_repr": "ДМ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2022-05-29T19:10:10.956Z",
+    "user": 4,
+    "content_type": 11,
+    "object_id": "6",
+    "object_repr": "ИнЯз",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2022-05-29T19:10:17.719Z",
+    "user": 4,
+    "content_type": 11,
+    "object_id": "7",
+    "object_repr": "ФизК",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2022-05-29T19:10:21.352Z",
+    "user": 4,
+    "content_type": 11,
+    "object_id": "8",
+    "object_repr": "Физика",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2022-05-29T19:10:59.038Z",
+    "user": 4,
+    "content_type": 11,
+    "object_id": "9",
+    "object_repr": "История",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2022-05-29T19:11:06.174Z",
+    "user": 4,
+    "content_type": 11,
+    "object_id": "10",
+    "object_repr": "КЧ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2022-05-29T19:12:17.870Z",
+    "user": 4,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "Анна",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2022-05-29T19:12:50.891Z",
+    "user": 4,
+    "content_type": 9,
+    "object_id": "4",
+    "object_repr": "Юрий",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2022-05-29T19:13:15.082Z",
+    "user": 4,
+    "content_type": 9,
+    "object_id": "5",
+    "object_repr": "Олег",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2022-05-29T19:14:29.875Z",
+    "user": 4,
+    "content_type": 9,
+    "object_id": "6",
+    "object_repr": "Александр",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2022-05-29T19:15:02.619Z",
+    "user": 4,
+    "content_type": 9,
+    "object_id": "7",
+    "object_repr": "Екатерина",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2022-05-29T19:15:34.604Z",
+    "user": 4,
+    "content_type": 9,
+    "object_id": "8",
+    "object_repr": "Евгений",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2022-05-29T19:16:00.067Z",
+    "user": 4,
+    "content_type": 9,
+    "object_id": "9",
+    "object_repr": "Дмитрий",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2022-05-29T19:16:39.850Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "3",
+    "object_repr": "Пара ОАиП",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2022-05-29T19:16:39.857Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Пара АиЛОЦУ",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2022-05-29T19:17:17.945Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "Пара Физика",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2022-05-29T19:17:45.772Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Пара ФизК",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2022-05-29T19:18:24.002Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "Пара АиЛОЦУ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2022-05-29T19:18:46.498Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "Пара ИнЯз",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2022-05-29T19:20:06.111Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Пара ДМ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2022-05-29T19:20:28.796Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "Пара История",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2022-05-29T19:20:54.564Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "Пара Физика",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2022-05-29T19:21:08.883Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "11",
+    "object_repr": "Пара Физика",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2022-05-29T19:23:19.155Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "12",
+    "object_repr": "Пара ОАиП",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2022-05-29T19:23:49.804Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Пара ФизК",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2022-05-29T19:24:15.514Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "14",
+    "object_repr": "Пара ИнЯз",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2022-05-29T19:24:44.650Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "Пара АиЛОЦУ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2022-05-29T19:25:09.156Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "16",
+    "object_repr": "Пара Физика",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2022-05-29T19:25:27.267Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "Пара МА",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2022-05-29T19:25:49.043Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Пара История",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2022-05-29T19:26:15.028Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "Пара МА",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2022-05-29T19:27:04.003Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "20",
+    "object_repr": "Пара ОАиП",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2022-05-29T19:27:24.932Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "Пара ДМ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2022-05-29T19:27:40.761Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "Пара МА",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2022-05-29T19:28:35.008Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "Пара КЧ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2022-05-29T19:42:06.024Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Пара ФизК",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0435\\u0434\\u0435\\u043b\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2022-05-29T19:48:52.039Z",
+    "user": 4,
+    "content_type": 10,
+    "object_id": "24",
+    "object_repr": "Пара ОАиП",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2022-05-29T20:44:37.189Z",
+    "user": 4,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Божко Иван Батькович",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 77,
+  "fields": {
+    "action_time": "2022-05-31T13:19:18.790Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "Mark object (2)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 78,
+  "fields": {
+    "action_time": "2022-05-31T13:25:32.957Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "Mark object (2)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 79,
+  "fields": {
+    "action_time": "2022-05-31T14:10:47.167Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "Mark object (3)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 80,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.103Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "27",
+    "object_repr": "Mark object (27)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 81,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.106Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "26",
+    "object_repr": "Mark object (26)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 82,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.108Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "25",
+    "object_repr": "Mark object (25)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 83,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.110Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "24",
+    "object_repr": "Mark object (24)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 84,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.113Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "23",
+    "object_repr": "Mark object (23)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 85,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.114Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "22",
+    "object_repr": "Mark object (22)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 86,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.119Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "21",
+    "object_repr": "Mark object (21)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 87,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.120Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "20",
+    "object_repr": "Mark object (20)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 88,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.121Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "19",
+    "object_repr": "Mark object (19)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 89,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.122Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "18",
+    "object_repr": "Mark object (18)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 90,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.124Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "17",
+    "object_repr": "Mark object (17)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 91,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.125Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "16",
+    "object_repr": "Mark object (16)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 92,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.126Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "15",
+    "object_repr": "Mark object (15)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 93,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.127Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "14",
+    "object_repr": "Mark object (14)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 94,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.129Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "13",
+    "object_repr": "Mark object (13)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 95,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.130Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "12",
+    "object_repr": "Mark object (12)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 96,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.131Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "11",
+    "object_repr": "Mark object (11)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 97,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.132Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "10",
+    "object_repr": "Mark object (10)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 98,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.133Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "9",
+    "object_repr": "Mark object (9)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 99,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.134Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "8",
+    "object_repr": "Mark object (8)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 100,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.135Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "7",
+    "object_repr": "Mark object (7)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 101,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.136Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "6",
+    "object_repr": "Mark object (6)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 102,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.137Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "5",
+    "object_repr": "Mark object (5)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 103,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.138Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "Mark object (4)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 104,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.139Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "Mark object (3)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 105,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.139Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "Mark object (2)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 106,
+  "fields": {
+    "action_time": "2022-05-31T21:55:16.140Z",
+    "user": 4,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "Mark object (1)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 107,
+  "fields": {
+    "action_time": "2022-05-31T22:59:09.098Z",
+    "user": 4,
+    "content_type": 17,
+    "object_id": "1",
+    "object_repr": "Missings object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 108,
+  "fields": {
+    "action_time": "2022-05-31T22:59:18.205Z",
+    "user": 4,
+    "content_type": 17,
+    "object_id": "1",
+    "object_repr": "Missings object (1)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 109,
+  "fields": {
+    "action_time": "2022-05-31T22:59:49.468Z",
+    "user": 4,
+    "content_type": 17,
+    "object_id": "2",
+    "object_repr": "Missings object (2)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 110,
+  "fields": {
+    "action_time": "2022-06-03T10:41:03.093Z",
+    "user": 4,
+    "content_type": 16,
+    "object_id": "2",
+    "object_repr": "Message from None to group 150501",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 111,
+  "fields": {
+    "action_time": "2022-06-03T10:41:03.096Z",
+    "user": 4,
+    "content_type": 16,
+    "object_id": "1",
+    "object_repr": "Message from None to group 150501",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 112,
+  "fields": {
+    "action_time": "2022-06-03T12:39:51.549Z",
+    "user": 4,
+    "content_type": 16,
+    "object_id": "3",
+    "object_repr": "Message from Луцик Юрий Александрович to group 150501",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 4,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 4,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 4,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 4,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 5,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 6,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add Студент",
+    "content_type": 7,
+    "codename": "add_student"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change Студент",
+    "content_type": 7,
+    "codename": "change_student"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete Студент",
+    "content_type": 7,
+    "codename": "delete_student"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view Студент",
+    "content_type": 7,
+    "codename": "view_student"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add Звонок",
+    "content_type": 8,
+    "codename": "add_bell"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change Звонок",
+    "content_type": 8,
+    "codename": "change_bell"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete Звонок",
+    "content_type": 8,
+    "codename": "delete_bell"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view Звонок",
+    "content_type": 8,
+    "codename": "view_bell"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add Преподаватель",
+    "content_type": 9,
+    "codename": "add_teacher"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change Преподаватель",
+    "content_type": 9,
+    "codename": "change_teacher"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete Преподаватель",
+    "content_type": 9,
+    "codename": "delete_teacher"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view Преподаватель",
+    "content_type": 9,
+    "codename": "view_teacher"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add Расписание",
+    "content_type": 10,
+    "codename": "add_schedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change Расписание",
+    "content_type": 10,
+    "codename": "change_schedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete Расписание",
+    "content_type": 10,
+    "codename": "delete_schedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view Расписание",
+    "content_type": 10,
+    "codename": "view_schedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add Дисциплина",
+    "content_type": 11,
+    "codename": "add_dicipline"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change Дисциплина",
+    "content_type": 11,
+    "codename": "change_dicipline"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete Дисциплина",
+    "content_type": 11,
+    "codename": "delete_dicipline"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view Дисциплина",
+    "content_type": 11,
+    "codename": "view_dicipline"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add Группа",
+    "content_type": 12,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change Группа",
+    "content_type": 12,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete Группа",
+    "content_type": 12,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view Группа",
+    "content_type": 12,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add Отметка",
+    "content_type": 13,
+    "codename": "add_mark"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change Отметка",
+    "content_type": 13,
+    "codename": "change_mark"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete Отметка",
+    "content_type": 13,
+    "codename": "delete_mark"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view Отметка",
+    "content_type": 13,
+    "codename": "view_mark"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add Отметка",
+    "content_type": 14,
+    "codename": "add_exammark"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change Отметка",
+    "content_type": 14,
+    "codename": "change_exammark"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete Отметка",
+    "content_type": 14,
+    "codename": "delete_exammark"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view Отметка",
+    "content_type": 14,
+    "codename": "view_exammark"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add Экзамен",
+    "content_type": 15,
+    "codename": "add_exam"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change Экзамен",
+    "content_type": 15,
+    "codename": "change_exam"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete Экзамен",
+    "content_type": 15,
+    "codename": "delete_exam"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view Экзамен",
+    "content_type": 15,
+    "codename": "view_exam"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add notification",
+    "content_type": 16,
+    "codename": "add_notification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change notification",
+    "content_type": 16,
+    "codename": "change_notification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete notification",
+    "content_type": 16,
+    "codename": "delete_notification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view notification",
+    "content_type": 16,
+    "codename": "view_notification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add Часы пропусков",
+    "content_type": 17,
+    "codename": "add_missings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change Часы пропусков",
+    "content_type": 17,
+    "codename": "change_missings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete Часы пропусков",
+    "content_type": 17,
+    "codename": "delete_missings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view Часы пропусков",
+    "content_type": 17,
+    "codename": "view_missings"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$rCo6FKO52qVeCGoV2Ayg9M$66/L14r7z0eSCCXlHuIyfpYIy9M5p/sYEcY1IHTQopI=",
+    "last_login": "2022-05-27T17:35:20.149Z",
+    "is_superuser": true,
+    "username": "mariazyryanova",
+    "first_name": "",
+    "last_name": "",
+    "email": "z.y.r.y.a.n.o.v.a@mail.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-05-12T22:22:57.104Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$NA4qeQJMbJDRBIJLgpHNow$KV6Z9N/d3oFSUqv0iJI4k88Mdt/yhbkhGlQwQZZL0SU=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "maryzyryanova",
+    "first_name": "",
+    "last_name": "",
+    "email": "z.y.r.y.a.n.o.v.a@mail.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-05-21T23:52:24.965Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$Tr6ap9wnOUH9K5WTG5YBZC$8mIOmM+YVdvzFZX736A7/mGbve6Kc8XMGwtIqnLW12k=",
+    "last_login": "2022-05-29T18:46:10.382Z",
+    "is_superuser": true,
+    "username": "denvilk",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-05-29T18:45:52.086Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$eJekom7p4svjrALzQaujTZ$fSg0XYg7kUJ8FzdDo3kvf1usU0I0uyZaliZMQA2zolc=",
+    "last_login": "2022-05-31T13:17:23.603Z",
+    "is_superuser": true,
+    "username": "lucik",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-05-29T18:51:28.772Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0rrvk2e7cqfzpb6c44q3367tecsopm92",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pABioBL956BDAMjVUOT0q6Md7dNutDtf-_9t4i4LjWuvcxxzOIilDj9bgnpWdoO8gPbfZI0tWUek9wVedAub1Mur-vh_h1U7HWrA6AmDkxgsxuUZ6OLImV0grNDTKQ5KygIAVmRR2sy8xYZBz4N3orPF_RgOEg:1ntsHb:tyy6mED48LZpoZ9_VmWnNd-nwWRypZ0w4VVzGVThOlI",
+    "expire_date": "2022-06-08T14:46:43.409Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5pokv7njeepix0hh4ccqbzddnc9lqmq5",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAURO_C2hBB-YBL956BDB-QqqFJaVfGu9smXWgyq3lv5i0ClrmGpecpDElchBKH3y6Cn7ltID3Q7qPksc3TEOWmyJ12eRtTfl139--gotd1XcD2HMno4pG9K94qR2RIWzAMM7R2Lvo1homtishHqEI-uaxODPH5AvMVOHo:1ntsL7:jsPtOxdLAdo6FtYEsWrK3J9-jVtO7NBB5lkHeWDs3ro",
+    "expire_date": "2022-06-08T14:50:21.951Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9781qcba5801r83vk6sq98dn7xvmvwv5",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hDoOMC4dO8ZmhlAqRpISrsy3l2bdKHb_977LzXyupRx7Xkep6ROCtThdxOOj1w3kO5cb03HVpd5Er0peqddX1rKz_Pu_h0U7uVbB0LrBMQNkNALsQPhQMlDZIsZGYMRexwAXQaC6CIF8gGM8Wz91an3B8VvNsY:1nvNvW:ezLNVaTCgIm9F94zvDX3lK02vgK-dDzxA7aFWFnP37M",
+    "expire_date": "2022-06-12T18:46:10.394Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9swrz2mcg3njzufd1v49vltpqgwtbquo",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrTxKHkp4zWLveNQ4gR4qTCnF3iJQC2jcz76UibmuJW5MlTqzOyqvT70aYHlJ3wHest1mnua7LRHpX9EGbvs4sz8vh_h0UbOVbBwmEVtihg2w8csgDsSHj-zGLONsDsg1gknQJKGX2DmDMeYDOIbJ6fwAKTjjX:1nw07Y:BOOxxaB3UtxpM5iJAildfpC8CvwNDb487SWSoRAl6BI",
+    "expire_date": "2022-06-14T11:33:08.475Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kyesnn3y4n12dolfbgkj2jnzrd7w0q9o",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrTxKHkp4zWLveNQ4gR4qTCnF3iJQC2jcz76UibmuJW5MlTqzOyqvT70aYHlJ3wHest1mnua7LRHpX9EGbvs4sz8vh_h0UbOVbBwmEVtihg2w8csgDsSHj-zGLONsDsg1gknQJKGX2DmDMeYDOIbJ6fwAKTjjX:1nw1kR:rze7QgfwjJ6NGJm7uE4m2EwmbD2fE--hNHSz-IaC20Y",
+    "expire_date": "2022-06-14T13:17:23.604Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "q5d0ll7kr2gtylyl5t2klafi5q38e4kx",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAYaAGX7j1DM8wMUjVtUtqV8e7apAvd_vfef6kBt7UOW5NlGFmdlVWn3y0jPWTaAd9xus2a5mldxqx3RR-06evM8rwc7t9BxVa_tQiEzhEnZwoF8N72iB2l6Cz7PlAWto5KAW-gEAfGIiYAxN6HFAHU-wPrbDfW:1ntsPl:qRe4_ShUdGTLzPs0C_RY3_gM7RS_d-FcyLMUx_K2gvo",
+    "expire_date": "2022-06-08T14:55:09.306Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "u0jqt6kaosug96y24efn6c4l19uodkmu",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrTxKHkp4zWLveNQ4gR4qTCnF3iJQC2jcz76UibmuJW5MlTqzOyqvT70aYHlJ3wHest1mnua7LRHpX9EGbvs4sz8vh_h0UbOVbBwmEVtihg2w8csgDsSHj-zGLONsDsg1gknQJKGX2DmDMeYDOIbJ6fwAKTjjX:1nvO11:VC5svyZ_VZ4zCQGjlCt-AGspljjiEAwiVPVafGb7pSA",
+    "expire_date": "2022-06-12T18:51:51.424Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ul387a52vvm0g9sxcj498udrfxrau42e",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrTxKHkp4zWLveNQ4gR4qTCnF3iJQC2jcz76UibmuJW5MlTqzOyqvT70aYHlJ3wHest1mnua7LRHpX9EGbvs4sz8vh_h0UbOVbBwmEVtihg2w8csgDsSHj-zGLONsDsg1gknQJKGX2DmDMeYDOIbJ6fwAKTjjX:1nvf3c:FyGJF9-nqB17qG4F77ZXrQZg03hv_x5BpW-eDUzSx4s",
+    "expire_date": "2022-06-13T13:03:40.548Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zqk9b2cniavfyh6y05oa3msz2j373sk2",
+  "fields": {
+    "session_data": ".eJxVjEsOAiEQBe_C2hA-wohL956BNN2NjBpIhpmV8e5KMgvdVtV7LxFhW0vcOi9xJnEWWhx-WQJ8cB2C7lBvTWKr6zInORK52y6vjfh52du_gwK9jHU2HrzSfmIdnCNFNhnkL7WBNKp8Ct5xgiMzmkmRtzmHQD5BZoUJxPsD7vg48w:1ntrvy:zoSWsJdG42kkGawWk4oeBl_J4TDejBF5HcHakXPKqW8",
+    "expire_date": "2022-06-08T14:24:22.281Z"
+  }
+},
+{
+  "model": "main.bell",
+  "pk": 1,
+  "fields": {
+    "pair": 2,
+    "start": "10:35:00",
+    "duration": "01:20:00"
+  }
+},
+{
+  "model": "main.bell",
+  "pk": 2,
+  "fields": {
+    "pair": 1,
+    "start": "09:00:00",
+    "duration": "01:20:00"
+  }
+},
+{
+  "model": "main.bell",
+  "pk": 3,
+  "fields": {
+    "pair": 3,
+    "start": "12:25:00",
+    "duration": "01:20:00"
+  }
+},
+{
+  "model": "main.bell",
+  "pk": 4,
+  "fields": {
+    "pair": 4,
+    "start": "14:00:00",
+    "duration": "01:20:00"
+  }
+},
+{
+  "model": "main.bell",
+  "pk": 5,
+  "fields": {
+    "pair": 5,
+    "start": "15:50:00",
+    "duration": "01:20:00"
+  }
+},
+{
+  "model": "main.bell",
+  "pk": 6,
+  "fields": {
+    "pair": 6,
+    "start": "17:25:00",
+    "duration": "01:20:00"
+  }
+},
+{
+  "model": "main.mark",
+  "pk": 28,
+  "fields": {
+    "mark": 6,
+    "dicipline": 2,
+    "student": 2,
+    "date": "2021-11-01"
+  }
+},
+{
+  "model": "main.mark",
+  "pk": 29,
+  "fields": {
+    "mark": 10,
+    "dicipline": 2,
+    "student": 2,
+    "date": "2021-09-06"
+  }
+},
+{
+  "model": "main.mark",
+  "pk": 30,
+  "fields": {
+    "mark": 0,
+    "dicipline": 2,
+    "student": 2,
+    "date": "2021-10-06"
+  }
+},
+{
+  "model": "main.mark",
+  "pk": 31,
+  "fields": {
+    "mark": 4,
+    "dicipline": 2,
+    "student": 3,
+    "date": "2021-09-08"
+  }
+},
+{
+  "model": "main.mark",
+  "pk": 32,
+  "fields": {
+    "mark": 5,
+    "dicipline": 2,
+    "student": 3,
+    "date": "2021-11-01"
+  }
+},
+{
+  "model": "main.mark",
+  "pk": 33,
+  "fields": {
+    "mark": 9,
+    "dicipline": 2,
+    "student": 3,
+    "date": "2021-09-06"
+  }
+},
+{
+  "model": "main.mark",
+  "pk": 34,
+  "fields": {
+    "mark": 8,
+    "dicipline": 2,
+    "student": 2,
+    "date": "2021-09-08"
+  }
+},
+{
+  "model": "main.mark",
+  "pk": 35,
+  "fields": {
+    "mark": 7,
+    "dicipline": 2,
+    "student": 2,
+    "date": "2021-10-27"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 1,
+  "fields": {
+    "title": "МЧА"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 2,
+  "fields": {
+    "title": "АиЛОЦУ"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 3,
+  "fields": {
+    "title": "ОАиП"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 4,
+  "fields": {
+    "title": "МА"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 5,
+  "fields": {
+    "title": "ДМ"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 6,
+  "fields": {
+    "title": "ИнЯз"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 7,
+  "fields": {
+    "title": "ФизК"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 8,
+  "fields": {
+    "title": "Физика"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 9,
+  "fields": {
+    "title": "История"
+  }
+},
+{
+  "model": "main.dicipline",
+  "pk": 10,
+  "fields": {
+    "title": "КЧ"
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 1,
+  "fields": {
+    "user": null,
+    "name": "Анисимов",
+    "second_name": "Владимир",
+    "surname": "Яковлевич",
+    "photo": "teachers/DCBE2379-14F3-43C0-9DAD-C9B1D6F16121.jpeg",
+    "rang": "доцент кафедры информатики",
+    "email": "zelibobka@mail.ru",
+    "diciplines": [
+      1
+    ]
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 2,
+  "fields": {
+    "user": 4,
+    "name": "Юрий",
+    "second_name": "Александрович",
+    "surname": "Луцик",
+    "photo": "",
+    "rang": "Старший преподаватель",
+    "email": "ual@bsuir.by",
+    "diciplines": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 3,
+  "fields": {
+    "user": null,
+    "name": "Анна",
+    "second_name": "Михайловна",
+    "surname": "Ковальчук",
+    "photo": "",
+    "rang": "Лаборант",
+    "email": "cova@b.by",
+    "diciplines": [
+      3
+    ]
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 4,
+  "fields": {
+    "user": null,
+    "name": "Юрий",
+    "second_name": "Васильевич",
+    "surname": "Поттосин",
+    "photo": "",
+    "rang": "Старший препод",
+    "email": "g@fas.by",
+    "diciplines": [
+      5
+    ]
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 5,
+  "fields": {
+    "user": null,
+    "name": "Олег",
+    "second_name": "Федорович",
+    "surname": "Борисенко",
+    "photo": "",
+    "rang": "Старший преподаватель",
+    "email": "boris@b.by",
+    "diciplines": [
+      4
+    ]
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 6,
+  "fields": {
+    "user": null,
+    "name": "Александр",
+    "second_name": "Александрович",
+    "surname": "Григорьев",
+    "photo": "",
+    "rang": "Старший преподаватель",
+    "email": "g@gg.by",
+    "diciplines": [
+      8
+    ]
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 7,
+  "fields": {
+    "user": null,
+    "name": "Екатерина",
+    "second_name": "Андреевна",
+    "surname": "Чурзина",
+    "photo": "",
+    "rang": "Препод",
+    "email": "f@f.by",
+    "diciplines": [
+      6
+    ]
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 8,
+  "fields": {
+    "user": null,
+    "name": "Евгений",
+    "second_name": "Константинович",
+    "surname": "Новик",
+    "photo": "",
+    "rang": "Старший преподаватель",
+    "email": "f@gg.by",
+    "diciplines": [
+      9
+    ]
+  }
+},
+{
+  "model": "main.teacher",
+  "pk": 9,
+  "fields": {
+    "user": null,
+    "name": "Дмитрий",
+    "second_name": "Русланович",
+    "surname": "Байден",
+    "photo": "",
+    "rang": "лабник",
+    "email": "f@F.by",
+    "diciplines": [
+      10
+    ]
+  }
+},
+{
+  "model": "main.group",
+  "pk": 1,
+  "fields": {
+    "number": "053503",
+    "faculty": "ФКСиС",
+    "specialisation": "ИиТП",
+    "course": 2
+  }
+},
+{
+  "model": "main.group",
+  "pk": 2,
+  "fields": {
+    "number": "150501",
+    "faculty": "ФКСиС",
+    "specialisation": "ВМСиС",
+    "course": 1
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 1,
+  "fields": {
+    "group": 1,
+    "teacher": 1,
+    "dicipline": 1,
+    "bell": 1,
+    "classroom": 601,
+    "day": 0,
+    "week": 2,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 4,
+  "fields": {
+    "group": 2,
+    "teacher": 6,
+    "dicipline": 8,
+    "bell": 2,
+    "classroom": 501,
+    "day": 0,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 5,
+  "fields": {
+    "group": 2,
+    "teacher": 1,
+    "dicipline": 7,
+    "bell": 1,
+    "classroom": 0,
+    "day": 0,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 6,
+  "fields": {
+    "group": 2,
+    "teacher": 2,
+    "dicipline": 2,
+    "bell": 3,
+    "classroom": 108,
+    "day": 0,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 7,
+  "fields": {
+    "group": 2,
+    "teacher": 7,
+    "dicipline": 6,
+    "bell": 4,
+    "classroom": 400,
+    "day": 0,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 8,
+  "fields": {
+    "group": 2,
+    "teacher": 4,
+    "dicipline": 5,
+    "bell": 2,
+    "classroom": 209,
+    "day": 1,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 9,
+  "fields": {
+    "group": 2,
+    "teacher": 8,
+    "dicipline": 9,
+    "bell": 1,
+    "classroom": 209,
+    "day": 1,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 10,
+  "fields": {
+    "group": 2,
+    "teacher": 6,
+    "dicipline": 8,
+    "bell": 3,
+    "classroom": 506,
+    "day": 1,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 11,
+  "fields": {
+    "group": 2,
+    "teacher": 6,
+    "dicipline": 8,
+    "bell": 4,
+    "classroom": 506,
+    "day": 1,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 12,
+  "fields": {
+    "group": 2,
+    "teacher": 2,
+    "dicipline": 3,
+    "bell": 2,
+    "classroom": 106,
+    "day": 2,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 13,
+  "fields": {
+    "group": 2,
+    "teacher": 1,
+    "dicipline": 7,
+    "bell": 1,
+    "classroom": 0,
+    "day": 2,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 14,
+  "fields": {
+    "group": 2,
+    "teacher": 7,
+    "dicipline": 6,
+    "bell": 3,
+    "classroom": 413,
+    "day": 2,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 15,
+  "fields": {
+    "group": 2,
+    "teacher": 2,
+    "dicipline": 2,
+    "bell": 4,
+    "classroom": 322,
+    "day": 2,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 16,
+  "fields": {
+    "group": 2,
+    "teacher": 6,
+    "dicipline": 8,
+    "bell": 2,
+    "classroom": 4,
+    "day": 3,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 17,
+  "fields": {
+    "group": 2,
+    "teacher": 5,
+    "dicipline": 4,
+    "bell": 1,
+    "classroom": 4,
+    "day": 3,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 18,
+  "fields": {
+    "group": 2,
+    "teacher": 8,
+    "dicipline": 9,
+    "bell": 3,
+    "classroom": 202,
+    "day": 3,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 19,
+  "fields": {
+    "group": 2,
+    "teacher": 5,
+    "dicipline": 4,
+    "bell": 4,
+    "classroom": 322,
+    "day": 3,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 20,
+  "fields": {
+    "group": 2,
+    "teacher": 3,
+    "dicipline": 3,
+    "bell": 2,
+    "classroom": 501,
+    "day": 4,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 21,
+  "fields": {
+    "group": 2,
+    "teacher": 4,
+    "dicipline": 5,
+    "bell": 1,
+    "classroom": 501,
+    "day": 4,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 22,
+  "fields": {
+    "group": 2,
+    "teacher": 5,
+    "dicipline": 4,
+    "bell": 3,
+    "classroom": 322,
+    "day": 4,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 23,
+  "fields": {
+    "group": 2,
+    "teacher": 9,
+    "dicipline": 10,
+    "bell": 4,
+    "classroom": 409,
+    "day": 4,
+    "week": 1,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.schedule",
+  "pk": 24,
+  "fields": {
+    "group": 2,
+    "teacher": 2,
+    "dicipline": 3,
+    "bell": 2,
+    "classroom": 209,
+    "day": 2,
+    "week": 2,
+    "pair_type": ""
+  }
+},
+{
+  "model": "main.student",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "name": "Мария",
+    "second_name": "Михайловна",
+    "surname": "Зырянова",
+    "photo": "students/CE1A4076-FF7F-441A-9A54-83B450EB7E5B.jpeg",
+    "rating": 9.2,
+    "number": "05350067",
+    "group": 1
+  }
+},
+{
+  "model": "main.student",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "name": "Владимир",
+    "second_name": "Сергеевич",
+    "surname": "Великович",
+    "photo": "media/students/1624105159_6-phonoteka_org-p-oboi-dlya-zuma-krasivo-9.jpg",
+    "rating": 8.6,
+    "number": "15050020",
+    "group": 2
+  }
+},
+{
+  "model": "main.student",
+  "pk": 3,
+  "fields": {
+    "user": null,
+    "name": "Иван",
+    "second_name": "Батькович",
+    "surname": "Божко",
+    "photo": "",
+    "rating": 13.0,
+    "number": "12344123243",
+    "group": 2
+  }
+},
+{
+  "model": "main.exam",
+  "pk": 1,
+  "fields": {
+    "group": 1,
+    "dicipline": 1,
+    "exam_type": "retrftgyuui",
+    "classroom": 108,
+    "day": 0,
+    "bell": 1
+  }
+},
+{
+  "model": "main.exammark",
+  "pk": 1,
+  "fields": {
+    "mark": 6,
+    "exam": 1,
+    "student": 1
+  }
+},
+{
+  "model": "main.notification",
+  "pk": 4,
+  "fields": {
+    "teacher": 2,
+    "group": 2,
+    "message": "ewrqe"
+  }
+},
+{
+  "model": "main.notification",
+  "pk": 5,
+  "fields": {
+    "teacher": 2,
+    "group": 2,
+    "message": "dfxgchvjbknl"
+  }
+},
+{
+  "model": "main.notification",
+  "pk": 6,
+  "fields": {
+    "teacher": 2,
+    "group": 2,
+    "message": "zxhcgjvhkbjl"
+  }
+},
+{
+  "model": "main.notification",
+  "pk": 7,
+  "fields": {
+    "teacher": 2,
+    "group": 2,
+    "message": "sdfsdfdf"
+  }
+},
+{
+  "model": "main.notification",
+  "pk": 8,
+  "fields": {
+    "teacher": 2,
+    "group": 2,
+    "message": "fh ek; r;efbr"
+  }
+},
+{
+  "model": "main.missings",
+  "pk": 1,
+  "fields": {
+    "hours": 1,
+    "dicipline": 2,
+    "student": 3,
+    "date": "2021-09-06"
+  }
+},
+{
+  "model": "main.missings",
+  "pk": 2,
+  "fields": {
+    "hours": 2,
+    "dicipline": 2,
+    "student": 2,
+    "date": "2021-09-06"
+  }
+},
+{
+  "model": "main.missings",
+  "pk": 3,
+  "fields": {
+    "hours": 2,
+    "dicipline": 2,
+    "student": 2,
+    "date": "2021-10-04"
+  }
+}
+]
