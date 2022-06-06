@@ -5,25 +5,28 @@ Students
 {% endblock %}
 
 {% block content %}
-    <table align="center" width="600">
-        <tbody>
-            {% for student in student_list%}
-                <tr>
-                    <td>
-                        <a href = "/students/{{ student.id }}" >{{student.surname}} {{ student.name }} {{ student.second_name }}</a>
-                        <p>{{ student.group.course}} курс</p>
-                        <p>{{ student.group.specialisation}}</p>
-                        <p>{{ student.group.faculty}}</p>
-                        <p>Рейтинг: {{ student.rating }}</p>
-                    </td>
-
-                    <td> 
-                        {% if student.photo %}
-                        <img  src = "{{ student.photo.url }}" width="250" height="250"/>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+{% for student in student_list %}
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            {% if student.photo %}
+            <img src="{{ student.photo.url }}" class="img-fluid rounded-start" style="object-fit: cover;height: 250px; width: 250px;">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">{{student}}</h3>
+                <p class="card-text">
+                    <ul>
+                        <li>{{ student.group.course }} курс</li>
+                        <li>{{ student.group.specialisation }}</li>
+                        <li>{{ student.group.faculty }}</li>
+                        <li>Рейтинг{{ student.rating }}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

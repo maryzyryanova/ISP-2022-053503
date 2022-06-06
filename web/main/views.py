@@ -27,6 +27,7 @@ from main.mixins import StudentAccessMixin, TeacherAccessMixin
 
 from .models import (
     Dicipline,
+    Exam,
     ExamMark,
     Mark,
     Missings,
@@ -76,7 +77,14 @@ class ScheduleView(View):
             for i in range(1, 5):
                 l.append(schedule.filter(week=i))
             logger.info("ScheduleView success!")
-            return render(request, "schedule_list.html", {"schedule": l})
+            return render(
+                request, 
+                "schedule_list.html", 
+                {
+                    "schedule": l,
+                    'group': get_object_or_404(Group, number=_id),
+                }
+            )
         logger.error("SchudleView: no id!")
         return render(request, "schedule_list.html")
 
@@ -447,3 +455,8 @@ class NotificationDeleteView(TeacherAccessMixin, DeleteView):
     model = Notification
     template_name = 'teacher_del_notification.html'
     success_url = reverse_lazy('teacher_notifications_list')
+
+class TeacherExamsView(TeacherAccessMixin, View):
+    model = Exam
+    template_name = 'teacher_exams.html'
+    

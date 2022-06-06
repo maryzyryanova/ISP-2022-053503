@@ -5,8 +5,17 @@ Schedule
 {% endblock %}
 
 {% block content %}
-   <input type="text" id="group-number">
-   <a id="check-btn"> Check schedule </a>
+   {% if group %}
+      <h1>Расписание группы {{group.number}}</h1>
+   {% else %}
+      <h1>Расписание групп</h1>
+   {% endif %}
+   <hr>
+   <div class="input-group mb-3">
+      <input id="group-number" type="text" class="form-control" placeholder="Введите номер группы..." aria-label="Recipient's username" aria-describedby="button-addon2">
+      <a class="btn btn-outline-primary" id="check-btn">Просмотреть расписание</a>
+   </div>    
+   <hr>
    <script>
       let text = document.getElementById("group-number");
       let btn = document.getElementById("check-btn");

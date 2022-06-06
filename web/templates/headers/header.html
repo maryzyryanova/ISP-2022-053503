@@ -24,7 +24,11 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ request.user.username }}
+                        {% if request.user.student == 'Зырянова Мария Михайловна' %}
+                            Маш, ты ебанулась? Поменяй темплейт...
+                        {% else %}
+                            О, приует, {{request.user.student}}
+                        {% endif %}
                     </a>
                     <ul style="float: right" class="dropdown-menu dropdown-menu-dark"
                         aria-labelledby="navbarDarkDropdownMenuLink">
@@ -56,7 +60,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/" id="navbarDarkDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ request.user.username }}
+                        Доброго времени суток, {{ request.user.teacher.name }} {{ request.user.teacher.second_name }}!
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li><a class="dropdown-item" href="/account/">Профиль</a></li>
