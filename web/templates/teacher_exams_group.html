@@ -1,0 +1,17 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h1>Ваши группы</h1>
+<ul>
+    {% for group in groups %}
+    <li>
+        <a href="/teachers/exams/{{ group.group__number }}">
+            {{ group.group__number }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h1>Экзамены</h1>
+<ol>
+    {% for exam in exams %}
+    <li>
+        <a href="/teachers/groups/{{group.number}}/{{ exam.dicipline__id }}/">
+            {{ exam.dicipline__title }}
+        </a>
+    </li>
+    {% endfor %}
+</ol>
+{% endblock %}

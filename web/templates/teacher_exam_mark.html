@@ -1,0 +1,34 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            Добавить   
+        </button>
+    </form>
+
+    <table class="table">
+        <thead>
+            <th>ФИО</th>
+        </thead>
+        <tbody>
+            {% for student, marks_list in marks.items %}
+                <tr>
+                    <td>
+                        {{ student.surname}}
+                    </td>
+                    {% for date, mark in marks_list.items%}
+                        <td>
+                            {{ mark }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

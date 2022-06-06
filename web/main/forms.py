@@ -8,6 +8,7 @@ from django.conf import settings
 from main.models import Student, Teacher, Notification, Mark, Missings, Group
 
 from main.utils import get_pairs
+from main.models import ExamMark
 
 
 User = get_user_model()
@@ -58,4 +59,15 @@ class MarksForm(forms.Form):
         self.fields['date'] = forms.ChoiceField(
             choices=res
         )
-        
+
+
+class ExamMarksForm(forms.Form):
+    mark = forms.IntegerField(required=False)
+    student = forms.ModelChoiceField(queryset=Student.objects.all())
+    
+    def __init__(self, group, dicipline, *args, **kwargs):
+        super(MarksForm, self).__init__(*args, **kwargs)
+
+        self.fields['student'] = forms.ModelChoiceField(
+            queryset=group.students.all()
+        )

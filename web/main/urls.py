@@ -15,6 +15,9 @@ from .views import (
     StudentView, 
     StudentsListView,
     AccountView,
+    TeacherExamMarksView,
+    TeacherExamsView,
+    TeacherGroupsExamsView,
     TeacherPersonalScheduleView,
     TeachersView, 
     TeacherView,
@@ -54,5 +57,7 @@ urlpatterns = [
     path('teachers/notifications/<int:notification_id>/', NotificationView.as_view(), name='teacher_notification'),
     path('teachers/notifications/<int:notification_id>/update', NotificationUpdateView.as_view(), name='teacher_update_notification'),
     path('teachers/notifications/<int:pk>/delete', NotificationDeleteView.as_view(), name='teacher_delete_notification'),
-    
+    path('teachers/exams', TeacherGroupsExamsView.as_view(), name='teacher_exams_group'),
+    path('teachers/exams/<str:group_id>/', TeacherExamsView.as_view(), name='teacher_group_exam'),
+    path('teachers/exams/<str:group_id>/<int:exam_id>/', TeacherExamMarksView.as_view(), name='teacher_exam_marks'),
 ]

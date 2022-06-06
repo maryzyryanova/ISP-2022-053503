@@ -127,7 +127,8 @@ class Exam(models.Model):
     classroom = models.PositiveSmallIntegerField("Аудитория", default=0)
     day = models.PositiveSmallIntegerField("День недели", default=0)
     bell = models.ForeignKey(Bell, verbose_name="Звонок", null=True, on_delete=models.SET_NULL)
-
+    teacher = models.ForeignKey(Teacher, verbose_name="Преподаватель", null=True, on_delete=models.SET_NULL)
+    
     def __str__(self) -> str:
         return f"Экзамен по {self.dicipline}"
 
