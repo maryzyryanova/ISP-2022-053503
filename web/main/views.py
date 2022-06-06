@@ -24,6 +24,7 @@ from main.forms import (
     MarksForm,
 )
 from main.mixins import StudentAccessMixin, TeacherAccessMixin
+from main.forms import ExamMarksForm
 
 from .models import (
     Dicipline,
@@ -307,7 +308,6 @@ class TeacherStudentView(TeacherAccessMixin, View):
                 missings.hours = form.cleaned_data['missings']
                 missings.save()
             return redirect(f'/teachers/groups/{group.number}/subject/{dicipline_id}')
-        print(form.errors)
         marks = self.get_all_marks()
         return render(
                 request,
@@ -456,7 +456,59 @@ class NotificationDeleteView(TeacherAccessMixin, DeleteView):
     template_name = 'teacher_del_notification.html'
     success_url = reverse_lazy('teacher_notifications_list')
 
+class TeacherGroupsExamsView(TeacherAccessMixin, View):
+    template_name = "teacher_exams_group.html"
+
+    def get(self, request, *args, **kwargs):
+        teacher = request.user.teacher
+        groups = (
+            Exam.objects.filter(teacher=teacher)
+            .values("group__number")
+            .annotate(dcount=Count("group"))
+        )
+        logger.info("TeacherGroupsExamsView success!")
+        return render(
+            request,
+            self.template_name,
+            {
+                "groups": groups,
+            },
+        )
+
 class TeacherExamsView(TeacherAccessMixin, View):
     model = Exam
     template_name = 'teacher_exams.html'
+
+    def get_object(self):
+        _id = self.kwargs.get("group_id")
+        logger.info("TeacherExamsView get_object success!")
+        return get_object_or_404(Group, number=_id)
+
+    def get(self, request, *args, **kwargs):
+        group = self.get_object()
+        exams = (
+            Exam.objects.filter(group=group, teacher=request.user.teacher)
+            .values("dicipline__title", "dicipline__id")
+            .annotate(count=Count("dicipline"))
+        )
+        logger.info("TeacherExamsView get success!")
+
+        return render(
+            request,
+            self.template_name,
+            {
+                "exams": exams,
+                "group": group,
+            },
+        )
+
+class TeacherExamMarksView(TeacherAccessMixin, View):
+    template_name = "teacher_exam_mark.html"
+
+    def get_object(self):
+        _id = self.kwargs.get("group_id")
+        return get_object_or_404(Group, number=_id)
+
+    
+
     
