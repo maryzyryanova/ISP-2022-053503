@@ -128,7 +128,8 @@ class Exam(models.Model):
     day = models.PositiveSmallIntegerField("День недели", default=0)
     bell = models.ForeignKey(Bell, verbose_name="Звонок", null=True, on_delete=models.SET_NULL)
     teacher = models.ForeignKey(Teacher, verbose_name="Преподаватель", null=True, on_delete=models.SET_NULL)
-    
+    date = models.DateField("Date", default=datetime.date.today)
+
     def __str__(self) -> str:
         return f"Экзамен по {self.dicipline}"
 
@@ -138,7 +139,7 @@ class Exam(models.Model):
 
 class ExamMark(models.Model):
     mark = models.PositiveSmallIntegerField("Отметка", default=0)
-    exam = models.OneToOneField('Exam', related_name='marks', verbose_name="Отметки", null=True, on_delete=models.CASCADE)    
+    exam = models.OneToOneField('Exam', related_name='exam_marks', verbose_name="Отметки", null=True, on_delete=models.CASCADE)    
     student = models.ForeignKey('Student', related_name='exam_marks', verbose_name='Студент', null=True, on_delete=models.CASCADE)
 
     class Meta:

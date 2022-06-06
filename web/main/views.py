@@ -509,6 +509,35 @@ class TeacherExamMarksView(TeacherAccessMixin, View):
         _id = self.kwargs.get("group_id")
         return get_object_or_404(Group, number=_id)
 
-    
+    def get(self, request, *args, **kwargs):
+        group = self.get_object()
+        dicipline_id = self.kwargs.get("subject_id")
+        dicipline = Dicipline.objects.get(id=dicipline_id)
+        exam = Exam.objects.get(dicipline=dicipline)
+        form = ExamMarksForm(group)
+        exam_marks = self.get_exam_marks(exam, group)
+        return render(
+            request, 
+            self.template_name,
+            {
+                "group": group,
+                "exam_marks": exam_marks,
+                "form": form,
+            }
+        )
+
+    def get_exam_marks(self, exam, group):
+        result = {}
+        for student in group.students.all():
+            exam_marks = {}
+            exam_mark = student.exam_marks.filter(dicipline=exam.dicipline)
+            if exam_mark.count():
+                exam_marks[exam.date]  = exam_mark[0].mark
+            else:
+                exam_marks[exam.date] = ""
+            result[student] = exam_marks
+        return result
+
+
 
     

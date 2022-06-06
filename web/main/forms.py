@@ -60,12 +60,11 @@ class MarksForm(forms.Form):
             choices=res
         )
 
-
 class ExamMarksForm(forms.Form):
     mark = forms.IntegerField(required=False)
     student = forms.ModelChoiceField(queryset=Student.objects.all())
     
-    def __init__(self, group, dicipline, *args, **kwargs):
+    def __init__(self, group, *args, **kwargs):
         super(MarksForm, self).__init__(*args, **kwargs)
 
         self.fields['student'] = forms.ModelChoiceField(
