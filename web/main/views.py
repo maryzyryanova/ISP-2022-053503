@@ -143,7 +143,14 @@ class MarksView(StudentAccessMixin, View):
         schedule = Schedule.objects.filter(group=group)
         logger.info("MarksView success!")
         marks = self.get_all_marks()
-        return render(request, self.template_name, {"schedule": schedule, 'marks':marks})
+        return render(
+            request, 
+            self.template_name, 
+            {
+                "schedule": schedule, 
+                'marks': marks, 
+            }
+        )
 
     def get_all_marks(self):
         diciplines = Schedule.objects.filter(group=self.request.user.student.group).values('dicipline__title').annotate(dcount=Count("dicipline__title"))
@@ -152,9 +159,11 @@ class MarksView(StudentAccessMixin, View):
             dic = []
             for mark in Mark.objects.filter(student=self.request.user.student, dicipline__title=dicipline['dicipline__title']):
                 dic.append(mark.mark)
-            res[dicipline['dicipline__title']] = dic
+            s = 0
+            for missing in Missings.objects.filter(student=self.request.user.student, dicipline__title=dicipline['dicipline__title']):
+                s+=missing.hours
+            res[dicipline['dicipline__title']] = (s, dic)
         return res
-
 
 class GroupScheduleView(StudentAccessMixin, View):
     template_name = "group_schedule.html"
@@ -175,8 +184,6 @@ class GroupScheduleView(StudentAccessMixin, View):
                 'group': request.user.student.group,
             }
         )
-        
-        return render(request, self.template_name, {"schedule": schedule})
 
 class ExamsView(StudentAccessMixin, View):
     template_name = "exams.html"

@@ -5,20 +5,29 @@ Teachers
 {% endblock %}
 
 {% block content %}
-    <table align="center" width="600">
-        <tbody>
-            {% for teacher in teachers_list%}
-                <tr>
-                    <td>
-                        <a href = "/teachers/{{ teacher.id }}" >{{teacher.surname}} {{ teacher.name }} {{ teacher.second_name }}</a>
-                        <p> {{ teacher.rang }} </p>
-                    </td>
-
-                    <td> 
-                        <img  src = "{{ teacher.photo.url }}" width="250" height="250"/>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<h1>Список преподавателей</h1>
+<hr>
+{% for teacher in teachers_list %}
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            {% if teacher.photo %}
+            <img src="{{ teacher.photo.url }}" class="img-fluid rounded-start" style="object-fit: cover;height: 250px; width: 250px;">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">{{teacher}}</h3>
+                <p class="card-text">
+                    <ul>
+                        <li>{{ teacher.rang }}</li>
+                        <li>{{ teacher.email }}</li>
+                        <li>{{ teacher.diciplines }}</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

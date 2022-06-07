@@ -10,15 +10,21 @@
     <table class="table table-striped">
         <thead>
             <th>Предмет</th>
+            <th>Пропуски</th>
+            <th>Отметки</th>
         </thead>
         <tbody>
-            {% for dicipline, marks in marks.items %}
+            {% for dicipline, item in marks.items %}
+            {% with miss=item.0 marks=item.1 %}
             <tr>
                 <td>{{dicipline}}</td>
+                <td>{{  miss }}</td>
                 {% for mark in marks %}
                 <td>{{mark}}</td>
                 {% endfor %}
+                
             </tr>
+            {% endwith %}
             {% endfor %}
         </tbody>
     </table>
