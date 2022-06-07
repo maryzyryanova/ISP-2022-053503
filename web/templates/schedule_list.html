@@ -5,37 +5,39 @@ Schedule
 {% endblock %}
 
 {% block content %}
-   {% if group %}
-      <h1>Расписание группы {{group.number}}</h1>
-   {% else %}
-      <h1>Расписание групп</h1>
-   {% endif %}
-   <hr>
-   <div class="input-group mb-3">
-      <input id="group-number" type="text" class="form-control" placeholder="Введите номер группы..." aria-label="Recipient's username" aria-describedby="button-addon2">
-      <a class="btn btn-outline-primary" id="check-btn">Просмотреть расписание</a>
-   </div>    
-   <hr>
-   <script>
-      let text = document.getElementById("group-number");
-      let btn = document.getElementById("check-btn");
+{% if group %}
+<h1>Расписание группы {{group.number}}</h1>
+{% else %}
+<h1>Расписание групп</h1>
+{% endif %}
+<hr>
+<div class="input-group mb-3">
+   <input id="group-number" type="text" class="form-control" placeholder="Введите номер группы..."
+      aria-label="Recipient's username" aria-describedby="button-addon2">
+   <a class="btn btn-outline-primary" id="check-btn">Просмотреть расписание</a>
+</div>
+<hr>
+<script>
+   let text = document.getElementById("group-number");
+   let btn = document.getElementById("check-btn");
 
-      text.addEventListener("keyup", ()=>{
-          let number = text.value;
-          btn.setAttribute("href", `/schedule/${number}`);
-      });
-   </script>
+   text.addEventListener("keyup", () => {
+      let number = text.value;
+      btn.setAttribute("href", `/schedule/${number}`);
+   });
+</script>
 
 <nav class="py-3">
    <div class="nav nav-tabs" id="nav-tab" role="tablist">
       {% for schedule_list in schedule %}
       {% if schedule_list %}
-      <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-{{schedule_list.0.week}}" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Неделя {{schedule_list.0.week}}</button>
+      <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-{{schedule_list.0.week}}"
+         type="button" role="tab" aria-controls="nav-home" aria-selected="true">Неделя {{schedule_list.0.week}}</button>
       {% endif %}
       {% endfor %}
    </div>
- </nav>
- <div class="tab-content" id="nav-tabContent">
+</nav>
+<div class="tab-content" id="nav-tabContent">
    {% for schedule_list in schedule %}
    <div class="tab-pane fade" id="nav-{{schedule_list.0.week}}" role="tabpanel" aria-labelledby="nav-home-tab">
       {% if schedule_list %}
@@ -48,20 +50,20 @@ Schedule
          </thead>
          <tbody>
             {% for pair in schedule_list %}
-                <tr>
-                    <td>
-                        {{pair.get_day_display}}
-                    </td>
-                        <td>
-                            {{ pair.dicipline }}
-                        </td>
-                        <td>
-                            {{ pair.teacher }}
-                        </td>
-                        <td>
-                            {{ pair.bell.start }}
-                        </td>                    
-                </tr>
+            <tr>
+               <td>
+                  {{pair.get_day_display}}
+               </td>
+               <td>
+                  {{ pair.dicipline }}
+               </td>
+               <td>
+                  {{ pair.teacher }}
+               </td>
+               <td>
+                  {{ pair.bell.start }}
+               </td>
+            </tr>
             {% endfor %}
          </tbody>
       </table>
@@ -70,6 +72,6 @@ Schedule
       {% endif %}
    </div>
    {% endfor %}
- </div>
+</div>
 
 {% endblock %}

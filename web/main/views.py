@@ -1,4 +1,5 @@
 import logging
+from tokenize import group
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
@@ -46,7 +47,7 @@ def main(request):
     return render(request, "main_window.html")
 
 class UserLoginView(LoginView):
-    template_name = "login.html"
+    template_name = "registration/login.html"
     form_class = LoginForm
     success_url = reverse_lazy("account")
     logger.info("UserLoginView success!")
@@ -141,14 +142,40 @@ class MarksView(StudentAccessMixin, View):
         group = request.user.student.group
         schedule = Schedule.objects.filter(group=group)
         logger.info("MarksView success!")
-        return render(request, self.template_name, {"schedule": schedule})
+        marks = self.get_all_marks()
+        return render(request, self.template_name, {"schedule": schedule, 'marks':marks})
+
+    def get_all_marks(self):
+        diciplines = Schedule.objects.filter(group=self.request.user.student.group).values('dicipline__title').annotate(dcount=Count("dicipline__title"))
+        res = {}
+        for dicipline in diciplines:
+            dic = []
+            for mark in Mark.objects.filter(student=self.request.user.student, dicipline__title=dicipline['dicipline__title']):
+                dic.append(mark.mark)
+            res[dicipline['dicipline__title']] = dic
+        return res
+
 
 class GroupScheduleView(StudentAccessMixin, View):
     template_name = "group_schedule.html"
 
     def get(self, request):
-        schedule = Schedule.objects.filter(group=request.user.student.group)
+        # schedule = Schedule.objects.filter(group=request.user.student.group)
         logger.info("GroupScheduleView success!")
+        _id = request.user.student.group.number
+        schedule = Schedule.objects.filter(group__number=_id)
+        l = []
+        for i in range(1, 5):
+            l.append(schedule.filter(week=i))
+        return render(
+            request, 
+            self.template_name, 
+            {
+                "schedule": l,
+                'group': request.user.student.group,
+            }
+        )
+        
         return render(request, self.template_name, {"schedule": schedule})
 
 class ExamsView(StudentAccessMixin, View):
@@ -159,9 +186,26 @@ class ExamsView(StudentAccessMixin, View):
         logger.info("ExamsView success!")
         return render(request, self.template_name, {"exams": exams})
 
-class NotificationsView(StudentAccessMixin, LoginRequiredMixin, CreateView):
+class StudentNotificationsView(StudentAccessMixin, LoginRequiredMixin, ListView):
     template_name = "notify.html"
-    
+    model = Notification 
+
+    def get_queryset(self):
+        return self.model.objects.filter(group=self.request.user.student.group)
+
+class StudentCurrentNotificationView(StudentAccessMixin, View):
+    template_name = 'student_notification.html'
+    model = Notification
+
+    def get(self, request, *args, **kwargs):
+        notification_id = self.kwargs.get("notification_id")
+        notification = Notification.objects.get(id=notification_id)
+
+        return render(
+            request,
+            self.template_name,
+            {'notification': notification}
+        ) 
 
 class ChangePasswordView(PasswordChangeView):
     success_url = reverse_lazy("password_change_done")
@@ -367,7 +411,7 @@ class SendNotificationView(TeacherAccessMixin, View):
                     group = Group.objects.get(number=form.cleaned_data['group']),
                 )
                 notification.save()
-                return redirect('http://localhost:8000/teachers/notifications/')
+                return redirect('/teachers/notifications/')
         return render(
                 request,
                 self.template_name,
@@ -511,9 +555,9 @@ class TeacherExamMarksView(TeacherAccessMixin, View):
 
     def get(self, request, *args, **kwargs):
         group = self.get_object()
-        dicipline_id = self.kwargs.get("subject_id")
-        dicipline = Dicipline.objects.get(id=dicipline_id)
-        exam = Exam.objects.get(dicipline=dicipline)
+        exam_id = self.kwargs.get("exam_id")
+        sub = Dicipline.objects.get(id=exam_id)
+        exam = Exam.objects.get(dicipline=sub, group=group)
         form = ExamMarksForm(group)
         exam_marks = self.get_exam_marks(exam, group)
         return render(
@@ -529,14 +573,39 @@ class TeacherExamMarksView(TeacherAccessMixin, View):
     def get_exam_marks(self, exam, group):
         result = {}
         for student in group.students.all():
-            exam_marks = {}
-            exam_mark = student.exam_marks.filter(dicipline=exam.dicipline)
+            exam_mark = student.exam_marks.filter(exam=exam)
             if exam_mark.count():
-                exam_marks[exam.date]  = exam_mark[0].mark
+                result[student] = exam_mark[0].mark
             else:
-                exam_marks[exam.date] = ""
-            result[student] = exam_marks
+                result[student] = ""
         return result
+
+    def post(self, request, *args, **kwargs):
+        group = self.get_object()
+        exam_id = self.kwargs.get("exam_id")
+        sub = Dicipline.objects.get(id=exam_id)
+        exam = Exam.objects.get(dicipline=sub, group=group)
+        form = ExamMarksForm(group, request.POST)
+        if form.is_valid():
+            if form.cleaned_data['mark']:
+                exam_mark,_ = ExamMark.objects.get_or_create(
+                    student=form.cleaned_data["student"],
+                    exam = exam
+                )
+                if exam_mark.mark < 11:
+                    exam_mark.mark = form.cleaned_data['mark']
+                    exam_mark.save()
+            return redirect(f'/teachers/exams/{group.number}/{exam_id}/')
+        exam_marks = self.get_exam_marks(exam, group)
+        return render(
+            request, 
+            self.template_name,
+            {
+                "group": group,
+                "exam_marks": exam_marks,
+                "form": form,
+            }
+        )
 
 
 

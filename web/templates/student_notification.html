@@ -1,0 +1,21 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+Notification
+{% endblock %}
+
+{% block content %}
+<div class="card text-center">
+    <div class="card-header">
+        <h5>
+            Сообщение от {{notification.teacher}}<br>
+            группе {{notification.group}}
+        </h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            {{notification.message}}
+        </p>
+    </div>
+</div>
+{% endblock %}

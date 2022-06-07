@@ -5,32 +5,52 @@
 {% endblock %}
 
 {% block content %}
-<table class="table">
-    <thead>
-        <th>День недели</th>
-        <th>Дисциплина</th>
-        <th>Преподаватель</th>
-        <th>Начало пары</th>
-    </thead>
-    <tbody>
-        {% for pair in schedule%}
-            <tr>
+<h1>Расписание группы {{group.number}}</h1>
+<hr>
+<nav class="py-3">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+       {% for schedule_list in schedule %}
+       {% if schedule_list %}
+       <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-{{schedule_list.0.week}}"
+          type="button" role="tab" aria-controls="nav-home" aria-selected="true">Неделя {{schedule_list.0.week}}</button>
+       {% endif %}
+       {% endfor %}
+    </div>
+ </nav>
+<div class="tab-content" id="nav-tabContent">
+    {% for schedule_list in schedule %}
+    <div class="tab-pane fade" id="nav-{{schedule_list.0.week}}" role="tabpanel" aria-labelledby="nav-home-tab">
+       {% if schedule_list %}
+       <table class="table">
+          <thead>
+             <th>День недели</th>
+             <th>Дисциплина</th>
+             <th>Преподаватель</th>
+             <th>Начало пары</th>
+          </thead>
+          <tbody>
+             {% for pair in schedule_list %}
+             <tr>
                 <td>
-                    {{ pair.get_day_display }}
+                   {{pair.get_day_display}}
                 </td>
-                    <td>
-                        {{ pair.dicipline }}
-                    </td>
-                    <td>
-                        {{ pair.teacher }}
-                    </td>
-                    <td>
-                        {{ pair.bell.start }}
-                    </td>                    
-            </tr>
-        {% endfor %}
-    </tbody>
-
-</table>
-    
+                <td>
+                   {{ pair.dicipline }}
+                </td>
+                <td>
+                   {{ pair.teacher }}
+                </td>
+                <td>
+                   {{ pair.bell.start }}
+                </td>
+             </tr>
+             {% endfor %}
+          </tbody>
+       </table>
+       {% else %}
+       There is no schedule
+       {% endif %}
+    </div>
+    {% endfor %}
+ </div>
 {% endblock %}

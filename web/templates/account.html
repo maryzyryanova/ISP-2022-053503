@@ -6,8 +6,60 @@ Account
 
 {% block content %}
    {% if request.user.student %}
-      {{ request.user.student }}
+   {% with request.user.student as object %}
+   <div class="card mb-3">
+      <div class="row g-0">
+          <div class="col-md-4">
+              {% if object.photo %}
+              <img src="{{ object.photo.url }}" class="img-fluid rounded-start" style="object-fit: cover;height: 250px; width: 250px;">
+              {% endif %}
+          </div>
+          <div class="col-md-8">
+              <div class="card-body">
+                  <h3 class="card-title">{{object}}</h3>
+                  <p class="card-text">
+                      <ul>
+                          <li>{{ object.group.course }} курс</li>
+                          <li>{{ object.group.specialisation }}</li>
+                          <li>{{ object.group.faculty }}</li>
+                          <li>Рейтинг: {{ object.rating }}</li>
+                      </ul>
+                  </p>
+              </div>
+          </div>
+      </div>
+      {% endwith %}
+  </div>
    {% elif request.user.teacher %}
-      {{ request.user.teacher }}
+   {% with request.user.teacher as object %}
+   <div class="card mb-3">
+      <div class="row g-0">
+          <div class="col-md-4">
+              {% if object.photo %}
+              <img src="{{ object.photo.url }}" class="img-fluid rounded-start" style="object-fit: cover;height: 250px; width: 250px;">
+              {% endif %}
+          </div>
+          <div class="col-md-8">
+              <div class="card-body">
+                  <h3 class="card-title">{{object}}</h3>
+                  <p class="card-text">
+                      <ul>
+                          <li>{{ object.rang }}</li>
+                          <li>{{ object.email }}</li>
+                          <li>
+                           Дисциплины:
+                           <ul>
+                              {% for dicipline in object.diciplines.all %}
+                              <li>{{ dicipline }}</li>
+                              {% endfor %}
+                           </ul>
+                          </li>
+                      </ul>
+                  </p>
+              </div>
+          </div>
+      </div>
+      {% endwith %}
+  </div>
    {% endif %}
 {% endblock %}

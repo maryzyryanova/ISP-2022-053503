@@ -5,15 +5,27 @@ Notification
 {% endblock %}
 
 {% block content %}
-    <h3>Отправитель: {{ notification.teacher }}</h3>
-    <h3>Получатель: {{ notification.group }}</h3>
-    <h5>{{ notification.message }}</h5>
-    <a class="btn btn-success" href="/teachers/notifications/{{ notification.id }}/update">
-        Редактировать
-    </a>
-
-    <a class="btn btn-success" href="/teachers/notifications/{{ notification.id }}/delete">
-        Удалить
-    </a>
+    <div class="card text-center">
+        <div class="card-header">
+            <h5>
+                Сообщение от {{notification.teacher}}<br>
+                группе {{notification.group}}
+            </h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                {{notification.message}}
+            </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-success" href="/teachers/notifications/{{ notification.id }}/update">
+                Редактировать
+            </a>
+        
+            <a class="btn btn-danger" href="/teachers/notifications/{{ notification.id }}/delete">
+                Удалить
+            </a>
+        </div>
+    </div>
 
 {% endblock %}

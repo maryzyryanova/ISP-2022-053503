@@ -121,7 +121,6 @@ class ViewsTestCase(TestCase):
             name = 'cfghvjb',
             second_name = 'fghj',
             surname = 'tctvjk',
-            rating = 9.3,
             number = '05350067',
             group = group,
         )

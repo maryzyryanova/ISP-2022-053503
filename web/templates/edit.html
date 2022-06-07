@@ -8,9 +8,9 @@ Edit
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
-        <a href="/password-change/">Смена пароля</a>
+        <a href="/password-change/" class="btn btn-outline-primary mb-3">Смена пароля</a>
         <p>
-            <button type="submit" >Сохранить</button>
+            <button class="btn btn-success" type="submit" >Сохранить</button>
         </p>
     </form>
 {% endblock %}

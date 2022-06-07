@@ -108,12 +108,24 @@ class Student(models.Model):
     second_name = models.CharField("Отчество", max_length=50)
     surname = models.CharField("Фамилия", max_length=50)
     photo = models.ImageField("Фото",upload_to = "media/students/", null=True, blank=True)
-    rating = models.FloatField("Рейтинг")
     number = models.CharField("Студенческий билет", max_length=15)
     group = models.ForeignKey(Group, related_name='students', verbose_name="Номер группы", null=True, on_delete=models.SET_NULL, blank=True)
 
     def __str__(self) -> str:
         return f'{self.surname} {self.name} {self.second_name}'
+
+    @property
+    def get_full_name(self):
+        return f'{self.surname} {self.name} {self.second_name}'
+
+    @property
+    def rating(self):
+        s = 0
+        for mark in self.exam_marks.all():
+            s += mark.mark
+        if self.exam_marks.count():
+            return s / self.exam_marks.count()
+        return 0
 
     class Meta:
         ordering = ('surname','name','second_name')
@@ -139,7 +151,7 @@ class Exam(models.Model):
 
 class ExamMark(models.Model):
     mark = models.PositiveSmallIntegerField("Отметка", default=0)
-    exam = models.OneToOneField('Exam', related_name='exam_marks', verbose_name="Отметки", null=True, on_delete=models.CASCADE)    
+    exam = models.ForeignKey('Exam', related_name='exam_marks', verbose_name="Отметки", null=True, on_delete=models.CASCADE)    
     student = models.ForeignKey('Student', related_name='exam_marks', verbose_name='Студент', null=True, on_delete=models.CASCADE)
 
     class Meta:

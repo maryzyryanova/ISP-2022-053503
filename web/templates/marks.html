@@ -5,18 +5,21 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table table-dark table-striped" >
-        {% for pair in schedule %}
-        <tr>
-            <td>
-                {{ pair.dicipline }}
-            </td>
-            {% for mark in pair.marks.all %}
-            <td>
-                {{ mark.mark }}
-            </td>
+    <h1>Ваши отметки</h1>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <th>Предмет</th>
+        </thead>
+        <tbody>
+            {% for dicipline, marks in marks.items %}
+            <tr>
+                <td>{{dicipline}}</td>
+                {% for mark in marks %}
+                <td>{{mark}}</td>
+                {% endfor %}
+            </tr>
             {% endfor %}
-        </tr>
-        {% endfor %}
+        </tbody>
     </table>
 {% endblock %}

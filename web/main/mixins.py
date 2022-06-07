@@ -10,6 +10,7 @@ class StudentAccessMixin(AccessMixin):
 
 class TeacherAccessMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
+        print(self.request.user)
         if hasattr(self.request.user, "teacher"):
             return super().dispatch(request, *args, **kwargs)
         raise PermissionDenied

@@ -7,26 +7,28 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">
+        <button class="btn btn-success" type="submit">
             Добавить   
         </button>
     </form>
 
     <table class="table">
         <thead>
-            <th>ФИО</th>
+            <tr>
+                <th>ФИО</th>
+                <th>Отметка</th>
+            </tr>
         </thead>
         <tbody>
-            {% for student, marks_list in marks.items %}
+            {% for student, mark in exam_marks.items %}
                 <tr>
                     <td>
                         {{ student.surname}}
                     </td>
-                    {% for date, mark in marks_list.items%}
                         <td>
                             {{ mark }}
                         </td>
-                    {% endfor %}
+                
                 </tr>
             {% endfor %}
         </tbody>

@@ -5,6 +5,8 @@ Students
 {% endblock %}
 
 {% block content %}
+<h1>Список студентов</h1>
+<hr>
 {% for student in student_list %}
 <div class="card mb-3">
     <div class="row g-0">
@@ -21,7 +23,7 @@ Students
                         <li>{{ student.group.course }} курс</li>
                         <li>{{ student.group.specialisation }}</li>
                         <li>{{ student.group.faculty }}</li>
-                        <li>Рейтинг{{ student.rating }}</li>
+                        <li>Рейтинг: {{ student.rating }}</li>
                     </ul>
                 </p>
             </div>

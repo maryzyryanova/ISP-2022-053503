@@ -1,0 +1,32 @@
+{% extends "wrapper.html" %}
+
+{% block title %}
+Notifications list
+{% endblock %}
+
+{% block content %}
+<h1>Сообщения</h1>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Текст сообщения</th>
+            <th>Автор</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for notification in object_list %}
+        <tr>
+            <td>{{notification.id}}</td>
+            <td>{{notification.message}}</td>
+            <td>{{notification.teacher}}</td>
+            <td><a href="/account/notifications/{{ notification.id }}/">Просмотр</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
