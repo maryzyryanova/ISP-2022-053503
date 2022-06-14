@@ -1,0 +1,30 @@
+version: "3"
+
+volumes:
+  postgres:
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/data/postgres"
+    volumes:
+      - postgres:/data/postgres
+
+  backend:
+    build: ./web
+    environment:
+      DATABASE_PASSWORD: "postgres"
+      DATABASE_NAME: "postgres"
+      DATABASE_LOGIN: "postgres"
+      SECRET_KEY: "k2q6+kc0ny#qxhyr*6!g%%(yzq-df@zfcxg-xt_b4bz2#166=i"
+    volumes:
+      - ./web:/app/backend
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true
+    command: sh -c "cd /app/backend && ./entrypoint.sh"
+    depends_on:
+      - db
