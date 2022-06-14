@@ -612,7 +612,3 @@ class TeacherExamMarksView(TeacherAccessMixin, View):
                 "form": form,
             }
         )
-
-
-
-    

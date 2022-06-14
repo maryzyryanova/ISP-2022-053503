@@ -3,14 +3,15 @@
 import os
 import sys
 
+if os.path.isfile(os.path.join(os.path.dirname(__file__), 'local_settings.py')):
+    # Если рядом с manage.py лежит local_settings.py — используем его
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "local_settings")
+else:
+    # Если нет — используем стандартные настройки без секретов
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
+
 
 def main():
-    if os.path.isfile(os.path.join(os.path.dirname(__file__), 'local_settings.py')):
-        # Если рядом с manage.py лежит local_settings.py — используем его
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "local_settings")
-    else:
-        # Если нет — используем стандартные настройки без секретов
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
